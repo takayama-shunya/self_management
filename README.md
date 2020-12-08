@@ -48,6 +48,19 @@ https://docs.google.com/spreadsheets/d/1wSSJcXp0IArIkdrBMQSjrXWWBAeoYdGsXdFkVET4
   
 ## 使用予定Gem  
 - devise  
+- rails
 - bootstrap  
+- font-awesome-rails
+- jquery-rails  
 - chartkick  
+- letter_opener_web  
+- rspec-rails  
+- spring-commands-rspec  
+- factory_bot_rails  
+- faker  
+- launchy  
+- capybara  
+- webdrivers  
+- dotenv-rails  
+- bullet  
  
