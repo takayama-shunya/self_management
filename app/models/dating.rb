@@ -1,0 +1,2 @@
+class Dating < ApplicationRecord
+end
