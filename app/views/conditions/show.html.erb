@@ -1,0 +1,57 @@
+<div class="spece">
+  <h3><%= t('view.condition_details') %></h3>
+</div>
+
+<div>
+  <%= l @condition.created_at %>
+</div>
+
+<div>
+  <%= l @condition.retirung_time, format: :hour_minitues %> - <%= l @condition.rising_time, format: :hour_minitues %>
+</div>
+
+<div>
+  <%= @condition.sleep_time %>
+</div>
+
+<div>
+  <%= @condition.sleep_quality %>
+</div>
+
+<div>
+  <%= @condition.meal_count %>
+</div>
+
+<div>
+  <%= @condition.stress_level %>
+</div>
+
+<div>
+  <%= @condition.toughness %>
+</div>
+
+<div>
+  <%= @condition.stress_recovery_balance %>
+</div>
+
+<div>
+  <%= @condition.positive_level %>
+</div>
+
+<div>
+  <%= @condition.enrichment_happiness_level %>
+</div>
+
+<div>
+  <%= @condition.negative_comment %>
+</div>
+
+<div>
+  <%= @condition.positive_comment %>
+</div>
+
+<div>
+  <%= link_to "edit", edit_condition_path(@condition.id) %>
+</div>
+
+
