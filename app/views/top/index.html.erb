@@ -1,3 +1,59 @@
-<%= form_with(url: top_index_path, local:true, class:"") do |form| %>
-  <>
+<%= form_with(url: top_index_path, method: :get, local:true, class:"") do |f| %>
+  <%= f.label :date_condition %>
+  <%= f.date_field :date_condition, value: @date %>
+  <%= f.submit nil, class:"btn btn-primary" %>
 <% end %>
+
+<% if @condition.present? %>
+  <div>
+  <%= l @condition.retirung_time, format: :hour_minitues %> - <%= l @condition.rising_time, format: :hour_minitues %>
+ </div>
+
+  <div>
+    <%= @condition.sleep_time %>
+  </div>
+
+<div>
+  <%= @condition.sleep_quality %>
+</div>
+
+<div>
+  <%= @condition.meal_count %>
+</div>
+
+<div>
+  <%= @condition.stress_level %>
+</div>
+
+<div>
+  <%= @condition.toughness %>
+</div>
+
+<div>
+  <%= @condition.stress_recovery_balance %>
+</div>
+
+<div>
+  <%= @condition.positive_level %>
+</div>
+
+<div>
+  <%= @condition.enrichment_happiness_level %>
+</div>
+
+<div>
+  <%= @condition.negative_comment %>
+</div>
+
+<div>
+  <%= @condition.positive_comment %>
+</div>
+
+<diV class="chart-container">
+<canvas id="myChart"></canvas>
+<script>draw_graph();</script>
+</div>
+
+<% else %>
+  <div>状態チェックはありません</div>
+<%end%>

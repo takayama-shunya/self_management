@@ -1,4 +1,4 @@
-<%= form_with(model:condition, local:true, class:"form-group") do |form| %>
+<%= form_with(model:condition, local:true, class:"form-group") do |f| %>
   <% if condition.errors.any? %>
     <div class="error_explanation">
       <h3><%= condition.errors.count %><%= t('view.there_are_errors') %></h3>
@@ -22,9 +22,11 @@
   <div class="form-group row">
     <%= f.label :sleep_time, class:"col-sm-2 col-form-label" %>
     <div class="col-md-5">
-      <%= f.select :sleep_time, 
-        [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
-        selected: 3,  class:"form-control" %>
+      <%= f.radio_button :sleep_time, 1 %>1 とても悪い
+      <%= f.radio_button :sleep_time, 2 %>2 少し悪い
+      <%= f.radio_button :sleep_time, 3, checked: true %>3 普通
+      <%= f.radio_button :sleep_time, 4 %>4 良い
+      <%= f.radio_button :sleep_time, 5 %>5 とても良い
     </div>
   </div>
 
