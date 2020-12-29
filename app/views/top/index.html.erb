@@ -1,3 +1,4 @@
+<%= link_to "condition一覧", conditions_path, class: "btn btn-primary"  %>
 <%= form_with(url: top_index_path, method: :get, local:true, class:"") do |f| %>
   <%= f.label :date_condition %>
   <%= f.date_field :date_condition, value: @date %>
@@ -5,6 +6,10 @@
 <% end %>
 
 <% if @condition.present? %>
+  <div>
+    today condition score<%= @condition_score %> 
+    condition average score<%= @condition_average_score %>
+  </div>
   <div>
   <%= l @condition.retirung_time, format: :hour_minitues %> - <%= l @condition.rising_time, format: :hour_minitues %>
  </div>
@@ -51,9 +56,46 @@
 
 <diV class="chart-container">
 <canvas id="myChart"></canvas>
-<script>draw_graph();</script>
+<script>
+window.onload = function() {
+    ctx = document.getElementById("myChart").getContext("2d");
+    window.myChrt = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: [
+            "睡眠時間", "睡眠の質", "食事回数", "ストレス度", "タフ度",
+            "ストレスと回復のバランス", "ポジティブ度", "幸福・充実度"
+          ],
+          datasets: [{
+            label: 'today_condition',
+            backgroundColor: "rgba(102,204,255,0.3)",
+            borderColor: "rgba(102,204,255,1)",
+            data: gon.value
+          }, {
+            label: 'average_condition',
+            backgroundColor: "rgba(255,204,204,0.3)",
+            borderColor: "rgba(255,204,204,1)",
+            data: gon.average_value           }]
+        },
+        options: {
+          scale: {
+            ticks: {
+                suggestedMin: 0,
+                suggestedMax: 5,
+                stepSize: 1
+            }
+          }
+        }
+    });
+};
+</script>
 </div>
+
+<%= link_to "状態チェック編集", edit_condition_path(@condition.id) %>
+
 
 <% else %>
   <div>状態チェックはありません</div>
 <%end%>
+
+

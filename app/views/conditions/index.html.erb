@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row">
+    <table class="table table-bordered table-hover">
+      <tr>
+        <th scope="col">average score</th>
+        <td><%= @condition_average_score %></td>
+      </tr>
+    </table>
+
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col">createtime</th>
+          <th scope="col">score</th>
+          <th></th>
+        </tr>
+      </thead>
+      <% @conditions.each do |condition| %>
+      <tbody>
+        <tr>
+          <td scope="col"><%= l condition.created_at, format: :short  %></td>
+          <td scope="col"><%= condition.sleep_time + condition.sleep_quality +
+                              condition.meal_count + condition.stress_level +
+                              condition.toughness + condition.stress_recovery_balance + 
+                              condition.positive_level + condition.enrichment_happiness_level %></td>
+          <td>
+            <ul>
+              <li class="">
+                <%= button_to condition_path(condition.id), method: :get, class:"btn btn-outline-info" do %>
+                  <span><%= t('show')  %></span>
+                <% end %>
+              </li>
+              <li class="">
+                <%= button_to edit_condition_path(condition.id), method: :get, class:"btn btn-outline-success" do %>
+                  <span><%= t('view.edit') %></span>
+                <% end %>
+              </li>
+              <li class="task-btn">
+                <%= button_to condition_path(condition.id), method: :delete, class:"btn btn-outline-danger", 
+                    data: { confirm: '本当に削除して良いですか？' } do %>
+                  <span><%= t('view.delete') %></span>
+                <% end %>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+    <div class="mb-3">
+      <%= paginate @conditions %>
+      <%= page_entries_info @conditions %>
+    </div>
+  </div>
+</div>
+
+<diV class="chart-container">
+<canvas id="myLineChart"></canvas>
+<script>
+var ctx = document.getElementById("myLineChart");
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: gon.condition_created_at,
+        datasets: [{
+            label: 'condition  score',
+            data: gon.condition_score,
+            backgroundColor: ['rgba(0,255,0,0.4)',],
+            borderColor: ['rgba(0,255,0,1)',],
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                  max: 40,
+                  min: 0,
+                  stepSize: 4
+                }
+            }]
+        }
+    }
+});  
+</script>
+</div>
+

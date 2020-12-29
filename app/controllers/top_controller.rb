@@ -19,19 +19,19 @@ class TopController < ApplicationController
     if @date = params[:date_condition]
       set_top_condition
     else
-      @date = Time.now
-      set_top_condition
+      today_condition
     end
   end
 
   def condition_value
-    unless @condition.blank?
+    if @condition.present?
       gon.value = [
         @condition.sleep_time, @condition.sleep_quality,
         @condition.meal_count, @condition.stress_level, 
         @condition.toughness, @condition.stress_recovery_balance, 
         @condition.positive_level, @condition.enrichment_happiness_level
       ]
+      @condition_score = gon.value.sum
     end
   end
 
@@ -43,6 +43,7 @@ class TopController < ApplicationController
       condition.average(:toughness).to_i, condition.average(:stress_recovery_balance).to_i,
       condition.average(:positive_level).to_i, condition.average(:enrichment_happiness_level).to_i
     ]
+    @condition_average_score = gon.average_value.sum
   end
 
 end

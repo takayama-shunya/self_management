@@ -35,10 +35,11 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
 gem 'devise-i18n'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'chart-js-rails', '~> 0.1.4'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'gon', '~> 6.2.0'
