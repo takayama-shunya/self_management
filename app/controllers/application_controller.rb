@@ -3,8 +3,10 @@ class ApplicationController < ActionController::Base
   
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  helper_method :today_condition
+
   def after_sign_in_path_for(resource)
-    '/users/edit'
+    '/top'
   end
 
   protected
@@ -14,6 +16,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
+  end
+
+  private
+
+  def today_condition
+    @date = Time.now
+    @condition = current_user.conditions.find_by(created_at: @date.in_time_zone.all_day)
   end
 
 end
