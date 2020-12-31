@@ -1,0 +1,2 @@
+class IntegerRecord < ApplicationRecord
+end

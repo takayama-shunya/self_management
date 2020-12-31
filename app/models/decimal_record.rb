@@ -1,0 +1,2 @@
+class DecimalRecord < ApplicationRecord
+end
