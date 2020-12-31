@@ -5,6 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable
   
   has_many :conditions, dependent: :destroy
+  has_many :count_records, dependent: :destroy
+  has_many :decimal_records, dependent: :destroy
+  has_many :integer_records, dependent: :destroy
+  has_many :time_records, dependent: :destroy
+  has_many :check_records, dependent: :destroy
+
+
 
   VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
 
