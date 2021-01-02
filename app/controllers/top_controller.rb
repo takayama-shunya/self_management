@@ -12,7 +12,7 @@ class TopController < ApplicationController
   private
 
   def set_top_condition
-    @condition = current_user.conditions.find_by(created_at: @date.in_time_zone.all_day)
+    @condition = current_user.conditions.find_by(created_at: @date.all_day)
   end
 
   def what_day_condition
@@ -38,10 +38,10 @@ class TopController < ApplicationController
   def condition_average_value
     condition = Condition.where(user_id: current_user.id)
     gon.average_value = [
-      condition.average(:sleep_time).to_i, condition.average(:sleep_quality).to_i,
-      condition.average(:meal_count).to_i, condition.average(:stress_level).to_i,
-      condition.average(:toughness).to_i, condition.average(:stress_recovery_balance).to_i,
-      condition.average(:positive_level).to_i, condition.average(:enrichment_happiness_level).to_i
+      condition.average(:sleep_time).to_f, condition.average(:sleep_quality).to_f,
+      condition.average(:meal_count).to_f, condition.average(:stress_level).to_f,
+      condition.average(:toughness).to_f, condition.average(:stress_recovery_balance).to_f,
+      condition.average(:positive_level).to_f, condition.average(:enrichment_happiness_level).to_f
     ]
     @condition_average_score = gon.average_value.sum
   end

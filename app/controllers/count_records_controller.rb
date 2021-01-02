@@ -1,0 +1,2 @@
+class CountRecordsController < ApplicationController
+end

@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   resources :top, only: %i[ index ] 
   scope :top do
     resources :conditions
+    resources :setting_records, only: %i[ index ]
+    resources :integer_records,
+              :decimal_records,
+              :time_records,
+              :count_records,
+              :check_records
   end
 
 

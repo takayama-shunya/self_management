@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  helper_method :today_condition
+  helper_method :today_condition, :week_day
 
   def after_sign_in_path_for(resource)
     '/top'
@@ -22,7 +22,11 @@ class ApplicationController < ActionController::Base
 
   def today_condition
     @date = Time.now
-    @condition = current_user.conditions.find_by(created_at: @date.in_time_zone.all_day)
+    @condition = current_user.conditions.find_by(created_at: @date.all_day)
+  end
+
+  def week_day
+    @week_day = %w(月 火 水 木 金 土 日)
   end
 
 end

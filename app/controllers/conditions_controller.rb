@@ -68,8 +68,9 @@ class ConditionsController < TopController
 
     score = []
     created_at = []
+    #graph_condition_date = @conditions.order(created)
 
-    @conditions.each do |condition|
+    @conditions.reverse.each do |condition|
       condition_score = condition.sleep_time + condition.sleep_quality +
                         condition.meal_count + condition.stress_level +
                         condition.toughness + condition.stress_recovery_balance + 

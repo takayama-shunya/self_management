@@ -1,0 +1,2 @@
+class CheckRecordsController < ApplicationController
+end

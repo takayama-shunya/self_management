@@ -1,0 +1,2 @@
+class DecimalRecordsController < ApplicationController
+end
