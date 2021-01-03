@@ -5,15 +5,15 @@ class IntegerRecordsController < ApplicationController
 
 
   def new
-    @record = IntegerRecord.new
+    @integre_record = IntegerRecord.new
   end
 
   def create
-    @record = current_user.integer_records.build(record_params)
+    @integre_record = current_user.integer_records.build(integer_record_params)
     if params[:back]
       render :new
     else
-      if @record.save
+      if @integer_record.save
         redirect_to top_index_path, notice: "created condition"
       else
         render :new
@@ -28,7 +28,7 @@ class IntegerRecordsController < ApplicationController
   end
 
   def update
-    if @record.update(record_params)
+    if @integer_record.update(integre_record_params)
       redirect_to top_index_path, notice: "updated condition"
     else
       rende :edit
@@ -36,7 +36,7 @@ class IntegerRecordsController < ApplicationController
   end
 
   def destroy
-    @record.destroy
+    @integer_record.destroy
     redirect_to top_index_path, notice: "deleted condition"
   end
 
@@ -45,11 +45,11 @@ class IntegerRecordsController < ApplicationController
 
   private
 
-  def set_condition
-    @record = IntegerRecord.find(params[:id])
+  def set_record
+    @integer_record = IntegerRecord.find(params[:id])
   end
 
-  def record_params
+  def integer_record_params
     params.require(:integer_record).permit(
       :type, :title, :unit, :content, week_ids: [])
   end

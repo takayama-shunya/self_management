@@ -12,7 +12,7 @@ class TopController < ApplicationController
   private
 
   def set_top_condition
-    @condition = current_user.conditions.find_by(created_at: @date.all_day)
+    @condition = current_user.conditions.find_by(created_at: @date.in_time_zone.all_day)
   end
 
   def what_day_condition
