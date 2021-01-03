@@ -30,3 +30,47 @@
     <div>説明文</div>
   <% end %>
 </div>
+
+<div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">title</th>
+        <th scope="col">content</th>
+        <th scope="col">day</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @records.each do |record| %>
+      <% @record_type = record.type %>
+      <% @record_id = record.id %>
+    <tbody>
+      <tr>
+        <td scope="col"><%= record.title  %></td>
+        <td scope="col"><%= record.content %><%= record.unit %></td>
+        <% implementation_day = Week.where(id: record.week_ids) %>
+        <% record_implementation_day = [] %>
+        <% implementation_day.each do |day| %>
+          <% record_implementation_day << day.dayname %>
+        <% end %>
+        <td scope="col"><%= record_implementation_day %>
+        <td>
+          <ul>
+            <li>
+              <%= button_to edit_record_type, method: :get, class:"btn btn-outline-success" do %>
+                <span><%= t('view.edit') %></span>
+              <% end %>
+            </li>
+            <li class="task-btn">
+              <%= button_to record_type, method: :delete, class:"btn btn-outline-danger", 
+                  data: { confirm: '本当に削除して良いですか？' } do %>
+                <span><%= t('view.delete') %></span>
+              <% end %>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>

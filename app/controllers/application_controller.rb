@@ -30,4 +30,5 @@ class ApplicationController < ActionController::Base
     @week_day = %w(月 火 水 木 金 土 日)
   end
 
+
 end
