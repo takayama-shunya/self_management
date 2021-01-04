@@ -1,2 +1,4 @@
 class SettingRecord < ApplicationRecord
+
+
 end

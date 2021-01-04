@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  helper_method :today_condition, :week_day
+  helper_method :today_condition, :week_day, :current_user_records
   include ApplicationHelper
 
   def after_sign_in_path_for(resource)
@@ -27,7 +27,11 @@ class ApplicationController < ActionController::Base
   end
 
   def week_day
-    @week_day = %w(月 火 水 木 金 土 日)
+    @week_day = %w(日 月 火 水 木 金 土 日)
+  end
+
+  def current_user_records
+    @records = SettingRecord.where(user_id: current_user.id)
   end
 
 

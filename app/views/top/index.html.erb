@@ -99,3 +99,43 @@ window.onload = function() {
 <%end%>
 
 
+<% if @today_records.present? %>
+<div>今日の記録</div>
+<div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">title</th>
+        <th scope="col">content</th>
+        <th></th>
+      </tr>
+    </thead>
+    </thead>
+    <% @today_records.each do |record| %>
+      <% @record_type = record.type %>
+      <% @record_id = record.id %>
+    <tbody>
+      <tr>
+        <td scope="col"><%= record.title  %></td>
+        <td scope="col"><%= record.content %><%= record.unit %></td>
+        <td>
+          <ul>
+            <li>
+              <%= button_to edit_record_type, method: :get, class:"btn btn-outline-success" do %>
+                <span><%= t('view.edit') %></span>
+              <% end %>
+            </li>
+            <li class="task-btn">
+              <%= button_to record_type, method: :delete, class:"btn btn-outline-danger", 
+                  data: { confirm: '本当に削除して良いですか？' } do %>
+                <span><%= t('view.delete') %></span>
+              <% end %>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+<% end %>
+

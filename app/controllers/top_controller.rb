@@ -4,6 +4,7 @@ class TopController < ApplicationController
   before_action :what_day_condition, only: %i[ index ]
   before_action :condition_value, only: %i[ index ]
   before_action :condition_average_value, only: %i[ index ]
+  before_action :today_record, only: %i[ index ]
 
 
   def index
@@ -46,7 +47,20 @@ class TopController < ApplicationController
     @condition_average_score = gon.average_value.sum
   end
 
+  def today_record
+    date = Time.zone.now
+    date = week_day[date.wday]
+
+    # @today_records = []
+    # @today_records.push(
+    #   IntegerRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
+    #   DecimalRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
+    #   TimeRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
+    #   CheckRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
+    #   CountRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
+    # )
+  end
+
 end
 
-# @tasks = Task.includes(user: :labels).where(user_id: current_user.id)
 

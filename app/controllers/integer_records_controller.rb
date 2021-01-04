@@ -5,11 +5,11 @@ class IntegerRecordsController < ApplicationController
 
 
   def new
-    @integre_record = IntegerRecord.new
+    @integer_record = IntegerRecord.new
   end
 
   def create
-    @integre_record = current_user.integer_records.build(integer_record_params)
+    @integer_record = current_user.integer_records.build(integer_record_params)
     if params[:back]
       render :new
     else
@@ -28,7 +28,7 @@ class IntegerRecordsController < ApplicationController
   end
 
   def update
-    if @integer_record.update(integre_record_params)
+    if @integer_record.update(integer_record_params)
       redirect_to top_index_path, notice: "updated condition"
     else
       rende :edit

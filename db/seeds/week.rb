@@ -1,6 +1,6 @@
-week_day =["月","火","水","木","金","土","日"]
+week_day =[0,1,2,3,4,5,6]
 week_day.each do |day|
   Week.create!(
-    dayname: "#{day}"
+    dayname: day
   )
 end
