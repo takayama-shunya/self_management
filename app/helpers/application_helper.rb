@@ -34,32 +34,33 @@ module ApplicationHelper
     end
   end
 
-  def record_type
-   if @record_type = "IntegerRecord"
-     integer_record_path(@record_id)
-   elsif @record_type = "DecimalRecord"
-     decimal_record_path(@record_id)
-   elsif @record_type = "TimeRecord"
-     time_record_path(@record_id)
-   elsif @record_type = "CountRecord"
-     count_record_path(@record_id)
-   elsif @record_type = "CheckRecord"
-     check_recprd_path(@record_id)
-   end 
-  end
-
   def edit_record_type
-    if @record_type = "IntegerRecord"
+    if @record_type == "IntegerRecord"
       edit_integer_record_path(@record_id)
-    elsif @record_type = "DecimalRecord"
+    elsif @record_type == "DecimalRecord"
       edit_decimal_record_path(@record_id)
-    elsif @record_type = "TimeRecord"
+    elsif @record_type == "TimeRecord"
       edit_time_record_path(@record_id)
-    elsif @record_type = "CountRecord"
+    elsif @record_type == "CountRecord"
       edit_count_record_path(@record_id)
-    elsif @record_type = "CheckRecord"
-      edit_check_recprd_path(@record_id)
+    elsif @record_type == "CheckRecord"
+      edit_check_record_path(@record_id)
     end 
   end
+
+  def record_type
+    if @record_type == "IntegerRecord"
+      integer_record_path(@record_id)
+    elsif @record_type == "DecimalRecord"
+      decimal_record_path(@record_id)
+    elsif @record_type == "TimeRecord"
+      time_record_path(@record_id)
+    elsif @record_type == "CountRecord"
+      count_record_path(@record_id)
+    elsif @record_type == "CheckRecord"
+      check_record_path(@record_id)
+    end 
+  end
+
 
 end

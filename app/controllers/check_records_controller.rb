@@ -28,7 +28,7 @@ class CheckRecordsController < ApplicationController
   end
 
   def update
-    if @heck_record.update(check_record_params)
+    if @check_record.update(check_record_params)
       redirect_to top_index_path, notice: "updated condition"
     else
       rende :edit
