@@ -1,7 +1,7 @@
 class CountRecordsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_record, only: %i[ edit show destroy update ]
+  before_action :set_record, only: %i[ edit show destroy update count_up count_down ]
 
 
   def new
@@ -25,13 +25,16 @@ class CountRecordsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html { render :edit }
+    end
   end
 
   def update
     if @count_record.update(count_record_params)
       redirect_to top_index_path, notice: "updated condition"
     else
-      rende :edit
+      render :edit
     end
   end
 
@@ -42,6 +45,17 @@ class CountRecordsController < ApplicationController
 
   def show
   end
+
+  def count_up
+    @count_record.increment(:content, 1)
+    @count_record.save!
+  end
+ 
+  def count_down
+    @count_record.increment(:content, -1)
+    @count_record.save!
+  end
+
 
   private
 

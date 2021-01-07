@@ -1,7 +1,7 @@
 class TimeRecordsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_record, only: %i[ edit show destroy update ]
+  before_action :set_record, only: %i[ edit destroy update ]
 
   def new
     @time_record = TimeRecord.new
@@ -24,13 +24,20 @@ class TimeRecordsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.js { render :edit }
+      format.html { render :edit }
+    end
   end
 
   def update
-    if @time_record.update(time_record_params)
-      redirect_to top_index_path, notice: "updated condition"
-    else
-      rende :edit
+    respond_to do |format|
+      if @record.update!(time_record_params)
+        format.js { render :index }
+        format.html { redirect_to top_index_path, notice: "updated condition" }
+      else
+        render :edit
+      end
     end
   end
 
@@ -39,13 +46,23 @@ class TimeRecordsController < ApplicationController
     redirect_to top_index_path, notice: "deleted condition"
   end
 
-  def show
+  def content_only_update
+    @record = @decimal_records
+    respond_to do |format|
+      if @record.update!(content_only_update_params)
+        flash.now[:notice] = 'update record content'
+        format.js { render :content_only_update }
+      else
+        flash.now[:notice] = 'error update'
+        format.js { render :content_only_update_error }
+      end
+    end
   end
 
   private
 
   def set_record
-    @time_record = TimeRecord.find(params[:id])
+    @record = TimeRecord.find(params[:id])
   end
 
   def time_record_params

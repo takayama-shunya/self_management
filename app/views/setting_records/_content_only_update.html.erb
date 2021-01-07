@@ -1,0 +1,30 @@
+<%= form_with(model:record, url:choose_record_type, remote:true, class:"form-group") do |f| %>
+  <% if record.errors.any? %>
+    <div class="error_explanation">
+      <h3><%= record.errors.count %><%= t('view.there_are_errors') %></h3>
+      <ul>
+      <% record.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="">
+    <div class="">
+    <% if controller_name == 'integer_records' %>
+        <%= f.label :content, class:"" %>
+        <%= f.number_field :content, value:record.content, class:"form-control" %>
+    <% elsif controller_name == 'decimal_records' %>
+        <%= f.label :content, class:"" %>
+        <%= f.number_field :content, value:record.content, step:"0.1", class:"form-control" %>
+    <% elsif controller_name == 'time_records' %>
+        <%= f.label :content, class:"" %>
+        <%= f.time_field :content, value:record.content, class:"form-control" %>
+    <% end %>
+
+      <%= f.submit nil, class:"btn btn-primary" %>
+    </div>
+  </div>
+
+<% end %>

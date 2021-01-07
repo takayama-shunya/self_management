@@ -47,7 +47,21 @@
     <tbody>
       <tr>
         <td scope="col"><%= record.title  %></td>
-        <td scope="col"><%= record.content %><%= record.unit %></td>
+        <td scope="col">
+          <% if record.type == "CountRecord" %>
+            <div id="count_button_<%= record.id %>">
+              <%= render partial:'count_records/count', locals: { record: record } %>
+            </div>
+          <% elsif record.type == 'CheckRecord' %>
+            <div id="check_button_<%= record.id %>">
+              <%= render partial:'check_records/check', locals: { record: record } %>
+            </div>
+          <% else %>
+            <div id="update_content_<%= record.id %>">
+              <%= render partial:'setting_records/index', locals: { record: record } %>
+            </div>
+          <% end %>
+        </td>
         <% implementation_day = Week.where(id: record.week_ids) %>
         <% record_implementation_day = [] %>
         <% implementation_day.each do |day| %>
@@ -57,14 +71,21 @@
         <td>
           <ul>
             <li>
-              <%= button_to edit_record_type, method: :get, class:"btn btn-outline-success" do %>
-                <span><%= t('view.edit') %></span>
+              <% if record.type == "IntegerRecord" || record.type == 'DecimalRecord' || record.type == 'TimeRecord'%>
+                <%= button_to edit_record_type, method: :get, remote: true, class:"btn btn-outline-success" do %>
+                  <i class="fa fa-edit" aria-hidden="true"></i>
+                <% end %>
               <% end %>
             </li>
-            <li class="task-btn">
+            <li>
+              <%= button_to edit_record_type, method: :get, class:"btn btn-outline-info" do %>
+                <i class="fa fa-cog" aria-hidden="true"></i>              
+              <% end %>
+            </li>
+            <li class=>
               <%= button_to record_type, method: :delete, class:"btn btn-outline-danger", 
                   data: { confirm: '本当に削除して良いですか？' } do %>
-                <span><%= t('view.delete') %></span>
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
               <% end %>
             </li>
           </ul>
@@ -74,5 +95,4 @@
     <% end %>
   </table>
 </div>
-
 

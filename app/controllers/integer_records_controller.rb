@@ -1,7 +1,7 @@
 class IntegerRecordsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_record, only: %i[ edit show destroy update ]
+  before_action :set_record, only: %i[ edit destroy update ]
 
 
   def new
@@ -25,28 +25,33 @@ class IntegerRecordsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.js { render :edit }
+      format.html { render :edit }
+    end
   end
 
   def update
-    if @integer_record.update(integer_record_params)
-      redirect_to top_index_path, notice: "updated condition"
-    else
-      rende :edit
+    respond_to do |format|
+      if @record.update!(integer_record_params)
+        format.js { render :index }
+        format.html { redirect_to top_index_path, notice: "updated condition" }
+      else
+        render :edit
+      end
     end
   end
 
   def destroy
-    @integer_record.destroy
+    @record.destroy
     redirect_to top_index_path, notice: "deleted condition"
   end
 
-  def show
-  end
 
   private
 
   def set_record
-    @integer_record = IntegerRecord.find(params[:id])
+    @record = IntegerRecord.find(params[:id])
   end
 
   def integer_record_params

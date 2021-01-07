@@ -1,7 +1,7 @@
 class CheckRecordsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_record, only: %i[ edit show destroy update ]
+  before_action :set_record, only: %i[ edit destroy update change_check_true change_check_false]
 
 
   def new
@@ -25,6 +25,9 @@ class CheckRecordsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html { render :edit }
+    end
   end
 
   def update
@@ -40,8 +43,14 @@ class CheckRecordsController < ApplicationController
     redirect_to top_index_path, notice: "deleted condition"
   end
 
-  def show
+  def change_check_true
+    @check_record.update!(content: true)
   end
+
+  def change_check_false
+    @check_record.update!(content: false)
+  end
+
 
   private
 
