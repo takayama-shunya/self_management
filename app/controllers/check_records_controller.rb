@@ -40,7 +40,6 @@ class CheckRecordsController < ApplicationController
 
   def destroy
     @record.destroy
-    redirect_to top_index_path, notice: "deleted condition"
   end
 
   def change_check_true

@@ -22,8 +22,14 @@
       <%= link_to "新規登録", new_user_registration_path %>
       <%= link_to "ログイン", new_user_session_path %>
     <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="container">
+      <% if flash.notice.present? %>
+        <div class="alert alert-success"><%= flash.notice %></div>
+      <% elsif flash.alert.present? %>
+        <div class="alert alert-danger"><%= flash.alert %></div>
+      <% end %>
+    </div>
+    <div id="flash-comment"></div>
 
     <%= yield %>
 
