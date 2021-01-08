@@ -5,15 +5,15 @@ class CountRecordsController < ApplicationController
 
 
   def new
-    @count_record = CountRecord.new
+    @record = CountRecord.new
   end
 
   def create
-    @count_record = current_user.count_records.build(count_record_params)
+    @record = current_user.count_records.build(count_record_params)
     if params[:back]
       render :new
     else
-      if @count_record.save
+      if @record.save
         redirect_to top_index_path, notice: "created condition"
       else
         render :new
@@ -31,7 +31,7 @@ class CountRecordsController < ApplicationController
   end
 
   def update
-    if @count_record.update(count_record_params)
+    if @record.update(count_record_params)
       redirect_to top_index_path, notice: "updated condition"
     else
       render :edit
@@ -39,7 +39,7 @@ class CountRecordsController < ApplicationController
   end
 
   def destroy
-    @count_record.destroy
+    @record.destroy
     redirect_to top_index_path, notice: "deleted condition"
   end
 
@@ -47,20 +47,20 @@ class CountRecordsController < ApplicationController
   end
 
   def count_up
-    @count_record.increment(:content, 1)
-    @count_record.save!
+    @record.increment(:content, 1)
+    @record.save!
   end
  
   def count_down
-    @count_record.increment(:content, -1)
-    @count_record.save!
+    @record.increment(:content, -1)
+    @record.save!
   end
 
 
   private
 
   def set_record
-    @count_record = CountRecord.find(params[:id])
+    @record = CountRecord.find(params[:id])
   end
 
   def count_record_params

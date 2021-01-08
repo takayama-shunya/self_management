@@ -5,15 +5,15 @@ class IntegerRecordsController < ApplicationController
 
 
   def new
-    @integer_record = IntegerRecord.new
+    @record = IntegerRecord.new
   end
 
   def create
-    @integer_record = current_user.integer_records.build(integer_record_params)
+    @record = current_user.integer_records.build(integer_record_params)
     if params[:back]
       render :new
     else
-      if @integer_record.save
+      if @record.save
         redirect_to top_index_path, notice: "created condition"
       else
         render :new

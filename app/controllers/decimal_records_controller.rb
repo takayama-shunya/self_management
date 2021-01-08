@@ -5,15 +5,15 @@ class DecimalRecordsController < ApplicationController
 
 
   def new
-    @decimal_record = DecimalRecord.new
+    @record = DecimalRecord.new
   end
 
   def create
-    @decimal_record = current_user.decimal_records.build(decimal_record_params)
+    @record = current_user.decimal_records.build(decimal_record_params)
     if params[:back]
       render :new
     else
-      if @decimal_record.save
+      if @record.save
         redirect_to top_index_path, notice: "created condition"
       else
         render :new
@@ -43,21 +43,8 @@ class DecimalRecordsController < ApplicationController
   end
 
   def destroy
-    @decimal_record.destroy
+    @record.destroy
     redirect_to top_index_path, notice: "deleted condition"
-  end
-
-  def content_only_update
-    @record = @decimal_records
-    respond_to do |format|
-      if @record.update!(content_only_update_params)
-        flash.now[:notice] = 'update record content'
-        format.js { render :content_only_update }
-      else
-        flash.now[:notice] = 'error update'
-        format.js { render :content_only_update_error }
-      end
-    end
   end
 
   private

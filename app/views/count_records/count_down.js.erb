@@ -1,1 +1,1 @@
-$('#count_button_<%= @count_record.id %>').html("<%= j(render partial: 'count_records/count', locals: { record: @count_record }) %>");
+$('#count_button_<%= @record.id %>').html("<%= j(render partial: 'count_records/count', locals: { record: @record }) %>");

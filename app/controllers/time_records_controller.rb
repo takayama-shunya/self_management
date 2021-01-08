@@ -4,15 +4,15 @@ class TimeRecordsController < ApplicationController
   before_action :set_record, only: %i[ edit destroy update ]
 
   def new
-    @time_record = TimeRecord.new
+    @record = TimeRecord.new
   end
 
   def create
-    @time_record = current_user.time_records.build(time_record_params)
+    @record = current_user.time_records.build(time_record_params)
     if params[:back]
       render :new
     else
-      if @time_record.save
+      if @record.save
         redirect_to top_index_path, notice: "created condition"
       else
         render :new
@@ -42,21 +42,8 @@ class TimeRecordsController < ApplicationController
   end
 
   def destroy
-    @time_record.destroy
+    @record.destroy
     redirect_to top_index_path, notice: "deleted condition"
-  end
-
-  def content_only_update
-    @record = @decimal_records
-    respond_to do |format|
-      if @record.update!(content_only_update_params)
-        flash.now[:notice] = 'update record content'
-        format.js { render :content_only_update }
-      else
-        flash.now[:notice] = 'error update'
-        format.js { render :content_only_update_error }
-      end
-    end
   end
 
   private

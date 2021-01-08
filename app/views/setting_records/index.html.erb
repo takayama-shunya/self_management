@@ -45,7 +45,7 @@
     <% @record_type = record.type %>
     <% @record_id = record.id %>
     <tbody>
-      <tr>
+      <tr id="record-<%= record.id %>">
         <td scope="col"><%= record.title  %></td>
         <td scope="col">
           <% if record.type == "CountRecord" %>
@@ -83,9 +83,9 @@
               <% end %>
             </li>
             <li class=>
-              <%= button_to record_type, method: :delete, class:"btn btn-outline-danger", 
+              <%= button_to record_type, method: :delete, remote: true,　class:"btn btn-outline-danger", 
                   data: { confirm: '本当に削除して良いですか？' } do %>
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <i class="fas fa-trash"></i>              
               <% end %>
             </li>
           </ul>

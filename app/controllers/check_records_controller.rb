@@ -5,15 +5,15 @@ class CheckRecordsController < ApplicationController
 
 
   def new
-    @check_record = CheckRecord.new
+    @record = CheckRecord.new
   end
 
   def create
-    @check_record = current_user.check_records.build(check_record_params)
+    @record = current_user.check_records.build(check_record_params)
     if params[:back]
       render :new
     else
-      if @check_record.save
+      if @record.save
         redirect_to top_index_path, notice: "created condition"
       else
         render :new
@@ -31,7 +31,7 @@ class CheckRecordsController < ApplicationController
   end
 
   def update
-    if @check_record.update(check_record_params)
+    if @record.update(check_record_params)
       redirect_to top_index_path, notice: "updated condition"
     else
       rende :edit
@@ -39,23 +39,23 @@ class CheckRecordsController < ApplicationController
   end
 
   def destroy
-    @check_record.destroy
+    @record.destroy
     redirect_to top_index_path, notice: "deleted condition"
   end
 
   def change_check_true
-    @check_record.update!(content: true)
+    @record.update!(content: true)
   end
 
   def change_check_false
-    @check_record.update!(content: false)
+    @record.update!(content: false)
   end
 
 
   private
 
   def set_record
-    @check_record = CheckRecord.find(params[:id])
+    @record = CheckRecord.find(params[:id])
   end
 
   def check_record_params
