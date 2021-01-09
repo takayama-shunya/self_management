@@ -7,7 +7,7 @@
 
 <% if @condition.present? %>
   <div>
-    today condition score<%= @condition_score %> 
+    today condition score<%= @condition_score %> / 
     condition average score<%= @condition_average_score %>
   </div>
   <div>
@@ -98,4 +98,64 @@ window.onload = function() {
   <div>状態チェックはありません</div>
 <%end%>
 
+
+<% if @today_records.present? %>
+<div>今日の記録</div>
+<div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">title</th>
+        <th scope="col">content</th>
+        <th></th>
+      </tr>
+    </thead>
+    </thead>
+    <% @today_records.each do |record| %>
+    <tbody>
+      <tr id="record-<%= record.id %>">
+        <td scope="col"><%= record.title  %></td>
+        <td scope="col">
+          <% if record.type == "CountRecord" %>
+            <div id="count_button_<%= record.id %>">
+              <%= render partial:'count_records/count', locals: { record: record } %>
+            </div>
+          <% elsif record.type == 'CheckRecord' %>
+            <div id="check_button_<%= record.id %>">
+              <%= render partial:'check_records/check', locals: { record: record } %>
+            </div>
+          <% else %>
+            <div id="update_content_<%= record.id %>">
+              <%= render partial:'setting_records/index', locals: { record: record } %>
+            </div>
+          <% end %>
+        </td>
+        <td>
+          <ul>
+            <li>
+              <% if record.type == "IntegerRecord" || record.type == 'DecimalRecord' || record.type == 'TimeRecord'%>
+                <%= button_to edit_record_type(record.type, record.id), method: :get, remote: true, class:"btn btn-outline-success" do %>
+                  <i class="fa fa-edit" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            </li>
+            <li>
+              <%= button_to edit_record_type(record.type, record.id), method: :get, class:"btn btn-outline-info" do %>
+                <i class="fa fa-cog" aria-hidden="true"></i>              
+              <% end %>
+            </li>
+            <li class=>
+              <%= button_to record_type(record.type, record.id), method: :delete, remote: true,　class:"btn btn-outline-danger", 
+                  data: { confirm: '本当に削除して良いですか？' } do %>
+                <i class="fa fa-trash"></i>              
+              <% end %>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+
+    <% end %>
+  </table>
+<% end %>
 

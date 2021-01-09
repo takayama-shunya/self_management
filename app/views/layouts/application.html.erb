@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   </head>
 
   <body>
@@ -21,8 +22,14 @@
       <%= link_to "新規登録", new_user_registration_path %>
       <%= link_to "ログイン", new_user_session_path %>
     <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="container">
+      <% if flash.notice.present? %>
+        <div class="alert alert-success"><%= flash.notice %></div>
+      <% elsif flash.alert.present? %>
+        <div class="alert alert-danger"><%= flash.alert %></div>
+      <% end %>
+    </div>
+    <div id="flash-comment"></div>
 
     <%= yield %>
 
@@ -30,6 +37,7 @@
       <% if today_condition.blank? %>
         <%= link_to "状態チェック", new_condition_path %>
       <% end %>
+      <%= link_to "記録設定/記録一覧", setting_records_path, class:"btn" %>
     <% end %>
   </body>
 </html>

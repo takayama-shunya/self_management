@@ -4,6 +4,7 @@ class TopController < ApplicationController
   before_action :what_day_condition, only: %i[ index ]
   before_action :condition_value, only: %i[ index ]
   before_action :condition_average_value, only: %i[ index ]
+  before_action :today_record, only: %i[ index ]
 
 
   def index
@@ -38,15 +39,38 @@ class TopController < ApplicationController
   def condition_average_value
     condition = Condition.where(user_id: current_user.id)
     gon.average_value = [
-      condition.average(:sleep_time).to_i, condition.average(:sleep_quality).to_i,
-      condition.average(:meal_count).to_i, condition.average(:stress_level).to_i,
-      condition.average(:toughness).to_i, condition.average(:stress_recovery_balance).to_i,
-      condition.average(:positive_level).to_i, condition.average(:enrichment_happiness_level).to_i
+      condition.average(:sleep_time).to_f, condition.average(:sleep_quality).to_f,
+      condition.average(:meal_count).to_f, condition.average(:stress_level).to_f,
+      condition.average(:toughness).to_f, condition.average(:stress_recovery_balance).to_f,
+      condition.average(:positive_level).to_f, condition.average(:enrichment_happiness_level).to_f
     ]
     @condition_average_score = gon.average_value.sum
   end
 
+  def today_record
+    date = Time.zone.now
+    date = week_day[date.wday]
+
+    # @today_integer_records = IntegerRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
+    # @today_decimal_records = DecimalRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
+    model = [IntegerRecord, DecimalRecord, TimeRecord, CheckRecord, CountRecord]
+    @today_records = []
+
+    model.each do |m|
+      @today_records << m.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
+    end
+
+    @today_records = @today_records.flatten!
+    
+    # @today_records.push(
+    #    IntegerRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
+    #    DecimalRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
+    #    TimeRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
+    #    CheckRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
+    #    CountRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
+    #  ).flatten!
+  end
+
 end
 
-# @tasks = Task.includes(user: :labels).where(user_id: current_user.id)
 

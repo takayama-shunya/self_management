@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_22_140058) do
+ActiveRecord::Schema.define(version: 2021_01_04_090745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,19 @@ ActiveRecord::Schema.define(version: 2020_12_22_140058) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.time "rising_time", null: false
+    t.index ["created_at"], name: "index_conditions_on_created_at"
     t.index ["user_id"], name: "index_conditions_on_user_id"
+  end
+
+  create_table "setting_records", force: :cascade do |t|
+    t.string "type"
+    t.string "title", null: false
+    t.string "unit", null: false
+    t.string "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_setting_records_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,5 +59,24 @@ ActiveRecord::Schema.define(version: 2020_12_22_140058) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "week_days", force: :cascade do |t|
+    t.integer "integer_record_id"
+    t.integer "decimal_record_id"
+    t.integer "time_record_id"
+    t.integer "check_record_id"
+    t.integer "count_record_id"
+    t.integer "week_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["week_id"], name: "index_week_days_on_week_id"
+  end
+
+  create_table "weeks", force: :cascade do |t|
+    t.integer "dayname", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "conditions", "users"
+  add_foreign_key "setting_records", "users"
 end
