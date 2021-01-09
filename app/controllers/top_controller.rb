@@ -51,14 +51,24 @@ class TopController < ApplicationController
     date = Time.zone.now
     date = week_day[date.wday]
 
-    # @today_records = []
+    # @today_integer_records = IntegerRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
+    # @today_decimal_records = DecimalRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
+    model = [IntegerRecord, DecimalRecord, TimeRecord, CheckRecord, CountRecord]
+    @today_records = []
+
+    model.each do |m|
+      @today_records << m.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
+    end
+
+    @today_records = @today_records.flatten!
+    
     # @today_records.push(
-    #   IntegerRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
-    #   DecimalRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
-    #   TimeRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
-    #   CheckRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
-    #   CountRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
-    # )
+    #    IntegerRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
+    #    DecimalRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
+    #    TimeRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
+    #    CheckRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date}),
+    #    CountRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
+    #  ).flatten!
   end
 
 end
