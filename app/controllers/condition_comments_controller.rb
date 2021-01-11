@@ -1,2 +1,0 @@
-class ConditionCommentsController < ApplicationController
-end

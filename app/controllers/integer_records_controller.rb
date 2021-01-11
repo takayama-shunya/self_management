@@ -22,6 +22,7 @@ class IntegerRecordsController < ApplicationController
   end
 
   def show
+    @comment = @record.build_record_comment
   end
 
   def edit

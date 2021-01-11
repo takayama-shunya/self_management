@@ -18,3 +18,21 @@
       <li><%= day %></li>
     <% end %>
 </div>
+
+<%= render partial: 'record_comments/form', locals: { comment: comment, record: record } %>
+<!-- <% if record.record_comment.present? %>
+<div id="record-comment-<%= record.id %>">
+  <div>
+    <%= record.record_comment.content %>
+    <%= button_to edit_record_comment_path, method: :get, class:"btn btn-outline-info" do %>
+        <i class="fa fa-edit" aria-hidden="true"></i>
+    <% end %>
+    <%= button_to record_comment_path, method: :delete, remote: true,　class:"btn btn-outline-danger", 
+        data: { confirm: '本当に削除して良いですか？' } do %>
+        <i class="fa fa-trash"></i>              
+    <% end %>
+</div>
+<% else %>
+<div id="record-comment-<%= record.id %>">
+</div>
+<%= link_to "create_comment", record_comments_path, method: :post, remote: true %> -->
