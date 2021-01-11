@@ -113,7 +113,9 @@ window.onload = function() {
     <% @today_records.each do |record| %>
     <tbody>
       <tr id="record-<%= record.id %>">
-        <td scope="col"><%= record.title  %></td>
+        <td scope="col">
+          <%= link_to record.title, record_type(record.type, record.id) %></td>
+        </td>
         <td scope="col">
           <% if record.type == "CountRecord" %>
             <div id="count_button_<%= record.id %>">

@@ -1,7 +1,7 @@
 class TimeRecordsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_record, only: %i[ edit destroy update ]
+  before_action :set_record, only: %i[ show edit destroy update ]
 
   def new
     @record = TimeRecord.new
@@ -20,7 +20,7 @@ class TimeRecordsController < ApplicationController
     end
   end
 
-  def index
+  def show
   end
 
   def edit

@@ -12,15 +12,9 @@ Rails.application.routes.draw do
     resources :conditions
     resources :setting_records, only: %i[ index ]
 
-    resources :integer_records do 
-      patch :content_only_update, on: :member
-    end
-    resources :decimal_records do 
-      patch :content_only_update, on: :member
-    end
-    resources :time_records do 
-      patch :content_only_update, on: :member
-    end
+    resources :integer_records 
+    resources :decimal_records  
+    resources :time_records  
     resources :check_records do
       member do
         post :change_check_true

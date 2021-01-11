@@ -21,9 +21,6 @@ class CountRecordsController < ApplicationController
     end
   end
 
-  def index
-  end
-
   def edit
     respond_to do |format|
       format.html { render :edit }

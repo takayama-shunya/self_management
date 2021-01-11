@@ -1,0 +1,20 @@
+<div class="spece">
+  <h3><%= t('view.condition_details') %></h3>
+</div>
+
+<div>
+  <%= record.title %>
+</div>
+<div>
+  <%= record.content %><%= record.unit %>
+</div>
+<div>
+  <% implementation_day = Week.where(id: record.week_ids) %>
+  <% record_implementation_day = [] %>
+    <% implementation_day.each do |day| %>
+      <% record_implementation_day << day.dayname %>
+    <% end %>
+    <% record_implementation_day.each do |day| %>
+      <li><%= day %></li>
+    <% end %>
+</div>
