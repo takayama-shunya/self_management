@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_04_090745) do
+ActiveRecord::Schema.define(version: 2021_01_11_083552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "condition_comments", force: :cascade do |t|
+    t.bigint "condition_id"
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["condition_id"], name: "index_condition_comments_on_condition_id"
+  end
 
   create_table "conditions", force: :cascade do |t|
     t.time "retirung_time", null: false
@@ -33,6 +41,14 @@ ActiveRecord::Schema.define(version: 2021_01_04_090745) do
     t.time "rising_time", null: false
     t.index ["created_at"], name: "index_conditions_on_created_at"
     t.index ["user_id"], name: "index_conditions_on_user_id"
+  end
+
+  create_table "record_comments", force: :cascade do |t|
+    t.bigint "setting_record_id"
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["setting_record_id"], name: "index_record_comments_on_setting_record_id"
   end
 
   create_table "setting_records", force: :cascade do |t|
@@ -77,6 +93,8 @@ ActiveRecord::Schema.define(version: 2021_01_04_090745) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "condition_comments", "conditions"
   add_foreign_key "conditions", "users"
+  add_foreign_key "record_comments", "setting_records"
   add_foreign_key "setting_records", "users"
 end
