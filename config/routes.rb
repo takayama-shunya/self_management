@@ -12,22 +12,26 @@ Rails.application.routes.draw do
     resources :conditions
     resources :setting_records, only: %i[ index ]
 
-    resources :integer_records 
-    resources :decimal_records  
-    resources :time_records  
-    resources :check_records do
+    resources :integer_records, expect: %i[ index ]
+    resources :decimal_records, expect: %i[ index ]
+    resources :time_records, expect: %i[ index ]
+    resources :check_records, expect: %i[ index ] do
       member do
         post :change_check_true
         post :change_check_false
       end
     end
-    resources :count_records do
+    resources :count_records, expect: %i[ index ] do
       member do
         post :count_up
         post :count_down
       end
     end
 
+    resources :condition_comments, expect: %i[ index show ]
+    resources :record_comments, expect: %i[ index show ]
+      
+      
   end
 
 

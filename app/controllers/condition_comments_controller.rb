@@ -1,0 +1,2 @@
+class ConditionCommentsController < ApplicationController
+end

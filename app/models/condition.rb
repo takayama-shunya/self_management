@@ -1,6 +1,7 @@
 class Condition < ApplicationRecord
   
   belongs_to :user
+  has_one :condition_comment, dependent: :destroy
 
   paginates_per 10
 
