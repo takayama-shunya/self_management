@@ -19,20 +19,28 @@
     <% end %>
 </div>
 
-<%= render partial: 'record_comments/form', locals: { comment: comment, record: record } %>
-<!-- <% if record.record_comment.present? %>
+<% if record.comment.present? %>
 <div id="record-comment-<%= record.id %>">
   <div>
-    <%= record.record_comment.content %>
-    <%= button_to edit_record_comment_path, method: :get, class:"btn btn-outline-info" do %>
+    <%= record.comment.content %>
+    <%= button_to edit_comment_path(@commented.id), method: :get, class:"btn btn-outline-info" do %>
         <i class="fa fa-edit" aria-hidden="true"></i>
     <% end %>
-    <%= button_to record_comment_path, method: :delete, remote: true,　class:"btn btn-outline-danger", 
+    <%= button_to comment_path(@commented.id), method: :delete,class:"btn btn-outline-danger", 
         data: { confirm: '本当に削除して良いですか？' } do %>
         <i class="fa fa-trash"></i>              
     <% end %>
 </div>
 <% else %>
-<div id="record-comment-<%= record.id %>">
+<div class="container pt-5">
+  <div class="row mb-3">
+    <div class="col-lg-8 offset-lg-2">
+      <%= form_with(model: [@record, @comment],local:true ) do |f| %>
+        <%= f.label :content, t('.comment')%>
+        <%= f.text_area :content, class: "form-control mb-3", placeholder: "コメント" , rows: "4" %>
+        <%= f.submit nil, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>
-<%= link_to "create_comment", record_comments_path, method: :post, remote: true %> -->
+<% end %>

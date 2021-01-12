@@ -40,6 +40,8 @@ class CountRecordsController < ApplicationController
   end
 
   def show
+    @commented = @record.comment
+    @comment = Comment.new
   end
 
   def count_up

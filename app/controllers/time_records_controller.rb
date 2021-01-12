@@ -21,6 +21,8 @@ class TimeRecordsController < ApplicationController
   end
 
   def show
+    @commented = @record.comment
+    @comment = Comment.new
   end
 
   def edit
