@@ -3,25 +3,43 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ edit update destroy ]
 
   def create
-    @record = SettingRecord.find(set_record_type)
-    @comment = @record.build_comment(comment_params)
+    what_instansce_to_build
     respond_to do |format|
-      if @comment.save
-        format.html { redirect_to setting_records_path, notice: "sucess" }
-      else
-        format.html { redirect_to top_index_path, alert: "errors" }
+      if @comment.save!
+        format.js { render :create }
+        @msg = "created comment"
       end
     end
   end
 
   def edit
+    respond_to do |format|
+      format.js { render :edit }
+    end
   end
 
   def update
+    respond_to do |format|
+      if @comment.update!(comment_params)
+        format.js { render :show }
+        @msg = "created comment"
+      end
+    end
   end
 
   def destroy
-    @comment.destroy
+    @commentable_type = @comment.commentable_type
+    if @commentable_type == "Condition"
+      @record = Condition.find(@comment.commentable_id)
+    else
+      @record = SettingRecord.find(@comment.commentable_id)
+    end 
+    respond_to do |format|
+      if @comment.destroy
+        @comment = Comment.new
+        format.js { render :destroy }
+      end
+    end
   end
 
   private
@@ -38,6 +56,19 @@ class CommentsController < ApplicationController
       params[:count_record_id]
     elsif @record_type_name == "check_records"
       params[:check_record_id]
+    elsif @record_type_name == "conditions"
+      params[:condition_id]
+    end
+  end
+
+  def what_instansce_to_build
+    set_record_type
+    if params[:condition_id]
+      @condition = Condition.find(set_record_type)
+      @comment = @condition.build_comment(comment_params)
+    else
+      @record = SettingRecord.find(set_record_type)
+      @comment = @record.build_comment(comment_params)
     end
   end
 

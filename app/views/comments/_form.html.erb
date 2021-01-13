@@ -1,0 +1,21 @@
+<div class="container pt-5">
+  <div class="row mb-3">
+    <div class="col-lg-8 offset-lg-2">
+      <%= form_with(model: [record, comment],remote:true ) do |f| %>
+        <% if comment.errors.any? %>
+          <div class="error_explanation">
+            <h3><%= comment.errors.count %><%= t('view.there_are_errors') %></h3>
+            <ul>
+              <% comment.errors.full_messages.each do |msg| %>
+                <p><%= msg %></p>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= f.label :content, t('.comment')%>
+        <%= f.text_area :content ,class: "form-control mb-3", placeholder: "コメント" , rows: "4" %>
+        <%= f.submit nil, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
