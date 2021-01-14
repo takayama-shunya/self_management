@@ -5,9 +5,10 @@ class CommentsController < ApplicationController
   def create
     what_instansce_to_build
     respond_to do |format|
-      if @comment.save!
-        format.js { render :create }
-        @msg = "created comment"
+      if @comment.save
+        format.js { flash.now[:success] = "created" }
+      else
+        format.js 
       end
     end
   end
@@ -20,24 +21,22 @@ class CommentsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @comment.update!(comment_params)
-        format.js { render :show }
-        @msg = "created comment"
+      if @comment.update(comment_params)
+        format.js { flash.now[:success] = "updated" }
+      else
+        format.js 
       end
     end
   end
 
   def destroy
-    @commentable_type = @comment.commentable_type
-    if @commentable_type == "Condition"
-      @record = Condition.find(@comment.commentable_id)
-    else
-      @record = SettingRecord.find(@comment.commentable_id)
-    end 
+    comment_destroy_set
     respond_to do |format|
       if @comment.destroy
         @comment = Comment.new
-        format.js { render :destroy }
+        format.js { flash.now[:success] = "deleted" }
+      else
+        format.js
       end
     end
   end
@@ -80,5 +79,15 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:commentable_type, :commentable_id, :content)
   end
+
+  def comment_destroy_set
+    @commentable_type = @comment.commentable_type
+    if @commentable_type == "Condition"
+      @record = Condition.find(@comment.commentable_id)
+    else
+      @record = SettingRecord.find(@comment.commentable_id)
+    end 
+  end
+
 
 end

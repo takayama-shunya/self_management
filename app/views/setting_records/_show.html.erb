@@ -19,6 +19,7 @@
     <% end %>
 </div>
 
+<div id="message-area"></div>
 <div id="comment-area">
 <% if record.comment.present? %>
     <%= render partial:'comments/show', locals: { record: record, commented: commented } %>
@@ -27,5 +28,3 @@
 <% end %>
 </div>
 
-<div id="comment-sub">
-</div>

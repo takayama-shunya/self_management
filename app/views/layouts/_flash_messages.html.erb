@@ -1,0 +1,10 @@
+<% case flash.keys[0] %>
+  <% when "success" %>
+  <p class="alert alert-<%= flash.keys[0] %>">
+    <%= flash[:success] %>
+  </p>
+  <% when "danger" %>
+  <p class="alert alert-<%= flash.keys[0] %>">
+    <%= flash[:warning] %>
+  </p>
+<% end %>
