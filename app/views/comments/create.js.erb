@@ -1,0 +1,6 @@
+<% if @comment.errors.any? %>
+  $('#message-area').html("<%= j(render partial: 'layouts/error_messages', locals: { model: @comment }) %>")
+<% else %>
+  $('#comment-area').html("<%= j(render partial: 'show', locals: { record: @record, commented: @comment }) %>")
+  $('#message-area').html("<%= j(render partial: 'layouts/flash_messages', locals: { model: @comment }) %>")
+<% end %>

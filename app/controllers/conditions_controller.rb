@@ -44,6 +44,8 @@ class ConditionsController < TopController
   end
 
   def show
+    @commented = @condition.comment
+    @comment = Comment.new
   end
 
   private

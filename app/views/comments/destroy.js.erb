@@ -1,0 +1,3 @@
+$('#comment-area').html("<%= j(render partial: 'form', locals: { record: @record, comment: @comment }) %>")
+$('#message-area').html("<%= j(render partial: 'layouts/flash_messages', locals: { model: @comment }) %>")
+

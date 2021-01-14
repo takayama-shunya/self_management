@@ -98,9 +98,8 @@ window.onload = function() {
   <div>状態チェックはありません</div>
 <%end%>
 
-
+<div>今日の実施予定記録</div>
 <% if @today_records.present? %>
-<div>今日の記録</div>
 <div>
   <table class="table table-bordered table-hover">
     <thead>
@@ -114,7 +113,9 @@ window.onload = function() {
     <% @today_records.each do |record| %>
     <tbody>
       <tr id="record-<%= record.id %>">
-        <td scope="col"><%= record.title  %></td>
+        <td scope="col">
+          <%= link_to record.title, record_type(record.type, record.id) %></td>
+        </td>
         <td scope="col">
           <% if record.type == "CountRecord" %>
             <div id="count_button_<%= record.id %>">
@@ -157,5 +158,7 @@ window.onload = function() {
 
     <% end %>
   </table>
+  <% else %>
+    <div>今日実施予定の記録はありません</div>
 <% end %>
 

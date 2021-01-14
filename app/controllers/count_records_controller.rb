@@ -21,9 +21,6 @@ class CountRecordsController < ApplicationController
     end
   end
 
-  def index
-  end
-
   def edit
     respond_to do |format|
       format.html { render :edit }
@@ -43,6 +40,8 @@ class CountRecordsController < ApplicationController
   end
 
   def show
+    @commented = @record.comment
+    @comment = Comment.new
   end
 
   def count_up

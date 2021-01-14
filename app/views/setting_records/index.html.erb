@@ -44,7 +44,8 @@
     <% @records.each do |record| %>
     <tbody>
       <tr id="record-<%= record.id %>">
-        <td scope="col"><%= record.title  %></td>
+        <td scope="col">
+          <%= link_to record.title, record_type(record.type, record.id) %></td>
         <td scope="col">
           <% if record.type == "CountRecord" %>
             <div id="count_button_<%= record.id %>">
@@ -72,13 +73,6 @@
         </td>
         <td>
           <ul>
-            <li>
-              <% if record.type == "IntegerRecord" || record.type == 'DecimalRecord' || record.type == 'TimeRecord'%>
-                <%= button_to edit_record_type(record.type, record.id), method: :get, remote: true, class:"btn btn-outline-success" do %>
-                  <i class="fa fa-edit" aria-hidden="true"></i>
-                <% end %>
-              <% end %>
-            </li>
             <li>
               <%= button_to edit_record_type(record.type, record.id), method: :get, class:"btn btn-outline-info" do %>
                 <i class="fa fa-cog" aria-hidden="true"></i>              

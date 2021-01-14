@@ -1,0 +1,30 @@
+<div class="spece">
+  <h3><%= t('view.condition_details') %></h3>
+</div>
+
+<div>
+  <%= record.title %>
+</div>
+<div>
+  <%= record.content %><%= record.unit %>
+</div>
+<div>
+  <% implementation_day = Week.where(id: record.week_ids) %>
+  <% record_implementation_day = [] %>
+    <% implementation_day.each do |day| %>
+      <% record_implementation_day << day.dayname %>
+    <% end %>
+    <% record_implementation_day.each do |day| %>
+      <li><%= day %></li>
+    <% end %>
+</div>
+
+<div id="message-area"></div>
+<div id="comment-area">
+<% if record.comment.present? %>
+    <%= render partial:'comments/show', locals: { record: record, commented: commented } %>
+<% else %>
+    <%= render partial:'comments/form', locals: { record: record, comment: comment } %>
+<% end %>
+</div>
+

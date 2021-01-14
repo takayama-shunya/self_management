@@ -1,7 +1,7 @@
 class CheckRecordsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_record, only: %i[ edit destroy update change_check_true change_check_false]
+  before_action :set_record, only: %i[ show edit destroy update change_check_true change_check_false]
 
 
   def new
@@ -21,7 +21,9 @@ class CheckRecordsController < ApplicationController
     end
   end
 
-  def index
+  def show
+    @commented = @record.comment
+    @comment = Comment.new
   end
 
   def edit

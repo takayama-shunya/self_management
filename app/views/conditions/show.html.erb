@@ -57,5 +57,14 @@
   <%= link_to "index", conditions_path %>
 </div>
 
+<div id="comment-area">
+<% if @condition.comment.present? %>
+    <%= render partial:'comments/show', locals: { record: @condition, commented: @commented } %>
+<% else %>
+    <%= render partial:'comments/form', locals: { record: @condition, comment: @comment } %>
+<% end %>
+</div>
+<div id="error_explanation"></div>
+
 
 
