@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     what_instansce_to_build
     respond_to do |format|
       if @comment.save
+        flash.now[:notice] = 'コメントが作成しました'
         format.js { flash.now[:success] = "created" }
       else
         format.js 

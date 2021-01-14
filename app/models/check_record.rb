@@ -4,6 +4,10 @@ class CheckRecord < SettingRecord
   has_many :week_days, dependent: :destroy
   has_many :weeks, through: :week_days
   has_one :comment, as: :commentable, dependent: :destroy
-  attribute :content, :boolean
+  
+  attribute :content, :boolean, default: false
+
+  validates :title, presence: true, length: { maximum: 20 }
+
 
 end
