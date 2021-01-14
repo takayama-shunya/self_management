@@ -9,6 +9,8 @@ class CountRecord < SettingRecord
 
   validates :title, presence: true, length: { maximum: 20 }
   validates :unit, length: { maximum: 10 }
-  validates :content, numericality: { greater_than: 0 }
+  validates :content, numericality: { only_integer: true,
+                                      greater_than_or_equal_to: 0,
+                                      less_than: 1000 }
 
 end

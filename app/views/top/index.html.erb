@@ -119,6 +119,7 @@ window.onload = function() {
         <td scope="col">
           <% if record.type == "CountRecord" %>
             <div id="count_button_<%= record.id %>">
+              <div id="message-area-<%= record.id %>"></div>
               <%= render partial:'count_records/count', locals: { record: record } %>
             </div>
           <% elsif record.type == 'CheckRecord' %>
@@ -127,6 +128,7 @@ window.onload = function() {
             </div>
           <% else %>
             <div id="update_content_<%= record.id %>">
+              <div id="message-area-<%= record.id %>"></div>
               <%= render partial:'setting_records/index', locals: { record: record } %>
             </div>
           <% end %>

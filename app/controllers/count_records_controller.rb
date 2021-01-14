@@ -46,12 +46,24 @@ class CountRecordsController < ApplicationController
 
   def count_up
     @record.increment(:content, 1)
-    @record.save
+    respond_to do |format|
+      if @record.save
+        format.js
+      else
+        format.js
+      end
+    end
   end
  
   def count_down
     @record.increment(:content, -1)
-    @record.save
+    respond_to do |format|
+      if @record.save
+        format.js
+      else
+        format.js
+      end
+    end
   end
 
 
