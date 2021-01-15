@@ -2,4 +2,5 @@
   $('#message-area-<%= @record.id %>').html("<%= j(render partial: 'layouts/error_messages', locals: { model: @record }) %>")
 <% else %>
   $('#count_button_<%= @record.id %>').html("<%= j(render partial: 'count_records/count', locals: { record: @record }) %>")
+  $('#message-area-<%= @record.id %>').remove()
 <% end %>

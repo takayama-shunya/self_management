@@ -6,7 +6,6 @@ class CommentsController < ApplicationController
     what_instansce_to_build
     respond_to do |format|
       if @comment.save
-        flash.now[:notice] = 'コメントが作成しました'
         format.js { flash.now[:success] = "created" }
       else
         format.js 
@@ -37,7 +36,7 @@ class CommentsController < ApplicationController
         @comment = Comment.new
         format.js { flash.now[:success] = "deleted" }
       else
-        format.js
+        format.html { redirect_to top_index_path, alert: "errors" }
       end
     end
   end

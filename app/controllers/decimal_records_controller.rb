@@ -10,15 +10,11 @@ class DecimalRecordsController < ApplicationController
 
   def create
     @record = current_user.decimal_records.build(decimal_record_params)
-    if params[:back]
-      render :new
-    else
       if @record.save
         redirect_to top_index_path, notice: "created condition"
       else
         render :new
       end
-    end
   end
 
   def show
@@ -35,17 +31,24 @@ class DecimalRecordsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @record.update!(decimal_record_params)
-        format.js { render :index }
+      if @record.update(decimal_record_params)
+        format.js { flash.now[:success] = "updated" }
         format.html { redirect_to top_index_path, notice: "updated condition" }
       else
-        render :edit
+        format.js
+        format.html { render :edit }
       end
     end
   end
 
   def destroy
-    @record.destroy
+    respond_to do |format|
+      if @record.destroy
+        format.js { flash.now[:success] = "deleted" }
+      else
+        formato.html { redirect_to top_index_path, alert: "errors" }
+      end
+    end
   end
 
   private

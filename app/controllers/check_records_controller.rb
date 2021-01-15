@@ -10,15 +10,11 @@ class CheckRecordsController < ApplicationController
 
   def create
     @record = current_user.check_records.build(check_record_params)
-    if params[:back]
-      render :new
-    else
       if @record.save
         redirect_to top_index_path, notice: "created condition"
       else
         render :new
       end
-    end
   end
 
   def show
@@ -41,15 +37,21 @@ class CheckRecordsController < ApplicationController
   end
 
   def destroy
-    @record.destroy
+    respond_to do |format|
+      if @record.destroy
+        format.js { flash.now[:success] = "deleted" }
+      else
+        formato.html { redirect_to top_index_path, alert: "errors" }
+      end
+    end
   end
 
   def change_check_true
-    @record.update!(content: true)
+    @record.update(content: true)
   end
 
   def change_check_false
-    @record.update!(content: false)
+    @record.update(content: false)
   end
 
 

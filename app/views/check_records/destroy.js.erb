@@ -1,2 +1,2 @@
 $('#record-<%= @record.id %>').remove();
-$('#flash-comment').html('<div class="alert alert-success"><%= @msg %></div>')
+$('#flash-comment').html("<%= j(render partial: 'layouts/flash_messages', locals: { model: @comment }) %>")
