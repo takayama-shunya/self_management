@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   private
 
   def today_condition
-    @date = Time.now
+    @date = Time.now.strftime('%Y-%m-%d')
     @condition = current_user.conditions.find_by(created_at: @date.in_time_zone.all_day)
   end
 
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_records
-    @records = SettingRecord.where(user_id: current_user.id)
+    @records = SettingRecord.where(user_id: current_user.id).page(params[:page])
   end
 
 

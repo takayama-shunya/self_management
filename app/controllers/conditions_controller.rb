@@ -11,14 +11,10 @@ class ConditionsController < TopController
 
   def create
     @condition = current_user.conditions.build(condition_params)
-    if params[:back]
-      render :new
+    if @condition.save
+      redirect_to condition_path(@condition.id), notice: "created condition"
     else
-      if @condition.save
-        redirect_to condition_path(@condition.id), notice: "created condition"
-      else
-        render :new
-      end
+      render :new
     end
   end
 
@@ -52,6 +48,7 @@ class ConditionsController < TopController
 
   def set_condition
     @condition = Condition.find(params[:id])
+    redirect_to top_index_path, alert: "not user" if current_user.id != @record.user_id
   end
 
   def condition_params
