@@ -59,7 +59,7 @@ class CheckRecordsController < ApplicationController
 
   def set_record
     @record = CheckRecord.find(params[:id])
-    redirect_to top_index_path, alert: "not user" if current_user.id == @record.user_id
+    redirect_to top_index_path, alert: "not user" if current_user.id != @record.user_id
   end
 
   def check_record_params
