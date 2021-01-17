@@ -69,14 +69,12 @@ ActiveRecord::Schema.define(version: 2021_01_12_093036) do
   end
 
   create_table "week_days", force: :cascade do |t|
-    t.integer "integer_record_id"
-    t.integer "decimal_record_id"
-    t.integer "time_record_id"
-    t.integer "check_record_id"
-    t.integer "count_record_id"
+    t.string "recordable_type"
+    t.bigint "recordable_id"
     t.integer "week_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["recordable_type", "recordable_id"], name: "index_week_days_on_recordable_type_and_recordable_id"
     t.index ["week_id"], name: "index_week_days_on_week_id"
   end
 

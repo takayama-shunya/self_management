@@ -117,6 +117,7 @@ window.onload = function() {
           <%= link_to record.title, record_type(record.type, record.id) %></td>
         </td>
         <td scope="col">
+          <div id="message-area-<%= record.id %>"></div>
           <% if record.type == "CountRecord" %>
             <div id="count_button_<%= record.id %>">
               <%= render partial:'count_records/count', locals: { record: record } %>
@@ -161,4 +162,5 @@ window.onload = function() {
   <% else %>
     <div>今日実施予定の記録はありません</div>
 <% end %>
+
 

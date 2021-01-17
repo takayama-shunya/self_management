@@ -10,15 +10,11 @@ class CountRecordsController < ApplicationController
 
   def create
     @record = current_user.count_records.build(count_record_params)
-    if params[:back]
-      render :new
-    else
       if @record.save
         redirect_to top_index_path, notice: "created condition"
       else
         render :new
       end
-    end
   end
 
   def edit
@@ -36,7 +32,13 @@ class CountRecordsController < ApplicationController
   end
 
   def destroy
-    @record.destroy
+    respond_to do |format|
+      if @record.destroy
+        format.js { flash.now[:success] = "deleted" }
+      else
+        formato.html { redirect_to top_index_path, alert: "errors" }
+      end
+    end
   end
 
   def show
@@ -46,12 +48,24 @@ class CountRecordsController < ApplicationController
 
   def count_up
     @record.increment(:content, 1)
-    @record.save!
+    respond_to do |format|
+      if @record.save
+        format.js
+      else
+        format.js
+      end
+    end
   end
  
   def count_down
     @record.increment(:content, -1)
-    @record.save!
+    respond_to do |format|
+      if @record.save
+        format.js
+      else
+        format.js
+      end
+    end
   end
 
 
@@ -59,6 +73,7 @@ class CountRecordsController < ApplicationController
 
   def set_record
     @record = CountRecord.find(params[:id])
+    redirect_to top_index_path, alert: "not user" if current_user.id != @record.user_id
   end
 
   def count_record_params

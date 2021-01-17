@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
         @comment = Comment.new
         format.js { flash.now[:success] = "deleted" }
       else
-        format.js
+        format.html { redirect_to top_index_path, alert: "errors" }
       end
     end
   end
