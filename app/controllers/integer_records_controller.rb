@@ -51,6 +51,7 @@ class IntegerRecordsController < ApplicationController
 
   def set_record
     @record = IntegerRecord.find(params[:id])
+    redirect_to top_index_path, alert: "not user" if current_user.id == @record.user_id
   end
 
   def integer_record_params

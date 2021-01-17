@@ -55,6 +55,7 @@ class DecimalRecordsController < ApplicationController
 
   def set_record
     @record = DecimalRecord.find(params[:id])
+    redirect_to top_index_path, alert: "not user" if current_user.id == @record.user_id
   end
 
   def decimal_record_params
