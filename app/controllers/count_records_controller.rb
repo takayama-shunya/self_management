@@ -36,7 +36,7 @@ class CountRecordsController < ApplicationController
       if @record.destroy
         format.js { flash.now[:success] = "deleted" }
       else
-        formato.html { redirect_to top_index_path, alert: "errors" }
+        format.html { redirect_to top_index_path, alert: "errors" }
       end
     end
   end
@@ -52,7 +52,7 @@ class CountRecordsController < ApplicationController
       if @record.save
         format.js
       else
-        format.js
+        format.html { redirect_to top_index_path, alert: "-99 ~ 99" }
       end
     end
   end
@@ -63,7 +63,7 @@ class CountRecordsController < ApplicationController
       if @record.save
         format.js
       else
-        format.js
+        format.html { redirect_to top_index_path, alert: "-99 ~ 99" }
       end
     end
   end
