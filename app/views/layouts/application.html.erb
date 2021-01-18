@@ -10,34 +10,59 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
   </head>
-
   <body>
-    <% if user_signed_in? %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      <%= link_to "ユーザー編集", edit_user_registration_path %>
-      <%= link_to "トップ", top_index_path %>
-      <%= current_user.name %>
-    <% else %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand"><span class="font-anton">self management</span></a>
+        <% if user_signed_in? %>
+          <span class="user-name"><%= current_user.name %>さん</span>
+        <% end %>
+       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav me-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item"><%= link_to "トップ", top_index_path, class:"nav-link" %></li>
+              <li class="nav-item"><%= link_to "ユーザー編集", edit_user_registration_path, class:"nav-link" %></li>
+              <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link" %></li>
+            <% else %>
+              <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class:"nav-link" %></li>
+              <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class:"nav-link" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <div class="container">
-      <% if notice %>
-        <div class="alert alert-success"><%= notice %></div>
-      <% elsif alert %>
-        <div class="alert alert-danger"><%= alert %></div>
-      <% end %>
+      <div class="row">
+        <div class=" col-12 col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+          <% if notice %>
+            <div class="alert alert-success"><%= notice %></div>
+          <% elsif alert %>
+            <div class="alert alert-danger"><%= alert %></div>
+          <% end %>
+          <div id="flash-comment"></div>
+
+          <%= yield %>
+        </div>
+      </div>
     </div>
-    <div id="flash-comment"></div>
-
-    <%= yield %>
-
     <% if user_signed_in? %>
-      <% if today_condition.blank? %>
-        <%= link_to "状態チェック", new_condition_path %>
-      <% end %>
-      <%= link_to "記録設定/記録一覧", setting_records_path, class:"btn" %>
+    <nav class="navbar navbar-expand navbar-dark fixed-bottom">
+      <div class="container-fluid">
+        <ul class="navbar-nav">
+          <li class="nav-item"><%= link_to "記録設定/記録一覧", setting_records_path, class:"nav-link" %></li>
+          <% if today_condition.blank? %>
+            <li class="nav-item"><%= link_to "状態チェック", new_condition_path, class:"nav-link" %></li>
+          <% else %>
+            <li class="nav-item"><%= link_to "状態チェック編集", edit_condition_path(@condition.id), class:"nav-link" %><li>
+          <% end %>
+        </ul>
+      </div>
+    <nav>
     <% end %>
   </body>
 </html>

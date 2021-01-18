@@ -1,8 +1,46 @@
 /*
  */
  @import "bootstrap";
+ @import url(https://fonts.googleapis.com/css?family=Anton);
 
 
-.check-record-flase {
+body {
+  font-family: 'Lato', 'Noto Sans JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  width: 100%;
+  padding: 70px 70px 5px 5px;
+}
+
+li {
+  list-style: none;
+}
+
+.navbar {
+  background-color: rgba(3, 9, 66, 0.938);
+}
+
+h2,.font-anton {
+  font-family: 'Anton', sans-serif;
+}
+
+.user-name {
+  color: white;
+  padding: 0 4rem;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.781);
+}
+
+.navbar-expand .navbar-nav .nav-link {
+  padding: 0.5rem 3rem;
+}
+
+
+
+
+
+
+
+.check-record-false {
   color :gray
 }
