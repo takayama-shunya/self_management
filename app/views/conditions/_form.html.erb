@@ -10,18 +10,18 @@
     </div>
   <% end %>
 
-  <div class="form-group row">
-    <div class="col-md-5">
-    <%= f.label :retirung_time, class:"col-sm-2 col-form-label" %>
+  <div class="form-group">
+    <div class="">
+    <%= f.label :retirung_time, class:"col-form-label" %>
     <%= f.time_field :retirung_time, class:"form-control" %>
-    <%= f.label :rising_time, class:"col-sm-2 col-form-label" %>
+    <%= f.label :rising_time, class:"col-form-label" %>
     <%= f.time_field :rising_time, class:"form-control" %>
     </div>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :sleep_time, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
+  <div class="form-group ">
+    <%= f.label :sleep_time, class:" col-form-label" %>
+    <div class="">
       <%= f.radio_button :sleep_time, 1 %>1 とても悪い
       <%= f.radio_button :sleep_time, 2 %>2 少し悪い
       <%= f.radio_button :sleep_time, 3, checked: true %>3 普通
@@ -30,88 +30,87 @@
     </div>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :sleep_quality, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
+  <div class="form-group">
+    <%= f.label :sleep_quality, class:"col-form-label" %>
+    <div class="">
       <%= f.select :sleep_quality, 
         [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
         selected: 3,  class:"form-control" %>
     </div>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :meal_count, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
+  <div class="form-group">
+    <%= f.label :meal_count, class:"col-form-label" %>
+    <div class="">
       <%= f.select :meal_count, 
         [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
         selected: 3,  class:"form-control" %>
     </div>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :stress_level, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
+  <div class="form-group">
+    <%= f.label :stress_level, class:"col-form-label" %>
+    <div class="">
       <%= f.select :stress_level, 
         [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
         selected: 3,  class:"form-control" %>
     </div>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :toughness, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
+  <div class="form-group">
+    <%= f.label :toughness, class:" col-form-label" %>
+    <div class="">
       <%= f.select :toughness, 
         [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
         selected: 3,  class:"form-control" %>
     </div>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :stress_recovery_balance, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
+  <div class="form-group ">
+    <%= f.label :stress_recovery_balance, class:"col-form-label" %>
+    <div class="">
       <%= f.select :stress_recovery_balance, 
         [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
         selected: 3,  class:"form-control" %>
     </div>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :positive_level, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
+  <div class="form-group">
+    <%= f.label :positive_level, class:"col-form-label" %>
+    <div class="">
       <%= f.select :positive_level, 
         [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
         selected: 3,  class:"form-control" %>
     </div>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :enrichment_happiness_level, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
+  <div class="form-group">
+    <%= f.label :enrichment_happiness_level, class:"col-form-label" %>
+    <div class="">
       <%= f.select :enrichment_happiness_level, 
         [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
         selected: 3,  class:"form-control" %>
     </div>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :negative_comment, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
+  <div class="form-group">
+    <%= f.label :negative_comment, class:"col-form-label" %>
+    <div class="">
       <%= f.text_area :negative_comment %>
     </div>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :positive_comment, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
+  <div class="form-group ">
+    <%= f.label :positive_comment, class:"col-form-label" %>
+    <div class="">
       <%= f.text_area :positive_comment %>
     </div>
   </div>
 
-  <div class="form-group row">
-    <div class="col-sm-2"></div>
-    <div class="col-md-5">
+  <div class="form-group">
+    <div class=""></div>
+    <div class="">
       <%= f.submit nil, class:"btn btn-primary" %>
     </div>
   </div>
-
 <% end %>

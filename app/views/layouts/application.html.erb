@@ -26,6 +26,7 @@
           <ul class="navbar-nav me-auto">
             <% if user_signed_in? %>
               <li class="nav-item"><%= link_to "トップ", top_index_path, class:"nav-link" %></li>
+              <li class="nav-item"><%= link_to "condition一覧", conditions_path, class:"nav-link" %></li>
               <li class="nav-item"><%= link_to "ユーザー編集", edit_user_registration_path, class:"nav-link" %></li>
               <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"nav-link" %></li>
             <% else %>
@@ -58,7 +59,7 @@
           <% if today_condition.blank? %>
             <li class="nav-item"><%= link_to "状態チェック", new_condition_path, class:"nav-link" %></li>
           <% else %>
-            <li class="nav-item"><%= link_to "状態チェック編集", edit_condition_path(@condition.id), class:"nav-link" %><li>
+            <li class="nav-item"><%= link_to "状態チェック編集", edit_condition_path(today_condition.id), class:"nav-link" %><li>
           <% end %>
         </ul>
       </div>

@@ -25,6 +25,7 @@ class TopController < ApplicationController
   end
 
   def condition_value
+    what_day_condition
     if @condition.present?
       gon.value = [
         @condition.sleep_time, @condition.sleep_quality,
@@ -37,6 +38,7 @@ class TopController < ApplicationController
   end
 
   def condition_average_value
+    what_day_condition
     if @condition.present?
       condition = Condition.where(user_id: current_user.id)
       gon.average_value = [
@@ -51,7 +53,7 @@ class TopController < ApplicationController
 
   def today_record
     date = Time.zone.now
-    date = week_day[date.wday]
+    @dayname = week_day[date.wday]
 
     # @today_integer_records = IntegerRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
     # @today_decimal_records = DecimalRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
@@ -59,7 +61,7 @@ class TopController < ApplicationController
     @today_records = []
 
     model.each do |m|
-      @today_records << m.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
+      @today_records << m.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: @dayname})
     end
 
     @today_records = @today_records.flatten!
