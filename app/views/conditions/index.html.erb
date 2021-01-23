@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
     <% if @conditions.present? %>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-dark table-sm">
       <tr>
         <th scope="col">average score</th>
         <td><%= @condition_average_score.round(1) %></td>
       </tr>
     </table>
 
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-dark table-hover table-sm">
       <thead>
         <tr>
           <th scope="col">createtime</th>
@@ -25,18 +25,18 @@
                               condition.toughness + condition.stress_recovery_balance + 
                               condition.positive_level + condition.enrichment_happiness_level %></td>
           <td>
-            <ul>
-              <li class="">
+            <ul class="list-inline">
+              <li class="list-inline-item">
                 <%= button_to condition_path(condition.id), method: :get, class:"btn btn-outline-info" do %>
                   <span><%= t('show')  %></span>
                 <% end %>
               </li>
-              <li class="">
+              <li class="list-inline-item">
                 <%= button_to edit_condition_path(condition.id), method: :get, class:"btn btn-outline-success" do %>
                   <span><%= t('view.edit') %></span>
                 <% end %>
               </li>
-              <li class="task-btn">
+              <li class="list-inline-item">
                 <%= button_to condition_path(condition.id), method: :delete, class:"btn btn-outline-danger", 
                     data: { confirm: '本当に削除して良いですか？' } do %>
                   <span><%= t('view.delete') %></span>
@@ -49,7 +49,7 @@
       <% end %>
     </table>
     <div class="mb-3">
-      <%= paginate @conditions %>
+      <%= paginate @conditions, theme: 'twitter-bootstrap-4' %>
       <%= page_entries_info @conditions %>
     </div>
   </div>
