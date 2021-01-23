@@ -1,10 +1,10 @@
 <div>
   <% if record.content == false %>
-    <%= button_to change_check_true_check_record_path(record.id), method: :post, class: 'btn ',remote: true do %>
+    <%= button_to change_check_true_check_record_path(record.id), method: :post, class: 'btn btn-lg',remote: true do %>
       <span class="check-record-false"><i class="fa fa-check-square"></i></span>
     <% end %> 
   <% elsif record.content == true %>
-    <%= button_to change_check_false_check_record_path(record.id), method: :post, class: 'btn ',remote: true do %>
+    <%= button_to change_check_false_check_record_path(record.id), method: :post, class: 'btn btn-lg',remote: true do %>
       <span class=""><i class="fa fa-check-square"></i></span>
     <% end %> 
   <% end %>

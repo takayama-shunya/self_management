@@ -1,21 +1,21 @@
-<div class="spece">
+<div class="ja-heading">
   <h3><%= t('view.condition_details') %></h3>
 </div>
 
-<div>
+<div class="mb-3 ml-2">
   <%= l @condition.created_at %>
 </div>
 
-<div>
+<div class="mb-3 ml-2">
   <%= l @condition.retirung_time, format: :hour_minitues %> - <%= l @condition.rising_time, format: :hour_minitues %>
 </div>
 
-<div>
-  <%= @condition.sleep_time %>
+<div class="mb-3 ml-2">
+  sleep_time : score<%= @condition.sleep_time %>
 </div>
 
-<div>
-  <%= @condition.sleep_quality %>
+<div class="mb-3 ml-2">
+  sleep_time : score<%= @condition.sleep_time %>
 </div>
 
 <div>

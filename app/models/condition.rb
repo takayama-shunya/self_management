@@ -11,5 +11,5 @@ class Condition < ApplicationRecord
             :meal_count, :stress_level, :toughness, :stress_recovery_balance,
             :positive_level, :enrichment_happiness_level,
             presence: true
-
+  
 end

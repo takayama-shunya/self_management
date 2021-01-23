@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row">
+    <% if @conditions.present? %>
     <table class="table table-bordered table-hover">
       <tr>
         <th scope="col">average score</th>
@@ -82,5 +83,6 @@ var myChart = new Chart(ctx, {
     }
 });  
 </script>
+<% end %>
 </div>
 

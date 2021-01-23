@@ -1,9 +1,15 @@
-<div>
-  <%= button_to  count_up_count_record_path(record.id), method: :post, class: 'btn ',remote: true do %>
-    <span class=""><i class="fa fa-plus-square"></i></span>
-  <% end %> 
-  <%= record.content %><%= record.unit %>
-  <%= button_to  count_down_count_record_path(record.id), method: :post, class: 'btn ',remote: true do %>
-    <span class=""><i class="fa fa-minus-square"></i></span>
-  <% end %> 
-</div>
+<ul class="list-inline float-left">
+  <li class="list-inline-item m-0 p-0">
+    <%= button_to  count_up_count_record_path(record.id), method: :post, class: 'btn btn-lg',remote: true do %>
+      <span class=""><i class="fa fa-plus-square"></i></span>
+    <% end %>
+  </li> 
+  <li class="list-inline-item m-0 p-0">
+    <%= record.content %><%= record.unit %>
+  </li>
+  <li class="list-inline-item m-0 p-0">
+    <%= button_to  count_down_count_record_path(record.id), method: :post, class: 'btn btn-lg',remote: true do %>
+      <span class=""><i class="fa fa-minus-square"></i></span>
+    <% end %> 
+  </li>
+</ul>

@@ -3,7 +3,7 @@ class TopController < ApplicationController
   before_action :authenticate_user!
   before_action :what_day_condition, only: %i[ index ]
   before_action :condition_value, only: %i[ index ]
-  before_action :condition_average_value, only: %i[ index ]
+  # before_action :condition_average_value, only: %i[ index ]
   before_action :today_record, only: %i[ index ]
 
 
@@ -34,21 +34,19 @@ class TopController < ApplicationController
         @condition.positive_level, @condition.enrichment_happiness_level
       ]
       @condition_score = gon.value.sum
+      condition_average_value
     end
   end
 
   def condition_average_value
-    what_day_condition
-    if @condition.present?
-      condition = Condition.where(user_id: current_user.id)
-      gon.average_value = [
-        condition.average(:sleep_time).to_f, condition.average(:sleep_quality).to_f,
-        condition.average(:meal_count).to_f, condition.average(:stress_level).to_f,
-        condition.average(:toughness).to_f, condition.average(:stress_recovery_balance).to_f,
-        condition.average(:positive_level).to_f, condition.average(:enrichment_happiness_level).to_f
-      ]
-      @condition_average_score = gon.average_value.sum
-    end
+    condition = Condition.where(user_id: current_user.id)
+    gon.average_value = [
+      condition.average(:sleep_time).to_f, condition.average(:sleep_quality).to_f,
+      condition.average(:meal_count).to_f, condition.average(:stress_level).to_f,
+      condition.average(:toughness).to_f, condition.average(:stress_recovery_balance).to_f,
+      condition.average(:positive_level).to_f, condition.average(:enrichment_happiness_level).to_f
+    ]
+    @condition_average_score = gon.average_value.sum
   end
 
   def today_record
