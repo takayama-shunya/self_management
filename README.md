@@ -19,13 +19,13 @@ Rails 5.2.4
 - [ ] コンディションチェック機能  
   - [ ] チェックは1日1回（更新は可）  
   - [ ] 項目の5段階評価はグラフで表示される  
-  - [ ] 設定項目はコメント欄を除き、入力必須  
+  - [ ] 設定項目はコメント欄と時間を除き、入力必須  
   - [ ] 日付を選択することで、選択した日付のチェック結果を表示できる  
   - [ ] 作成、更新、削除はチェック者のみ
 - [ ] 記録設定機能  
   - [ ] 設定タイプを選んで作成することができる  
   - [ ] 選んだタイプの値しか入力できない（例　整数記録は整数のみ）  
-  - [ ] カウント記録は、カウンターボタンを押すことで数値が増減する  
+  - [ ] カウント記録は、カウンターボタンを押すことで数値（±1）が増減する  
   - [ ] チェック記録は、設定内容がチェック項目で表示される  
   - [ ] タイトルと記録は入力必須  
   - [ ] 作成、更新、削除は記録設定者のみ  
@@ -47,10 +47,12 @@ https://docs.google.com/spreadsheets/d/1wSSJcXp0IArIkdrBMQSjrXWWBAeoYdGsXdFkVET4
   
 ## 使用予定Gem  
 - devise  
+- devise-i18n  
 - bootstrap  
-- font-awesome-rails
+- kaminari  
+- bootstrap4-kaminari-views  
 - jquery-rails  
-- chartkick  
+- gon  
 - letter_opener_web  
 - rspec-rails  
 - spring-commands-rspec  
@@ -60,5 +62,6 @@ https://docs.google.com/spreadsheets/d/1wSSJcXp0IArIkdrBMQSjrXWWBAeoYdGsXdFkVET4
 - capybara  
 - webdrivers  
 - dotenv-rails  
+- pry-rails  
 - bullet  
   
