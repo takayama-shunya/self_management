@@ -1,23 +1,33 @@
-<div class="spece">
-  <h3><%= t('view.condition_details') %></h3>
-</div>
+<h3 class="ja-heading"><%= t('view.condition_details') %></h3>
 
-<div>
-  <%= record.title %>
-</div>
-<div>
-  <%= record.content %><%= record.unit %>
-</div>
-<div>
-  <% implementation_day = Week.where(id: record.week_ids) %>
-  <% record_implementation_day = [] %>
+<table class="table table-borderless mb-3">
+  <tbody>
+    <tr>
+      <td>title</td>
+      <td><%= record.title %></td>
+    </tr>
+    <tr>
+      <td>content</td>
+      <td><%= record.content %><span class="ml-1"><%= record.unit %></span></td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td><%= record.type %>
+    <tr>
+      <td>day</td>
+    <% implementation_day = Week.where(id: record.week_ids) %>
+    <% record_implementation_day = [] %>
     <% implementation_day.each do |day| %>
       <% record_implementation_day << day.dayname %>
     <% end %>
-    <% record_implementation_day.each do |day| %>
-      <li><%= day %></li>
-    <% end %>
-</div>
+      <td>
+        <% record_implementation_day.each do |day| %>
+        <li class="implementation-day"><%= day %></li>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <div id="message-area"></div>
 <div id="comment-area">

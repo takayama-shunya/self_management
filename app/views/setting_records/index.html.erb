@@ -1,34 +1,46 @@
-<h3>setting_record</h3>
+<h3 class="ja-heading">setting_record</h3>
 
-<div class="">
-  <%= button_to new_integer_record_path, method: :get, class:"btn btn-outline-info" do %>
-    <span><%= t('integer_record')  %></span>
-    <div>説明文</div>
-  <% end %>
-</div>
-<div class="">
-  <%= button_to new_decimal_record_path, method: :get, class:"btn btn-outline-info" do %>
-    <span><%= t('decimal_record')  %></span>
-    <div>説明文</div>
-  <% end %>
-</div>
-<div class="">
-  <%= button_to new_time_record_path, method: :get, class:"btn btn-outline-info" do %>
-    <span><%= t('time_record')  %></span>
-    <div>説明文</div>
-  <% end %>
-</div>
-<div class="">
-  <%= button_to new_check_record_path, method: :get, class:"btn btn-outline-info" do %>
-    <span><%= t('check_record')  %></span>
-    <div>説明文</div>
-  <% end %>
-</div>
-<div class="">
-  <%= button_to new_count_record_path, method: :get, class:"btn btn-outline-info" do %>
-    <span><%= t('count_record')  %></span>
-    <div>説明文</div>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="mb-3 ml-2">
+      <%= button_to new_integer_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
+        <span><%= t('integer_record')  %></span>
+        <div>正負5桁(-99999~99999)までの整数を記録できます</div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mb-3 ml-2">
+      <%= button_to new_decimal_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
+        <span><%= t('decimal_record')  %></span>
+        <div>正3桁、小数点第3位(0~999.999)までの数字を記録できます</div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mb-3 ml-2">
+      <%= button_to new_time_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
+        <span><%= t('time_record')  %></span>
+        <div>時間を記録できます</div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mb-3 ml-2">
+      <%= button_to new_check_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
+        <span><%= t('check_record')  %></span>
+        <div>チェックしたい内容をタイトルに入力して下さい</div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mb-3 ml-2">
+      <%= button_to new_count_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
+        <span><%= t('count_record')  %></span>
+        <div>カウンターボタンを押すと±1します(-99~99)</div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <div>
@@ -37,7 +49,7 @@
       <tr>
         <th scope="col">title</th>
         <th scope="col">content</th>
-        <th scope="col">day</th>
+        <th scope="col">実施日</th>
         <th></th>
       </tr>
     </thead>
@@ -47,13 +59,13 @@
         <td scope="col">
           <%= link_to record.title, record_type(record.type, record.id) %></td>
         <td scope="col">
-          <% if record.type == "CountRecord" %>
-            <div id="count_button_<%= record.id %>">
-              <%= render partial:'count_records/count', locals: { record: record } %>
-            </div>
-          <% elsif record.type == 'CheckRecord' %>
+          <% if record.type == 'CheckRecord' %>
             <div id="check_button_<%= record.id %>">
-              <%= render partial:'check_records/check', locals: { record: record } %>
+              <% if record.content == true %>
+                <p>チェック済</p>
+              <% elsif record.content == false %>
+                <p>未チェック</p>
+              <% end %>
             </div>
           <% else %>
             <div id="update_content_<%= record.id %>">
@@ -68,18 +80,18 @@
         <% end %>
         <td scope="col">
           <% record_implementation_day.each do |day| %>
-            <li><%= day %></li>
+            <li class="implementation-day"><%= day %></li>
           <% end %>
         </td>
-        <td>
-          <ul>
-            <li>
+        <td scope="col">
+          <ul class="list-inline float-right">
+            <li class="list-inline-item">
               <%= button_to edit_record_type(record.type, record.id), method: :get, class:"btn btn-outline-info" do %>
                 <i class="fa fa-cog" aria-hidden="true"></i>              
               <% end %>
             </li>
-            <li class=>
-              <%= button_to record_type(record.type, record.id), method: :delete, remote: true,　class:"btn btn-outline-danger", 
+            <li class="list-inline-item">
+              <%= button_to record_type(record.type, record.id), method: :delete, remote: true, class:"btn btn-outline-danger", 
                   data: { confirm: '本当に削除して良いですか？' } do %>
                 <i class="fa fa-trash"></i>              
               <% end %>
