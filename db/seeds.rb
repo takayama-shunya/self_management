@@ -51,12 +51,13 @@ Condition.create!(condition_list_2)
 
 model = [ IntegerRecord, DecimalRecord, TimeRecord, CountRecord ]
 model.each do |m|
+  number = rand(1..7)
   m.create!(
     title: "#{m}",
     unit: "test",
     content: rand(1..99),
     user_id: user_1.id,
-    week_ids: Week.ids.sample
+    week_ids: Week.ids.sample(number)
   )
 end
 CheckRecord.create!(
@@ -64,7 +65,7 @@ CheckRecord.create!(
   unit: "",
   content: false,
   user_id: user_1.id,
-  week_ids: Week.ids.sample
+  week_ids: Week.ids.sample(3)
 )
 
 
