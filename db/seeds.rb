@@ -44,7 +44,7 @@ end
       positive_level: rand(1..5),
       enrichment_happiness_level: rand(1..5),
       user_id: user_2.id,
-      created_at: (n - 1).days.ago }
+      created_at: (n + 1).days.ago }
 end
 Condition.create!(condition_list_1)
 Condition.create!(condition_list_2)
