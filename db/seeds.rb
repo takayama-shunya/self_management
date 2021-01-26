@@ -29,7 +29,7 @@ user_2 = User.find_by(name: "user_2")
       positive_level: rand(1..5),
       enrichment_happiness_level: rand(1..5),
       user_id: user_1.id,
-      created_at: (n - 1).days.ago }
+      created_at: (n + 1).days.ago }
 end
 5.times do |n|
   condition_list_2 << 

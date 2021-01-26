@@ -1,0 +1,31 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      condition: コンディション
+      setting_record: 記録設定
+    attributes:
+      user:
+        email: 名前
+        name: メールアドレス
+        password: パスワード
+      condition:
+        retirung_time: 就寝時間
+        rising_time: 起床時間
+        sleep_time: 睡眠時間
+        sleep_quality: 睡眠の質
+        meal_count: 食事回数
+        stress_level: ストレス度
+        toughness: タフ度
+        stress_recovery_balance: ストレスと回復のバランス
+        positive_level: ポジティブ度
+        enrichment_happiness_level: 幸福・充実度
+        negative_comment: ネガティブコメント
+        positive_comment: ポジティブコメント
+      setting_record:
+        title: タイトル
+        unit: 単位
+        content: 内容
+      comment: 
+        content: 内容
+
