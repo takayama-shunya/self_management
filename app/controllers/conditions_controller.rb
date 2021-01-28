@@ -12,7 +12,7 @@ class ConditionsController < TopController
   def create
     @condition = current_user.conditions.build(condition_params)
     if @condition.save
-      redirect_to condition_path(@condition.id), notice: "created condition"
+      redirect_to condition_path(@condition.id), notice: t('notice.created_condition')
     else
       render :new
     end
@@ -21,14 +21,14 @@ class ConditionsController < TopController
   def index
     condition_average_value
     set_index_condition_date
-  end
+  end 
 
   def edit
   end
 
   def update
     if @condition.update(condition_params)
-      redirect_to condition_path(@condition.id), notice: "updated condition"
+      redirect_to condition_path(@condition.id), notice: t('notice.updated_condition')
     else
       rende :edit
     end
@@ -36,7 +36,7 @@ class ConditionsController < TopController
 
   def destroy
     @condition.destroy
-    redirect_to top_index_path, notice: "deleted condition"
+    redirect_to top_index_path, notice: t('notice.destroyed_condition')
   end
 
   def show
@@ -48,7 +48,7 @@ class ConditionsController < TopController
 
   def set_condition
     @condition = Condition.find(params[:id])
-    redirect_to top_index_path, alert: "not user" if current_user.id != @condition.user_id
+    redirect_to top_index_path, alert: t('alert.not_user') if current_user.id != @condition.user_id
   end
 
   def condition_params
@@ -59,7 +59,7 @@ class ConditionsController < TopController
   end
 
   def today_condition_create_not_2time
-    redirect_to top_index_path, alert: "today condition create 1time" if today_condition.present?
+    redirect_to top_index_path, alert: t('alert.today_condition_create_1time') if today_condition.present?
   end
 
   def set_index_condition_date

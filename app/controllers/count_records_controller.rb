@@ -52,7 +52,7 @@ class CountRecordsController < ApplicationController
       if @record.save
         format.js
       else
-        format.html { redirect_to top_index_path, alert: "-99 ~ 99" }
+        format.js 
       end
     end
   end
@@ -63,7 +63,7 @@ class CountRecordsController < ApplicationController
       if @record.save
         format.js
       else
-        format.html { redirect_to top_index_path, alert: "-99 ~ 99" }
+        format.js 
       end
     end
   end

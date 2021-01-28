@@ -3,4 +3,5 @@
 <% else %>
   $('#comment-area').html("<%= j(render partial: 'show', locals: { record: @record, commented: @comment }) %>")
   $('#flash-comment').html("<%= j(render partial: 'layouts/flash_messages', locals: { model: @comment }) %>")
+  $('#message-area').html('')
 <% end %>

@@ -1,7 +1,7 @@
 <div class="container pt-5">
   <div class="row mb-3">
     <div class="col-lg-8 offset-lg-2">
-      <p>comment</p>
+      <p><%= t('view.comment') %></p>
       <div class="mb-3"><%= commented.content %></div>
       <%= link_to "編集", edit_comment_path(commented.id), method: :get, remote:true, class:"btn btn-outline-success"%>
       <%= link_to "削除", comment_path(commented.id), method: :delete, remote:true, class:"btn btn-outline-danger", data: { confirm: '本当に削除して良いですか？' } %>

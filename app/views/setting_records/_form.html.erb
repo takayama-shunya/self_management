@@ -73,7 +73,7 @@
         <% end %>
 
         <div class="form-group mb-3">
-          <%= f.label :week_ids, class:"control-label pl-1" %><br>
+          <%= f.label :week_ids, t('view.implementation_day'), class:"control-label pl-1" %><br>
           <%= f.collection_check_boxes(:week_ids, Week.all, :id, :dayname ) do |b| %>
             <span class="ml-1"><%= b.label { b.check_box + b.text } %></span>
           <% end %>

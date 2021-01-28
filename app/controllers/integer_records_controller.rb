@@ -11,7 +11,7 @@ class IntegerRecordsController < ApplicationController
   def create
     @record = current_user.integer_records.build(integer_record_params)
       if @record.save
-        redirect_to top_index_path, notice: "created condition"
+        redirect_to top_index_path, notice: t('notice.created_record')
       else
         render :new
       end
@@ -32,8 +32,8 @@ class IntegerRecordsController < ApplicationController
   def update
     respond_to do |format|
       if @record.update(integer_record_params)
-        format.js { flash.now[:success] = "updated" }
-        format.html { redirect_to top_index_path, notice: "updated condition" }
+        format.js { flash.now[:success] = t('flash.updated') }
+        format.html { redirect_to top_index_path, notice: t('updated_record') }
       else
         format.js
         format.html { render :edit }
@@ -42,8 +42,13 @@ class IntegerRecordsController < ApplicationController
   end
 
   def destroy
-    @record.destroy
-    @msg = "delete"
+    respond_to do |format|
+      if @record.destroy
+        format.js { flash.now[:success] = t('flash.destroyed') }
+      else
+        formato.html { redirect_to top_index_path, alert: "errors" }
+      end
+    end
   end
 
 
@@ -51,7 +56,7 @@ class IntegerRecordsController < ApplicationController
 
   def set_record
     @record = IntegerRecord.find(params[:id])
-    redirect_to top_index_path, alert: "not user" if current_user.id != @record.user_id
+    redirect_to top_index_path, alert: t('view.not_user') if current_user.id != @record.user_id
   end
 
   def integer_record_params
