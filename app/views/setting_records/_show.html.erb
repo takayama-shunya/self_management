@@ -1,20 +1,32 @@
-<h3 class="ja-heading"><%= t('view.condition_details') %></h3>
+<h3 class="ja-heading"><%= t('view.record_details') %></h3>
 
 <table class="table table-borderless mb-3">
   <tbody>
     <tr>
-      <td>title</td>
+      <td><%=t('view.title') %></td>
       <td><%= record.title %></td>
     </tr>
     <tr>
-      <td>content</td>
+      <td><%= t('view.content') %></td>
       <td><%= record.content %><span class="ml-1"><%= record.unit %></span></td>
     </tr>
     <tr>
-      <td>type</td>
-      <td><%= record.type %>
+      <td><%= t('view.type') %></td>
+      <td>
+        <% if record.type == "IntegerRecord" %>
+          <%= t('view.integer_record') %>
+        <% elsif record.type == "DecimalRecord"%>
+          <%= t('view.decimal_record') %>
+        <% elsif record.type == "TimeRecord"%>
+          <%= t('view.time_record') %>
+        <% elsif record.type == "CheckRecord"%>
+          <%= t('view.check_record') %>
+        <% elsif record.type == "CountRecord"%>
+          <%= t('view.count_record') %>
+        <% end %>
+      </td>
     <tr>
-      <td>day</td>
+      <td><%=t('view.implementation_day') %></td>
     <% implementation_day = Week.where(id: record.week_ids) %>
     <% record_implementation_day = [] %>
     <% implementation_day.each do |day| %>

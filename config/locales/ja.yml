@@ -207,3 +207,71 @@ ja:
     pm: 午後
   view:
     login: login
+    log_in: ログイン 
+    log_out: ログアウト 
+    there_are_errors: 件のエラーがあります
+    date: 日付 
+    search: 検索 
+    top: トップ
+    condition_list: コンディション一覧
+    user_edit: ユーザー編集
+    create_acount: アカウント作成
+    record_create_list: 記録設定／記録一覧
+    condition_create: コンディションチェック作成
+    condition_edit: コンディションチェック編集 
+    condition_details: コンディションチェック詳細 
+    item: 【項目】
+    number_score: 【数値／スコア】
+    created_at: 作成日付
+    retirung_rising_time: 就寝・起床時間
+    sleep_time: 睡眠時間
+    sleep_quality: 睡眠の質
+    meal_count: 食事回数
+    stress_level: ストレス度
+    toughness: タフ度
+    stress_recovery_balance: ストレスと回復バランス
+    positive_level: ポジティブ度
+    enrichment_happiness_level: 幸福・充実度
+    negative_comment: ネガティブコメント
+    positive_comment: ポジティブコメント
+    comment: コメント 
+    commnet_create_maximum50: コメントが付けられます（50字以内） 
+    password_limit: 半角英数字6文字以上
+    average_score: 平均スコア
+    score: スコア
+    today_score: 今日のスコア 
+    show: 詳細
+    edit: 編集
+    delete: 削除 
+    no_conditions: コンディションチェックはありません 
+    today: 今日 
+    implementation_day: 実施日 
+    implementation_day_plans_record: の実施予定記録 
+    not_today_implementation_day_plans_record: 今日実施予定の記録はありません 
+    integer_record: 整数記録タイプ
+    integer_record_explanation: 5桁(-99999~99999)までの数字が記録できます
+    decimal_record: 少数記録タイプ
+    decimal_record_explanation: 3桁、少数第3位(0~999.999)までの数字が記録できます
+    time_record: 時間記録タイプ
+    time_record_explanation: 時間表記で記録ができます
+    check_record: チェック記録タイプ
+    check_record_explanation: タイトルに入力した内容がチェック項目になります
+    count_record: カウント記録タイプ
+    count_record_explanation: カウンターボタンを押す(±1)と数値が増減します(-99~99)
+    title: タイトル
+    content: 内容
+    check_true: チェック済
+    check_false: 未チェック
+    setting_record: 記録設定 
+    record_details: 記録詳細 
+    type: タイプ 
+
+
+
+    
+
+
+
+
+
+

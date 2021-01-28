@@ -2,15 +2,15 @@
   <div class="row">
     <div class="col-sm-12">
       <%= form_with(url: top_index_path, method: :get, local:true, class:"") do |f| %>
-        <%= f.label :date_condition %>
+        <%= f.label :date_condition, t('view.date') %>
         <%= f.date_field :date_condition, value: @date %>
-        <%= f.submit nil, class:"btn btn-primary" %>
+        <%= f.submit t('view.search'), class:"btn btn-primary" %>
       <% end %>
  
       <% if @condition.present? %>
         <div class="mb-3 mt-3">
-          today condition score<span><%= @condition_score %></span> / 
-          condition average score<span><%= @condition_average_score.round(1) %></span>
+          <%= t('view.today_score') %><span><%= @condition_score %></span> / 
+          <%= t('view.average_score') %><span><%= @condition_average_score.round(1) %></span>
         </div>
         <div class="col-sm-12 mb-3">
           <diV class="chart-container">
@@ -52,18 +52,19 @@
         </div>
         <div id="aid mb-3">
           <div class="mb-1">
-            ネガティブコメント<br><%= @condition.negative_comment %>
+            <%= t('view.negative_comment') %><br><%= @condition.negative_comment %>
           </div>
 
           <div class="mb-1">
-            ポジティブコメント<br><%= @condition.positive_comment %>
+            <%= t('view.positive_comment') %><br><%= @condition.positive_comment %>
           </div>
         </div>
       <% else %>
-        <div class="mb-3">状態チェックはありません</div>
+        <div class="mb-3 mt-3"><%= t('view.no_conditions') %></div>
       <%end%>
 
-      <div class="mt-3">今日(<%= @dayname %>)の実施予定記録</div>
+      <div class="line mt-1 mb-1"></div>
+      <div class="mt-3"><%= t('view.today') %>(<%= @dayname %>)<%= t('view.implementation_day_plans_record') %></div>
       <% if @today_records.present? %>
       <div>
         <table class="table table-hover">
@@ -116,7 +117,7 @@
           <% end %>
         </table>
         <% else %>
-          <div>今日実施予定の記録はありません</div>
+          <div><%= t('view.not_today_implementation_day_plans_record') %></div>
       <% end %>
     </div>
   </div>

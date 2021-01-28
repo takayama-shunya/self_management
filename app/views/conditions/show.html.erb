@@ -1,70 +1,68 @@
-<div class="ja-heading">
-  <h3><%= t('view.condition_details') %></h3>
-</div>
+<h4 class="ja-heading mb-5 pt-3"><%= t('view.condition_details') %></h3>
 
 <table class="table table-borderless mb-3">
   <thead>
     <tr>
-      <td>item</td>
-      <td>number/score</td>
+      <td><%= t('view.item') %></td>
+      <td><%= t('view.number_score') %></td>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>created_at</td>
+      <td><%= t('view.created_at') %></td>
       <td><%= l @condition.created_at %><td>
     </tr>
     <tr>
-      <td>retirung_rising_time</td>
+      <td><%= t('view.retirung_rising_time') %></td>
       <td><%= l @condition.retirung_time, format: :hour_minitues %> - <%= l @condition.rising_time, format: :hour_minitues %><td>
     </tr>
     <tr>
-      <td>sleep_time</td>
+      <td><%= t('view.sleep_time') %></td>
       <td><%= @condition.sleep_time %></td>
     </tr>
     <tr>
-      <td>sleep_qulity</td>
+      <td><%= t('view.sleep_qulity') %></td>
       <td><%= @condition.sleep_quality %></td>
     </tr>
     <tr>
-      <td>meal_count</td>
+      <td><%= t('view.meal_count') %></td>
       <td><%= @condition.meal_count %></td>
     </tr>
     <tr>
-      <td>stress_level</td>
+      <td><%= t('view.stress_level') %></td>
       <td><%= @condition.stress_level %></td>
     </tr>
     <tr>
-      <td>toughness</td>
+      <td><%= t('view.toughness') %></td>
       <td><%= @condition.toughness %></td>
     </tr>
     <tr>
-      <td>stress_recovery_balance</td>
+      <td><%= t('view.stress_recovery_balance') %></td>
       <td><%= @condition.stress_recovery_balance %></td>
     </tr>
     <tr>
-      <td>positive_level</td>
+      <td><%= t('view.positive_level') %></td>
       <td><%= @condition.positive_level %></td>
     </tr>
     <tr>
-      <td>enrichment_happiness_level</td>
+      <td><%= t('view.enrichment_happiness_level') %></td>
       <td><%= @condition.enrichment_happiness_level %></td>
   </tbody>
 </table>
 <div class="mb-3 ml-3">
-  <p>negative_comment</p><br>
+  <p><%= t('view.negative_comment') %></p><br>
   <%= @condition.negative_comment %>
 </div>
 <div class="mb-3 ml-3">
-  <p>positive_comment</p><br>
+  <p><%= t('view.positive_comment') %></p><br>
   <%= @condition.positive_comment %>
 </div>
 
 <div class="mb-3 ml-1">
-  <%= link_to "edit", edit_condition_path(@condition.id) %>
+  <%= link_to t('view.condition_edit'), edit_condition_path(@condition.id) %>
 </div>
 <div class="mb-3 ml-1">
-  <%= link_to "index", conditions_path %>
+  <%= link_to t('view.condition_list'), conditions_path %>
 </div>
 
 <div id="message-area"></div>

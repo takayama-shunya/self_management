@@ -3,7 +3,7 @@
     <div class="row">
       <table class="table table-bordered table-dark table-sm">
         <tr>
-          <th scope="col">average score</th>
+          <th scope="col"><%= t('view.average_score') %></th>
           <td><%= @condition_average_score.round(1) %></td>
         </tr>
       </table>
@@ -11,8 +11,8 @@
       <table class="table table-bordered table-dark table-hover table-sm">
         <thead>
           <tr>
-            <th scope="col">createtime</th>
-            <th scope="col">score</th>
+            <th scope="col"><%= t('view.created_at') %></th>
+            <th scope="col"><%= t('view.score') %></th>
             <th></th>
           </tr>
         </thead>
@@ -28,7 +28,7 @@
               <ul class="list-inline">
                 <li class="list-inline-item">
                   <%= button_to condition_path(condition.id), method: :get, class:"btn btn-outline-info" do %>
-                    <span><%= t('show')  %></span>
+                    <span><%= t('view.show')  %></span>
                   <% end %>
                 </li>
                 <li class="list-inline-item">
@@ -84,5 +84,7 @@
       });  
     </script>
   </div>
+<% else %>
+<div class="pt-5"><%= t('view.no_conditions') %></div>
 <% end %>
 

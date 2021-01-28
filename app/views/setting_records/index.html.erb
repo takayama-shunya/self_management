@@ -1,43 +1,43 @@
-<h3 class="ja-heading">setting_record</h3>
+<h3 class="ja-heading"><%= t('view.setting_record') %></h3>
 
 <div class="container">
   <div class="row">
     <div class="mb-3 ml-2">
       <%= button_to new_integer_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
-        <span><%= t('integer_record')  %></span>
-        <div>正負5桁(-99999~99999)までの整数を記録できます</div>
+        <span><%= t('view.integer_record')  %></span>
+        <div><%= t('view.integer_record_explanation') %></div>
       <% end %>
     </div>
   </div>
   <div class="row">
     <div class="mb-3 ml-2">
       <%= button_to new_decimal_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
-        <span><%= t('decimal_record')  %></span>
-        <div>正3桁、小数点第3位(0~999.999)までの数字を記録できます</div>
+        <span><%= t('view.decimal_record')  %></span>
+        <div><%= t('view.decimal_record_explanation') %></div>
       <% end %>
     </div>
   </div>
   <div class="row">
     <div class="mb-3 ml-2">
       <%= button_to new_time_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
-        <span><%= t('time_record')  %></span>
-        <div>時間を記録できます</div>
+        <span><%= t('view.time_record')  %></span>
+        <div><%= t('view.time_record_explanation') %></div>
       <% end %>
     </div>
   </div>
   <div class="row">
     <div class="mb-3 ml-2">
       <%= button_to new_check_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
-        <span><%= t('check_record')  %></span>
-        <div>チェックしたい内容をタイトルに入力して下さい</div>
+        <span><%= t('view.check_record')  %></span>
+        <div><%= t('view.check_record_explanation') %></div>
       <% end %>
     </div>
   </div>
   <div class="row">
     <div class="mb-3 ml-2">
       <%= button_to new_count_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
-        <span><%= t('count_record')  %></span>
-        <div>カウンターボタンを押すと±1します(-99~99)</div>
+        <span><%= t('view.count_record')  %></span>
+        <div><%= t('view.count_record_explanation') %></div>
       <% end %>
     </div>
   </div>
@@ -47,9 +47,9 @@
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
-        <th scope="col">title</th>
-        <th scope="col">content</th>
-        <th scope="col">実施日</th>
+        <th scope="col"><%= t('view.title') %></th>
+        <th scope="col"><%= t('view.content') %></th>
+        <th scope="col"><%= t('view.implementation_day') %></th>
         <th></th>
       </tr>
     </thead>
@@ -62,9 +62,9 @@
           <% if record.type == 'CheckRecord' %>
             <div id="check_button_<%= record.id %>">
               <% if record.content == true %>
-                <p>チェック済</p>
+                <p><%= t('view.check_true') %></p>
               <% elsif record.content == false %>
-                <p>未チェック</p>
+                <p><%= t('view.check_false') %></p>
               <% end %>
             </div>
           <% else %>
