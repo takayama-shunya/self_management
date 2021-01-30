@@ -11,7 +11,7 @@ class CheckRecordsController < ApplicationController
   def create
     @record = current_user.check_records.build(check_record_params)
       if @record.save
-        redirect_to top_index_path, notice: "created condition"
+        redirect_to top_index_path, notice: t('notice.created_record')
       else
         render :new
       end
@@ -30,7 +30,7 @@ class CheckRecordsController < ApplicationController
 
   def update
     if @record.update(check_record_params)
-      redirect_to top_index_path, notice: "updated condition"
+      redirect_to top_index_path, notice: t('notice.updated_record')
     else
       rende :edit
     end
@@ -39,9 +39,9 @@ class CheckRecordsController < ApplicationController
   def destroy
     respond_to do |format|
       if @record.destroy
-        format.js { flash.now[:success] = "deleted" }
+        format.js { flash.now[:success] = t('flash.destroyed') }
       else
-        formato.html { redirect_to top_index_path, alert: "errors" }
+        formato.html { redirect_to top_index_path, alert: t('alert.errors') }
       end
     end
   end
@@ -59,7 +59,7 @@ class CheckRecordsController < ApplicationController
 
   def set_record
     @record = CheckRecord.find(params[:id])
-    redirect_to top_index_path, alert: "not user" if current_user.id != @record.user_id
+    redirect_to top_index_path, alert: t('alert.not_user') if current_user.id != @record.user_id
   end
 
   def check_record_params

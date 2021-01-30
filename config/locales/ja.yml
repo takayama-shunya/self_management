@@ -279,13 +279,17 @@ ja:
     created_condition: コンディションチェック作成しました
     updated_condition: コンディションチェック編集しました
     destroyed_condition: コンディションチェック削除しました
-    updated_record: 記録設定を編集しました
+    updated_record: 記録設定を編集しました 
+    created_record: 記設を作成しました
+
   alert: 
     not_user: 作成者ではありません
     today_condition_create_1time: コンディションチェック作成は1日1回です
+    errors: エラーが発生しました 
   flash: 
     destroyed: 削除しました 
     updated: 更新しました 
+    created: 作成しました 
 
 
 

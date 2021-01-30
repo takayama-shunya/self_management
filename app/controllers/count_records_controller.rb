@@ -11,7 +11,7 @@ class CountRecordsController < ApplicationController
   def create
     @record = current_user.count_records.build(count_record_params)
       if @record.save
-        redirect_to top_index_path, notice: "created condition"
+        redirect_to top_index_path, notice: t('notice.created_record')
       else
         render :new
       end
@@ -25,7 +25,7 @@ class CountRecordsController < ApplicationController
 
   def update
     if @record.update(count_record_params)
-      redirect_to top_index_path, notice: "updated condition"
+      redirect_to top_index_path, notice: t('notice.updated_record')
     else
       render :edit
     end
@@ -34,9 +34,9 @@ class CountRecordsController < ApplicationController
   def destroy
     respond_to do |format|
       if @record.destroy
-        format.js { flash.now[:success] = "deleted" }
+        format.js { flash.now[:success] = t('flash.destroyed') }
       else
-        format.html { redirect_to top_index_path, alert: "errors" }
+        format.html { redirect_to top_index_path, alert: t('alert.errors') }
       end
     end
   end
@@ -73,7 +73,7 @@ class CountRecordsController < ApplicationController
 
   def set_record
     @record = CountRecord.find(params[:id])
-    redirect_to top_index_path, alert: "not user" if current_user.id != @record.user_id
+    redirect_to top_index_path, alert: t('alert.not_user') if current_user.id != @record.user_id
   end
 
   def count_record_params
