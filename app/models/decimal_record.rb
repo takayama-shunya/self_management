@@ -5,7 +5,7 @@ class DecimalRecord < SettingRecord
   has_many :weeks, through: :week_days
   has_one :comment, as: :commentable, dependent: :destroy
   
-  attribute :content, :float
+  attribute :content, :float, default: 0
   
   validates :title, presence: true, length: { maximum: 20 }
   validates :unit, length: { maximum: 10 }

@@ -6,7 +6,7 @@ FactoryBot.define do
   end
   factory :test_user_2, class: User do
     name { 'テストユーザー2' }
-    email { 'example1@icloud.com' }
+    email { 'example@icloud.com' }
     password { 'password' }
   end
 end

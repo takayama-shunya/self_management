@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Condition, type: :model do
-  let(:test_user_1) { FactoryBot.create(:test_user_1) }
+  let!(:test_user_1) { FactoryBot.create(:test_user_1) }
 
   describe 'バリデーションテスト' do
-    context 'コメント関連以外で空の項目があった場合' do
+    context 'コメント関連以外で未入力の項目があった場合' do
       it 'バリデーションに引っかかる' do
         condition = Condition.new(
           retirung_time: '',
@@ -17,7 +17,8 @@ RSpec.describe Condition, type: :model do
           stress_recovery_balance: 3,
           positive_level: 3,
           enrichment_happiness_level: 3,
-          created_at: 1.days.ago 
+          created_at: 1.days.ago,
+          user_id: test_user_1.id
         )
         expect(condition).not_to be_valid
       end
@@ -38,7 +39,8 @@ RSpec.describe Condition, type: :model do
           enrichment_happiness_level: 3,
           created_at: 1.days.ago,
           positive_comment: "#{positive_comment}",
-          negative_comment: ''
+          negative_comment: '',
+          user_id: test_user_1.id
         )
         expect(condition).not_to be_valid
       end
@@ -59,7 +61,8 @@ RSpec.describe Condition, type: :model do
           enrichment_happiness_level: 3,
           created_at: 1.days.ago,
           positive_comment: '',
-          negative_comment: "#{positive_comment}"
+          negative_comment: "#{positive_comment}",
+          user_id: test_user_1.id
         )
         expect(condition).not_to be_valid
       end
