@@ -13,7 +13,7 @@ FactoryBot.define do
     created_at { 1.days.ago }
     positive_comment { 'first_condition' }
     negative_comment { 'first_condition' }
-    # association :user, factory: :test_user_1
+    association :user, factory: :test_user_1
   end
   factory :second_condition, class: Condition do
     retirung_time { '00:30' }
@@ -29,7 +29,7 @@ FactoryBot.define do
     created_at { 2.days.ago }
     positive_comment { 'second_condition' }
     negative_comment { 'second_condition' }
-    # association :user, factory: :test_user_1
+    association :user, factory: :test_user_1
   end
 
 end
