@@ -26,17 +26,17 @@
                                 condition.positive_level + condition.enrichment_happiness_level %></td>
             <td>
               <ul class="list-inline">
-                <li class="list-inline-item">
+                <li class="list-inline-item" id="show-<%= condition.id %>">
                   <%= button_to condition_path(condition.id), method: :get, class:"btn btn-outline-info" do %>
                     <span><%= t('view.show')  %></span>
                   <% end %>
                 </li>
-                <li class="list-inline-item">
+                <li class="list-inline-item" id="edit-<%= condition.id %>">
                   <%= button_to edit_condition_path(condition.id), method: :get, class:"btn btn-outline-success" do %>
                     <span><%= t('view.edit') %></span>
                   <% end %>
                 </li>
-                <li class="list-inline-item">
+                <li class="list-inline-item" id="destroy-<%= condition.id %>">
                   <%= button_to condition_path(condition.id), method: :delete, class:"btn btn-outline-danger", 
                       data: { confirm: '本当に削除して良いですか？' } do %>
                     <span><%= t('view.delete') %></span>
