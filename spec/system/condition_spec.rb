@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe 'コンディション管理機能', type: :system do
+RSpec.describe 'コンディション機能', type: :system do
   let!(:user_1) { FactoryBot.create(:test_user_1,
     name: 'user_1',
     email: 'user_1@icloud.com',
@@ -12,7 +12,7 @@ RSpec.describe 'コンディション管理機能', type: :system do
     user: user_1,
     positive_comment: 'test') }
   
-  describe '新規管理機能' do
+  describe 'コンディション管理機能' do
     before do
       visit root_path
       fill_in "Eメール", with: "user_1@icloud.com"

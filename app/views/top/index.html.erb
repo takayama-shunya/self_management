@@ -97,19 +97,19 @@
               </td>
               <td>
                 <ul class="list-inline float-right">
-                  <li class="list-inline-item">
+                  <li class="list-inline-item" id="content-edit-<%= record.id %>">
                     <% if record.type == "IntegerRecord" || record.type == 'DecimalRecord' || record.type == 'TimeRecord'%>
                       <%= button_to edit_record_type(record.type, record.id), method: :get, remote: true, class:"btn btn-outline-success" do %>
                         <i class="fa fa-edit" aria-hidden="true"></i>
                       <% end %>
                     <% end %>
                   </li>
-                  <li class="list-inline-item">
+                  <li class="list-inline-item" id="edit-<%= record.id %>">
                     <%= button_to edit_record_type(record.type, record.id), method: :get, class:"btn btn-outline-info" do %>
                       <i class="fa fa-cog" aria-hidden="true"></i>              
                     <% end %>
                   </li>
-                  <li class="list-inline-item">
+                  <li class="list-inline-item" id="destroy-<%= record.id %>">
                     <%= button_to record_type(record.type, record.id), method: :delete, remote: true, class:"btn btn-outline-danger", 
                         data: { confirm: '本当に削除して良いですか？' } do %> 
                         <i class="fa fa-trash-alt"></i>              
