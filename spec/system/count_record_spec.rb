@@ -5,19 +5,12 @@ RSpec.describe 'カウントタイプ 記録機能', type: :system, js: true do
     email: 'user_1@icloud.com',
     password: 'password') }
   
-  let!(:sun) { FactoryBot.create(:week_1) }
-  let!(:mon) { FactoryBot.create(:week_2) }
-  let!(:tue) { FactoryBot.create(:week_3) }
-  let!(:wed) { FactoryBot.create(:week_4) }
-  let!(:thurs) { FactoryBot.create(:week_5) }
-  let!(:fri) { FactoryBot.create(:week_6) }
-  let!(:sat) { FactoryBot.create(:week_7) }
   
   let!(:count_record_1) { FactoryBot.create(:count_record,
     title: 'count',
     unit: '',
     content: 10,
-    week_ids: [ sun.id, mon.id, tue.id, wed.id, thurs.id, fri.id, sat.id ],
+    week_ids: week_ids,
     user: user_1) }
   
   describe 'カウントタイプ記録管理機能' do

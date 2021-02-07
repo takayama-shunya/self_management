@@ -62,8 +62,9 @@
     <% @records.each do |record| %>
     <tbody>
       <tr id="record-<%= record.id %>">
-        <td scope="col" style="word-wrap:break-word;">
-          <%= link_to record.title, record_type(record.type, record.id) %></td>
+        <td scope="col" style="word-wrap:break-word;" >
+          <span id="record-link-<%= record.id %>"><%= link_to record.title, record_type(record.type, record.id) %></span>
+        </td>
         <td scope="col">
           <% if record.type == 'CheckRecord' %>
             <div id="check_button_<%= record.id %>">

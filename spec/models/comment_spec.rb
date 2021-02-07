@@ -6,7 +6,7 @@ RSpec.describe Comment, type: :model do
     email: 'test_user@icloud.com',
     password: 'password') }
   let!(:first_condition) { FactoryBot.create(:first_condition, user: test_user) }
-  let!(:check_record) { FactoryBot.create(:check_record, user: test_user) }
+  let!(:check_record) { FactoryBot.create(:check_record_1, user: test_user) }
   let!(:count_record) { FactoryBot.create(:count_record, user: test_user) }
   let!(:decimal_record) { FactoryBot.create(:decimal_record, user: test_user) }
   let!(:integer_record) { FactoryBot.create(:integer_record, user: test_user) }

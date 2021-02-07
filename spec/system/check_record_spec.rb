@@ -4,20 +4,12 @@ RSpec.describe 'チェックタイプ 記録機能', type: :system, js: true do
     name: 'user_1',
     email: 'user_1@icloud.com',
     password: 'password') }
-  
-  let!(:sun) { FactoryBot.create(:week_1) }
-  let!(:mon) { FactoryBot.create(:week_2) }
-  let!(:tue) { FactoryBot.create(:week_3) }
-  let!(:wed) { FactoryBot.create(:week_4) }
-  let!(:thurs) { FactoryBot.create(:week_5) }
-  let!(:fri) { FactoryBot.create(:week_6) }
-  let!(:sat) { FactoryBot.create(:week_7) }
-  
+    
   let!(:check_record_1) { FactoryBot.create(:check_record_1,
     title: 'check',
     unit: '',
     content: false,
-    week_ids: [ sun.id, mon.id, tue.id, wed.id, thurs.id, fri.id, sat.id ],
+    week_ids: week_ids,
     user: user_1) }
   # let(:check_record_2) { FactoryBot.create(:check_record_2,
   #   title: 'チェック',
@@ -67,6 +59,7 @@ RSpec.describe 'チェックタイプ 記録機能', type: :system, js: true do
         find("#check-btn-#{check_record_1.id}").click
         wait_for_ajax do
           find("#check-btn-#{check_record_1.id}").click
+          sleep 0.5
           visit setting_records_path
           expect(page).to have_content '未チェック'
         end

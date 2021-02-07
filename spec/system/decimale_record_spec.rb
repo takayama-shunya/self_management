@@ -4,20 +4,12 @@ RSpec.describe '少数タイプ 記録機能', type: :system, js: true do
     name: 'user_1',
     email: 'user_1@icloud.com',
     password: 'password') }
-  
-  let!(:sun) { FactoryBot.create(:week_1) }
-  let!(:mon) { FactoryBot.create(:week_2) }
-  let!(:tue) { FactoryBot.create(:week_3) }
-  let!(:wed) { FactoryBot.create(:week_4) }
-  let!(:thurs) { FactoryBot.create(:week_5) }
-  let!(:fri) { FactoryBot.create(:week_6) }
-  let!(:sat) { FactoryBot.create(:week_7) }
-  
+    
   let!(:decimal_record_1) { FactoryBot.create(:decimal_record,
     title: 'decimal',
     unit: 'kg',
     content: 55.5,
-    week_ids: [ sun.id, mon.id, tue.id, wed.id, thurs.id, fri.id, sat.id ],
+    week_ids: week_ids,
     user: user_1) }
   
   describe '少数タイプ記録管理機能' do

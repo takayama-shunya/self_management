@@ -77,7 +77,7 @@
           <tbody>
             <tr id="record-<%= record.id %>">
               <td style="word-wrap:break-word;">
-                <%= link_to record.title, record_type(record.type, record.id) %></td>
+                <span id="record-link-<%= record.id %>"><%= link_to record.title, record_type(record.type, record.id) %></span>
               </td>
               <td>
                 <div id="message-area-<%= record.id %>"></div>
