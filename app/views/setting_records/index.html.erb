@@ -2,42 +2,47 @@
 
 <div class="container">
   <div class="row">
-    <div class="mb-3 ml-2" id="integer-record-btn">
+    <div class="mb-3 ml-2 record-link" id="integer-record-btn">
       <%= button_to new_integer_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
         <span><%= t('view.integer_record')  %></span>
-        <div><%= t('view.integer_record_explanation') %></div>
+        <p class="mt-2 record-example"><%= t('view.integer_record_explanation') %><br>
+        <%= t('view.integer_record_example') %></p>
       <% end %>
     </div>
   </div>
   <div class="row">
-    <div class="mb-3 ml-2" id="decimal-record-btn">
+    <div class="mb-3 ml-2 record-link" id="decimal-record-btn">
       <%= button_to new_decimal_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
         <span><%= t('view.decimal_record')  %></span>
-        <div><%= t('view.decimal_record_explanation') %></div>
+        <p class="mt-2 record-example"><%= t('view.decimal_record_explanation') %><br>
+        <%= t('view.decimal_record_example') %></p>
       <% end %>
     </div>
   </div>
   <div class="row">
-    <div class="mb-3 ml-2" id="time-record-btn">
+    <div class="mb-3 ml-2 record-link" id="time-record-btn">
       <%= button_to new_time_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
         <span><%= t('view.time_record')  %></span>
-        <div><%= t('view.time_record_explanation') %></div>
+        <p class="mt-2 record-example"><%= t('view.time_record_explanation') %><br>
+        <%= t('view.time_record_example') %></p>
       <% end %>
     </div>
   </div>
   <div class="row">
-    <div class="mb-3 ml-2" id="check-record-btn">
+    <div class="mb-3 ml-2 record-link" id="check-record-btn">
       <%= button_to new_check_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
         <span><%= t('view.check_record')  %></span>
-        <div><%= t('view.check_record_explanation') %></div>
+        <p class="mt-2 record-example"><%= t('view.check_record_explanation') %><br>
+        <%= t('view.check_record_example') %></p>
       <% end %>
     </div>
   </div>
   <div class="row">
-    <div class="mb-3 ml-2" id="count-record-btn">
+    <div class="mb-3 ml-2 record-link" id="count-record-btn">
       <%= button_to new_count_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
         <span><%= t('view.count_record')  %></span>
-        <div><%= t('view.count_record_explanation') %></div>
+        <p class="mt-2 record-example"><%= t('view.count_record_explanation') %><br>
+        <%= t('view.count_record_example') %></p>
       <% end %>
     </div>
   </div>

@@ -8,7 +8,13 @@
     </tr>
     <tr>
       <td><%= t('view.content') %></td>
-      <td><%= record.content %><span class="ml-1"><%= record.unit %></span></td>
+      <td>
+        <% if  record.type == "IntegerRecord" %>
+          <%= record.content.to_s(:delimited) %><span class="ml-1"><%= record.unit %></span>
+        <% else %>
+          <%= record.content %><span class="ml-1"><%= record.unit %></span>
+        <% end %>
+      </td>
     </tr>
     <tr>
       <td><%= t('view.type') %></td>

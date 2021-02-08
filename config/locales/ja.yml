@@ -251,23 +251,28 @@ ja:
     integer_record: 整数タイプ
     integer_record_create: 整数タイプ 記録作成 
     integer_record_edit: 整数タイプ 記録編集 
-    integer_record_explanation: 5桁(-99999~99999)までの数字が記録できます
+    integer_record_explanation: 5桁(-99999~99999)までの数字が記録できます 
+    integer_record_example: 収支や金額などの大きい数字にお使い頂けます
     decimal_record: 少数記録 
     decimal_record_create: 少数タイプ 記録作成 
     decimal_record_edit: 少数タイプ 記録編集 
-    decimal_record_explanation: 3桁、少数第3位(0~999.999)までの数字が記録できます
+    decimal_record_explanation: 3桁、少数第3位(0~999.999)までの数字が記録できます 
+    decimal_record_example: 体重などの少数を伴う数字にお使い頂けます
     time_record: 時間記録
     time_record_create: 時間タイプ 記録作成
     time_record_edit: 時間タイプ 記録編集
     time_record_explanation: 時間表記で記録ができます
+    time_record_example: 運動時間や作業時間などにお使い頂けます
     check_record: チェックタイプ
     check_record_create: チェックタイプ 記録作成
     check_record_edit: チェックタイプ 記録編集
     check_record_explanation: タイトルに入力した内容がチェック項目になります
+    check_record_example: チェックリストとしてお使い頂けます
     count_record: カウントタイプ
     count_record_create: カウントタイプ 記録作成
     count_record_edit: カウントタイプ 記録編集
     count_record_explanation: カウンターボタンを押す(±1)と数値が増減します(-99~99)
+    count_record_example: 喫煙本数や筋トレ回数にお使い頂けます
     title: タイトル
     content: 内容
     check_true: チェック済
@@ -281,7 +286,6 @@ ja:
     destroyed_condition: コンディションチェック削除しました
     updated_record: 記録設定を編集しました 
     created_record: 記設を作成しました
-
   alert: 
     not_user: 作成者ではありません
     today_condition_create_1time: コンディションチェック作成は1日1回です
