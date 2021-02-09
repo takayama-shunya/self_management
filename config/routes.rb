@@ -6,26 +6,22 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :top, only: %i[ index ] 
+  resources :top, only: %i[ index ]
   scope :top do
 
-    resources :conditions do
+    concern :comments do
       resources :comments, expect: %i[ index show new ], shallow: true
     end
 
-    resources :setting_records, only: %i[ index ]
+    resources :conditions, concerns: :comments
 
-    resources :integer_records, expect: %i[ index ] do
-      resources :comments, expect: %i[ index show new ], shallow: true
-    end
+    resources :setting_records, only: %i[ index ] 
 
-    resources :decimal_records, expect: %i[ index ] do
-      resources :comments, expect: %i[ index show new ], shallow: true
-    end
+    resources :integer_records, expect: %i[ index ], concerns: :comments
 
-    resources :time_records, expect: %i[ index ] do
-      resources :comments, expect: %i[ index show new ], shallow: true
-    end
+    resources :decimal_records, expect: %i[ index ], concerns: :comments
+
+    resources :time_records, expect: %i[ index ], concerns: :comments
 
     resources :check_records, expect: %i[ index ] do
       member do
@@ -42,6 +38,14 @@ Rails.application.routes.draw do
       end
       resources :comments, expect: %i[ index show new ], shallow: true
     end
+
+    resources :automatic_record, only: %i[ index ] do
+      collection do
+        post :sleep_improvement_plan
+      end
+    end
+
+
   end
 
 

@@ -4,5 +4,4 @@ class SettingRecordsController < ApplicationController
     current_user_records
   end
  
-  
 end

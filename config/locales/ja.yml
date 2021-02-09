@@ -246,6 +246,7 @@ ja:
     no_conditions: コンディションチェックはありません 
     today: 今日 
     implementation_day: 実施日 
+    implementation_day_explain: ※内容の更新や編集は選んだ実施日の日しかできません 
     implementation_day_plans_record: の実施予定記録 
     not_today_implementation_day_plans_record: 今日実施予定の記録はありません 
     integer_record: 整数タイプ

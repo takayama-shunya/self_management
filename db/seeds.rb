@@ -49,19 +49,52 @@ end
 Condition.create!(condition_list_1)
 Condition.create!(condition_list_2)
 
-model = [ IntegerRecord, DecimalRecord, TimeRecord, CountRecord ]
-model.each do |m|
-  number = rand(1..7)
-  m.create!(
-    title: "#{m}",
-    unit: "test",
-    content: rand(1..99),
-    user_id: user_1.id,
-    week_ids: Week.ids.sample(number)
-  )
-end
+# model = [ IntegerRecord, DecimalRecord, TimeRecord, CountRecord ]
+# model.each do |m|
+#   number = rand(1..7)
+#   m.create!(
+#     title: "#{m}",
+#     unit: "test",
+#     content: rand(1..99),
+#     user_id: user_1.id,
+#     week_ids: Week.ids.sample(number)
+#   )
+# end
+
+IntegerRecord.create!(
+  title: "収支",
+  unit: "円",
+  content: 10000,
+  user_id: user_1.id,
+  week_ids: Week.ids.sample(4)
+)
+
+DecimalRecord.create!(
+  title: "体重",
+  unit: "キロ",
+  content: 55.5,
+  user_id: user_1.id,
+  week_ids: Week.ids.sample(5)
+)
+
+TimeRecord.create!(
+  title: "運動時間",
+  unit: "分",
+  content: "15:00",
+  user_id: user_1.id,
+  week_ids: Week.ids.sample(3)
+)
+
+CountRecord.create!(
+  title: "喫煙本数",
+  unit: "本",
+  content: 0,
+  user_id: user_1.id,
+  week_ids: Week.ids.sample(7)
+)
+
 CheckRecord.create!(
-  title: "CheckRecord",
+  title: "チェック",
   unit: "",
   content: false,
   user_id: user_1.id,
