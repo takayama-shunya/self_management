@@ -1,70 +1,77 @@
-<div class="spece">
-  <h3><%= t('view.condition_details') %></h3>
-</div>
+<h4 class="ja-heading mb-5 pt-3"><%= t('view.condition_details') %></h3>
 
-<div>
-  <%= l @condition.created_at %>
-</div>
-
-<div>
-  <%= l @condition.retirung_time, format: :hour_minitues %> - <%= l @condition.rising_time, format: :hour_minitues %>
-</div>
-
-<div>
-  <%= @condition.sleep_time %>
-</div>
-
-<div>
-  <%= @condition.sleep_quality %>
-</div>
-
-<div>
-  <%= @condition.meal_count %>
-</div>
-
-<div>
-  <%= @condition.stress_level %>
-</div>
-
-<div>
-  <%= @condition.toughness %>
-</div>
-
-<div>
-  <%= @condition.stress_recovery_balance %>
-</div>
-
-<div>
-  <%= @condition.positive_level %>
-</div>
-
-<div>
-  <%= @condition.enrichment_happiness_level %>
-</div>
-
-<div>
+<table class="table table-borderless mb-3">
+  <thead>
+    <tr>
+      <td><%= t('view.item') %></td>
+      <td><%= t('view.number_score') %></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= t('view.created_at') %></td>
+      <td><%= l @condition.created_at %><td>
+    </tr>
+    <tr>
+      <td><%= t('view.retirung_rising_time') %></td>
+      <td><%= l @condition.retirung_time, format: :hour_minitues %> - <%= l @condition.rising_time, format: :hour_minitues %><td>
+    </tr>
+    <tr>
+      <td><%= t('view.sleep_time') %></td>
+      <td><%= @condition.sleep_time %></td>
+    </tr>
+    <tr>
+      <td><%= t('view.sleep_qulity') %></td>
+      <td><%= @condition.sleep_quality %></td>
+    </tr>
+    <tr>
+      <td><%= t('view.meal_count') %></td>
+      <td><%= @condition.meal_count %></td>
+    </tr>
+    <tr>
+      <td><%= t('view.stress_level') %></td>
+      <td><%= @condition.stress_level %></td>
+    </tr>
+    <tr>
+      <td><%= t('view.toughness') %></td>
+      <td><%= @condition.toughness %></td>
+    </tr>
+    <tr>
+      <td><%= t('view.stress_recovery_balance') %></td>
+      <td><%= @condition.stress_recovery_balance %></td>
+    </tr>
+    <tr>
+      <td><%= t('view.positive_level') %></td>
+      <td><%= @condition.positive_level %></td>
+    </tr>
+    <tr>
+      <td><%= t('view.enrichment_happiness_level') %></td>
+      <td><%= @condition.enrichment_happiness_level %></td>
+  </tbody>
+</table>
+<div class="mb-3 ml-3">
+  <p><%= t('view.negative_comment') %></p><br>
   <%= @condition.negative_comment %>
 </div>
-
-<div>
+<div class="mb-3 ml-3">
+  <p><%= t('view.positive_comment') %></p><br>
   <%= @condition.positive_comment %>
 </div>
 
-<div>
-  <%= link_to "edit", edit_condition_path(@condition.id) %>
+<div class="mb-3 ml-1">
+  <%= link_to t('view.condition_edit'), edit_condition_path(@condition.id) %>
 </div>
-<div>
-  <%= link_to "index", conditions_path %>
+<div class="mb-3 ml-1">
+  <%= link_to t('view.condition_list'), conditions_path %>
 </div>
 
 <div id="message-area"></div>
 <div id="comment-area">
 <% if @condition.comment.present? %>
-    <%= render partial:'comments/show', locals: { record: @condition, commented: @commented } %>
+  <%= render partial:'comments/show', locals: { record: @condition, commented: @commented } %>
 <% else %>
-    <%= render partial:'comments/form', locals: { record: @condition, comment: @comment } %>
+  <%= render partial:'comments/form', locals: { record: @condition, comment: @comment } %>
 <% end %>
-</div>
 
 
 

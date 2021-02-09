@@ -1,117 +1,144 @@
-<%= form_with(model:condition, local:true, class:"form-group") do |f| %>
-  <% if condition.errors.any? %>
-    <div class="error_explanation">
-      <h3><%= condition.errors.count %><%= t('view.there_are_errors') %></h3>
-      <ul>
-      <% condition.errors.full_messages.each do |msg| %>
-        <p><%= msg %></p>
+<div class="container pt-1">
+  <div class="row">
+    <div class="col-12">
+      <%= form_with(model:condition, local:true, class:"form-group") do |f| %>
+        <div class="row">
+          <div class="col-12">
+            <% if condition.errors.any? %>
+              <div class="error_explanation">
+                <h3><%= condition.errors.count %><%= t('view.there_are_errors') %></h3>
+                <ul>
+                <% condition.errors.full_messages.each do |msg| %>
+                  <p><%= msg %></p>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-6 col-md-6">
+              <div class="form-group mb-3">
+                <%= f.label :retirung_time, class:"control-label pl-1" %>
+                <%= f.time_field :retirung_time, class:"form-control" %>
+              </div>
+          </div>
+          <div class="col-6 col-md-6">
+              <div class="form-group mb-3">
+                <%= f.label :rising_time, class:"control-label pl-1" %>
+                <%= f.time_field :rising_time, class:"form-control" %>
+              </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-6 col-md-6">
+            <div class="form-group mb-3">
+                <%= f.label :sleep_time, class:"control-label pl-1" %>
+                  <p class="ml-1" id="st-1"><%= f.radio_button :sleep_time, 1 %><span class=ml-2>1時間未満</span></p>
+                  <p class="ml-1" id="st-2"><%= f.radio_button :sleep_time, 2 %><span class=ml-2>3時間未満</span></p>
+                  <p class="ml-1" id="st-3"><%= f.radio_button :sleep_time, 3, checked: true %><span class=ml-2>6時間未満9時間以上</span></p>
+                  <p class="ml-1" id="st-4"><%= f.radio_button :sleep_time, 4 %><span class=ml-2>6時間又は9時間</span></p>
+                  <p class="ml-1" id="st-5"><%= f.radio_button :sleep_time, 5 %><span class=ml-2>7〜8時間</span></p>
+            </div>
+          </div>
+          <div class="col-6 col-md-6">
+            <div class="form-group mb-3">
+                <%= f.label :sleep_quality, class:"control-label pl-1" %>
+                  <p class="ml-1" id="sq-1"><%= f.radio_button :sleep_quality, 1 %><span class=ml-2>とても悪い</span></p>
+                  <p class="ml-1" id="sq-2"><%= f.radio_button :sleep_quality, 2 %><span class=ml-2>やや悪い</span></p>
+                  <p class="ml-1" id="sq-3"><%= f.radio_button :sleep_quality, 3, checked: true %><span class=ml-2>普通</span></p>
+                  <p class="ml-1" id="sq-4"><%= f.radio_button :sleep_quality, 4 %><span class=ml-2>良い</span></p>
+                  <p class="ml-1" id="sq-5"><%= f.radio_button :sleep_quality, 5 %><span class=ml-2>とても良い</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-6 col-md-6">
+            <div class="form-group mb-3">
+                <%= f.label :meal_count, class:"control-label pl-1" %>
+                  <p class="ml-1" id="mc-1"><%= f.radio_button :meal_count, 1 %><span class=ml-2>0回</span></p>
+                  <p class="ml-1" id="mc-2"><%= f.radio_button :meal_count, 2 %><span class=ml-2>1回</span></p>
+                  <p class="ml-1" id="mc-3"><%= f.radio_button :meal_count, 3, checked: true %><span class=ml-2>2回</span></p>
+                  <p class="ml-1" id="mc-4"><%= f.radio_button :meal_count, 4 %><span class=ml-2>3.5回又は2.5回</span></p>
+                  <p class="ml-1" id="mc-5"><%= f.radio_button :meal_count, 5 %><span class=ml-2>3回</span></p>
+            </div>
+          </div>
+          <div class="col-6 col-md-6">
+            <div class="form-group mb-3">
+              <%= f.label :stress_level, class:"control-label pl-1" %>
+                <p class="ml-1" id="sl-1"><%= f.radio_button :stress_level, 1 %><span class=ml-2>とても高い</span></p>
+                <p class="ml-1" id="sl-2"><%= f.radio_button :stress_level, 2 %><span class=ml-2>とても低い</span></p>
+                <p class="ml-1" id="sl-3"><%= f.radio_button :stress_level, 3, checked: true %><span class=ml-2>やや高い</span></p>
+                <p class="ml-1" id="sl-4"><%= f.radio_button :stress_level, 4 %><span class=ml-2>やや低い</span></p>
+                <p class="ml-1" id="sl-5"><%= f.radio_button :stress_level, 5 %><span class=ml-2>ちょうど良い</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-6 col-md-6">
+            <div class="form-group mb-3">
+              <%= f.label :toughness, class:"control-label pl-1" %>
+              <p class="ml-1" id="t-1"><%= f.radio_button :toughness, 1 %><span class=ml-2>とても高い</span></p>
+              <p class="ml-1" id="t-2"><%= f.radio_button :toughness, 2 %><span class=ml-2>とても低い</span></p>
+              <p class="ml-1" id="t-3"><%= f.radio_button :toughness, 3, checked: true %><span class=ml-2>やや高い</span></p>
+              <p class="ml-1" id="t-4"><%= f.radio_button :toughness, 4 %><span class=ml-2>やや低い</span></p>
+              <p class="ml-1" id="t-5"><%= f.radio_button :toughness, 5 %><span class=ml-2>ちょうど良い</span></p>
+            </div>
+          </div>
+            
+          <div class="col-6 col-md-6">
+            <div class="form-group mb-3">
+              <%= f.label :stress_recovery_balance, class:"control-label pl-1 font-small" %>
+              <p class="ml-1" id="srb-1"><%= f.radio_button :stress_recovery_balance, 1 %><span class=ml-2>とても悪い</span></p>
+              <p class="ml-1" id="srb-2"><%= f.radio_button :stress_recovery_balance, 2 %><span class=ml-2>やや悪い</span></p>
+              <p class="ml-1" id="srb-3"><%= f.radio_button :stress_recovery_balance, 3, checked: true %><span class=ml-2>普通</span></p>
+              <p class="ml-1" id="srb-4"><%= f.radio_button :stress_recovery_balance, 4 %><span class=ml-2>やや良い</span></p>
+              <p class="ml-1" id="srb-5"><%= f.radio_button :stress_recovery_balance, 5 %><span class=ml-2>とても良い</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-6 col-md-6">
+            <div class="form-group mb-3">
+              <%= f.label :positive_level, class:"control-label pl-1" %>
+              <p class="ml-1" id="pl-1"><%= f.radio_button :positive_level, 1 %><span class=ml-2>とても低い</span></p>
+              <p class="ml-1" id="pl-2"><%= f.radio_button :positive_level, 2 %><span class=ml-2>やや低い</span></p>
+              <p class="ml-1" id="pl-3"><%= f.radio_button :positive_level, 3, checked: true %><span class=ml-2>普通</span></p>
+              <p class="ml-1" id="pl-4"><%= f.radio_button :positive_level, 4 %><span class=ml-2>やや高い</span></p>
+              <p class="ml-1" id="pl-5"><%= f.radio_button :positive_level, 5 %><span class=ml-2>とても高い</span></p>
+            </div>
+          </div>
+          <div class="col-6 col-md-6">
+            <div class="form-group mb-3">
+              <%= f.label :enrichment_happiness_level, class:"control-label pl-1" %>
+              <p class="ml-1" id="ehl-1"><%= f.radio_button :enrichment_happiness_level, 1 %><span class=ml-2>とても低い</span></p>
+              <p class="ml-1" id="ehl-2"><%= f.radio_button :enrichment_happiness_level, 2 %><span class=ml-2>やや低い</span></p>
+              <p class="ml-1" id="ehl-3"><%= f.radio_button :enrichment_happiness_level, 3, checked: true %><span class=ml-2>普通</span></p>
+              <p class="ml-1" id="ehl-4"><%= f.radio_button :enrichment_happiness_level, 4 %><span class=ml-2>やや高い</span></p>
+              <p class="ml-1" id="ehl-5"><%= f.radio_button :enrichment_happiness_level, 5 %><span class=ml-2>とても高い</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-12 col-md-6">
+            <div class="form-group mb-3">
+              <%= f.label :negative_comment, class:"control-label pl-1" %><br>
+              <%= f.text_area :negative_comment, class:"form-control" %>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="form-group mb-3">
+              <%= f.label :positive_comment, class:"control-label pl-1" %><br>
+              <%= f.text_area :positive_comment, class:"form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group ml-2">
+            <%= f.submit nil, class:"btn btn-primary" %>
+          </div>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group row">
-    <div class="col-md-5">
-    <%= f.label :retirung_time, class:"col-sm-2 col-form-label" %>
-    <%= f.time_field :retirung_time, class:"form-control" %>
-    <%= f.label :rising_time, class:"col-sm-2 col-form-label" %>
-    <%= f.time_field :rising_time, class:"form-control" %>
     </div>
   </div>
-
-  <div class="form-group row">
-    <%= f.label :sleep_time, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
-      <%= f.radio_button :sleep_time, 1 %>1 とても悪い
-      <%= f.radio_button :sleep_time, 2 %>2 少し悪い
-      <%= f.radio_button :sleep_time, 3, checked: true %>3 普通
-      <%= f.radio_button :sleep_time, 4 %>4 良い
-      <%= f.radio_button :sleep_time, 5 %>5 とても良い
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :sleep_quality, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
-      <%= f.select :sleep_quality, 
-        [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
-        selected: 3,  class:"form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :meal_count, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
-      <%= f.select :meal_count, 
-        [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
-        selected: 3,  class:"form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :stress_level, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
-      <%= f.select :stress_level, 
-        [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
-        selected: 3,  class:"form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :toughness, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
-      <%= f.select :toughness, 
-        [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
-        selected: 3,  class:"form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :stress_recovery_balance, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
-      <%= f.select :stress_recovery_balance, 
-        [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
-        selected: 3,  class:"form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :positive_level, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
-      <%= f.select :positive_level, 
-        [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
-        selected: 3,  class:"form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :enrichment_happiness_level, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
-      <%= f.select :enrichment_happiness_level, 
-        [ [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
-        selected: 3,  class:"form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :negative_comment, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
-      <%= f.text_area :negative_comment %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :positive_comment, class:"col-sm-2 col-form-label" %>
-    <div class="col-md-5">
-      <%= f.text_area :positive_comment %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-sm-2"></div>
-    <div class="col-md-5">
-      <%= f.submit nil, class:"btn btn-primary" %>
-    </div>
-  </div>
-
-<% end %>
+</div>

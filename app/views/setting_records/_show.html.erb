@@ -1,23 +1,51 @@
-<div class="spece">
-  <h3><%= t('view.condition_details') %></h3>
-</div>
+<h3 class="ja-heading"><%= t('view.record_details') %></h3>
 
-<div>
-  <%= record.title %>
-</div>
-<div>
-  <%= record.content %><%= record.unit %>
-</div>
-<div>
-  <% implementation_day = Week.where(id: record.week_ids) %>
-  <% record_implementation_day = [] %>
+<table class="table table-borderless mb-3">
+  <tbody>
+    <tr>
+      <td><%=t('view.title') %></td>
+      <td><%= record.title %></td>
+    </tr>
+    <tr>
+      <td><%= t('view.content') %></td>
+      <td>
+        <% if  record.type == "IntegerRecord" %>
+          <%= record.content.to_s(:delimited) %><span class="ml-1"><%= record.unit %></span>
+        <% else %>
+          <%= record.content %><span class="ml-1"><%= record.unit %></span>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td><%= t('view.type') %></td>
+      <td>
+        <% if record.type == "IntegerRecord" %>
+          <%= t('view.integer_record') %>
+        <% elsif record.type == "DecimalRecord"%>
+          <%= t('view.decimal_record') %>
+        <% elsif record.type == "TimeRecord"%>
+          <%= t('view.time_record') %>
+        <% elsif record.type == "CheckRecord"%>
+          <%= t('view.check_record') %>
+        <% elsif record.type == "CountRecord"%>
+          <%= t('view.count_record') %>
+        <% end %>
+      </td>
+    <tr>
+      <td><%=t('view.implementation_day') %></td>
+    <% implementation_day = Week.where(id: record.week_ids) %>
+    <% record_implementation_day = [] %>
     <% implementation_day.each do |day| %>
       <% record_implementation_day << day.dayname %>
     <% end %>
-    <% record_implementation_day.each do |day| %>
-      <li><%= day %></li>
-    <% end %>
-</div>
+      <td>
+        <% record_implementation_day.each do |day| %>
+        <li class="implementation-day"><%= day %></li>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <div id="message-area"></div>
 <div id="comment-area">

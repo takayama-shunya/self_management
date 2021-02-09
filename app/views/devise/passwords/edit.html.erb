@@ -1,25 +1,37 @@
-<h2><%= t('.change_your_password') %></h2>
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <h2 class="mb-3 ja-heading text-center"><%= t('.change_your_password') %></h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <div class="mb-3">
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <%= f.hidden_field :reset_password_token %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password, t('.new_password') %><br />
-    <% if @minimum_password_length %>
-      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+        <div class="mb-3 form-group">
+          <%= f.label :password, t('.new_password'), class: "control-label pl-1" %><br />
+          <% if @minimum_password_length %>
+            <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em><br />
+          <% end %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password",
+              class: "form-control", placeholder: t('view.password_limit') %>
+        </div>
+
+        <div class="mb-3 form-group">
+          <%= f.label :password_confirmation, t('.confirm_new_password'), class: "control-label pl-1" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",
+              class: "form-control", placeholder: t('view.password_limit') %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.submit t('.change_my_password'), class: "btn btn-success" %>
+        </div>
+      <% end %>
+
+      <div class="mb-3"
+        ><%= render "devise/shared/links" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, t('.confirm_new_password') %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit t('.change_my_password') %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

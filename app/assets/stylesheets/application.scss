@@ -1,8 +1,88 @@
 /*
  */
  @import "bootstrap";
+ @import url(https://fonts.googleapis.com/css?family=Anton);
 
 
-.check-record-flase {
-  color :gray
+body {
+  font-family: 'Lato', 'Noto Sans JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  width: 100%;
+  padding: 70px 5px;
+  overflow: auto;
+}
+
+li {
+  list-style: none;
+}
+
+.navbar {
+  background-color: rgba(3, 9, 66, 0.938);
+}
+
+.heading,.font-anton {
+  font-family: 'Anton', sans-serif;
+}
+
+.user-name {
+  color: white;
+  padding: 0 4rem;
+}
+
+.ja-heading {
+  font-family: 'ヒラギノ角ゴ Std W8','Hiragino Kaku Gothic Std'
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.781);
+}
+
+.navbar-expand .navbar-nav .nav-link {
+  padding: 0.5rem 1.5rem;
+}
+
+.form-control {
+  border-radius: 15px;
+  height: 90%;
+}
+
+.form-control::placeholder {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.btn-lg {
+  padding: 0.25rem;
+}
+
+.check-record-false {
+  color :rgb(180, 179, 179);
+}
+
+.record-link {
+  width: 460px;
+}
+
+.implementation-day {
+  float: left;
+}
+
+.line {
+  border-top: 1px solid black;
+}
+
+.font-small {
+  font-size: 0.9rem;
+}
+
+.list-inline-item {
+  padding: 0;
+}
+
+.implementation_day_explain,.plan-explain {
+  font-size: 0.8rem;
+  color:rgb(133, 127, 127)
+}
+
+.automa-btn {
+  height: 100px;
 }

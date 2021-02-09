@@ -1,0 +1,12 @@
+<h3 class="ja-heading mb-4 mt-1"><%= t('view.automatic_record') %></h3>
+
+<div class="container">
+  <div class="row">
+    <div class="mb-3 ml-2 record-link" id="automatic-record-btn">
+      <%= button_to sleep_improvement_plan_automatic_records_path, method: :post, class:"btn btn-outline-primary record-link" do %>
+        <span><%= t('view.sleep_improvement_plan_easy')  %></span>
+      <% end %>
+      <p class="ml-3 plan-explain"><%= t('view.sleep_improvement_plan_easy_explain_html') %>
+    </div>
+  </div>
+</div>

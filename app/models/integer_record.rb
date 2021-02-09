@@ -10,9 +10,9 @@ class IntegerRecord < SettingRecord
   validates :title, presence: true, length: { maximum: 20 }
   validates :unit, length: { maximum: 10 }
   validates :content, numericality: { only_integer: true,
-                                      greater_than: -99999,
+                                      greater_than: -100000,
                                       # greater_than_or_equal_to: 0,
-                                      less_than: 99999 }
+                                      less_than: 100000 }
 
 
 end

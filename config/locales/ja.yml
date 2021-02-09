@@ -206,3 +206,105 @@ ja:
       hour_minitues: "%H:%M"
     pm: 午後
   view:
+    login: login
+    log_in: ログイン 
+    log_out: ログアウト 
+    there_are_errors: 件のエラーがあります
+    date: 日付 
+    search: 検索 
+    top: トップ
+    condition_list: コンディション一覧
+    user_edit: ユーザー編集
+    create_acount: アカウント作成
+    record_create_list: 記録設定／記録一覧
+    condition_create: コンディションチェック作成
+    condition_edit: コンディションチェック編集 
+    condition_details: コンディションチェック詳細 
+    item: 【項目】
+    number_score: 【数値／スコア】
+    created_at: 作成日付
+    retirung_rising_time: 就寝・起床時間
+    sleep_time: 睡眠時間
+    sleep_quality: 睡眠の質
+    meal_count: 食事回数
+    stress_level: ストレス度
+    toughness: タフ度
+    stress_recovery_balance: ストレスと回復バランス
+    positive_level: ポジティブ度
+    enrichment_happiness_level: 幸福・充実度
+    negative_comment: ネガティブコメント
+    positive_comment: ポジティブコメント
+    comment: コメント 
+    commnet_create_maximum50: コメントが付けられます（50字以内） 
+    password_limit: 半角英数字6文字以上
+    average_score: 平均スコア
+    score: スコア
+    today_score: 今日のスコア 
+    show: 詳細
+    edit: 編集
+    delete: 削除 
+    no_conditions: コンディションチェックはありません 
+    today: 今日 
+    implementation_day: 実施日 
+    implementation_day_explain: ※内容の更新や編集は選んだ実施日の日しかできません 
+    implementation_day_plans_record: の実施予定記録 
+    not_today_implementation_day_plans_record: 今日実施予定の記録はありません 
+    integer_record: 整数タイプ
+    integer_record_create: 整数タイプ 記録作成 
+    integer_record_edit: 整数タイプ 記録編集 
+    integer_record_explanation: 5桁(-99999~99999)までの数字が記録できます 
+    integer_record_example: 収支や金額などの大きい数字にお使い頂けます
+    decimal_record: 少数記録 
+    decimal_record_create: 少数タイプ 記録作成 
+    decimal_record_edit: 少数タイプ 記録編集 
+    decimal_record_explanation: 3桁、少数第3位(0~999.999)までの数字が記録できます 
+    decimal_record_example: 体重などの少数を伴う数字にお使い頂けます
+    time_record: 時間記録
+    time_record_create: 時間タイプ 記録作成
+    time_record_edit: 時間タイプ 記録編集
+    time_record_explanation: 時間表記で記録ができます
+    time_record_example: 運動時間や作業時間などにお使い頂けます
+    check_record: チェックタイプ
+    check_record_create: チェックタイプ 記録作成
+    check_record_edit: チェックタイプ 記録編集
+    check_record_explanation: タイトルに入力した内容がチェック項目になります
+    check_record_example: チェックリストとしてお使い頂けます
+    count_record: カウントタイプ
+    count_record_create: カウントタイプ 記録作成
+    count_record_edit: カウントタイプ 記録編集
+    count_record_explanation: カウンターボタンを押す(±1)と数値が増減します(-99~99)
+    count_record_example: 喫煙本数や筋トレ回数にお使い頂けます
+    title: タイトル
+    content: 内容
+    check_true: チェック済
+    check_false: 未チェック
+    setting_record: 記録設定 
+    record_details: 記録詳細 
+    type: タイプ 
+    automatic_record: おまかせプラン 
+    sleep_improvement_plan_easy: 睡眠改善プラン（簡単）
+    sleep_improvement_plan_easy_explain_html: 禁酒（チェックタイプ)<br>入浴（チェックタイプ）<br>運動（時間タイプ）を作成します
+  notice:
+    created_condition: コンディションチェック作成しました
+    updated_condition: コンディションチェック編集しました
+    destroyed_condition: コンディションチェック削除しました
+    updated_record: 記録設定を編集しました 
+    created_record: 記設を作成しました
+  alert: 
+    not_user: 作成者ではありません
+    today_condition_create_1time: コンディションチェック作成は1日1回です
+    errors: エラーが発生しました 
+  flash: 
+    destroyed: 削除しました 
+    updated: 更新しました 
+    created: 作成しました 
+
+
+
+    
+
+
+
+
+
+

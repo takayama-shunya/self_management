@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     what_instansce_to_build
     respond_to do |format|
       if @comment.save
-        format.js { flash.now[:success] = "created" }
+        format.js { flash.now[:success] = t('flash.created') }
       else
         format.js 
       end
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.js { flash.now[:success] = "updated" }
+        format.js { flash.now[:success] = t('flash.updated') }
       else
         format.js 
       end
@@ -34,9 +34,9 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.destroy
         @comment = Comment.new
-        format.js { flash.now[:success] = "deleted" }
+        format.js { flash.now[:success] = t('flash.destroyed') }
       else
-        format.html { redirect_to top_index_path, alert: "errors" }
+        format.html { redirect_to top_index_path, alert: t('alert.errors') }
       end
     end
   end
