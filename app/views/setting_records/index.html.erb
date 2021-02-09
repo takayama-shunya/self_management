@@ -46,6 +46,13 @@
       <% end %>
     </div>
   </div>
+  <div class="row">
+    <div class="mb-3 ml-2 record-link" id="automatic-record-btn">
+      <%= button_to automatic_records_path, method: :get, class:"btn btn-outline-warning record-link automa-btn" do %>
+        <span><%= t('view.automatic_record')  %></span>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <div>

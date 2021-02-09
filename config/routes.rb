@@ -39,15 +39,13 @@ Rails.application.routes.draw do
       resources :comments, expect: %i[ index show new ], shallow: true
     end
 
-    resources :automatic_record, only: %i[ index ] do
+    resources :automatic_records, only: %i[ index ] do
       collection do
         post :sleep_improvement_plan
       end
     end
 
-
   end
-
 
   
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

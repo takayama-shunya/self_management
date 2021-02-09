@@ -19,9 +19,9 @@ RSpec.describe Comment, type: :model do
         expect(comment).not_to be_valid
       end
     end
-    context 'コメントが51文字以上の場合' do
+    context 'コメントが101文字以上の場合' do
       it 'バリデーションに引っかかる' do
-        content = "a" * 51
+        content = "a" * 101
         comment = check_record.build_comment(content: "#{content}")
         expect(comment).not_to be_valid
       end

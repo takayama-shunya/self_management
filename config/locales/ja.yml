@@ -281,6 +281,9 @@ ja:
     setting_record: 記録設定 
     record_details: 記録詳細 
     type: タイプ 
+    automatic_record: おまかせプラン 
+    sleep_improvement_plan_easy: 睡眠改善プラン（簡単）
+    sleep_improvement_plan_easy_explain_html: 禁酒（チェックタイプ)<br>入浴（チェックタイプ）<br>運動（時間タイプ）を作成します
   notice:
     created_condition: コンディションチェック作成しました
     updated_condition: コンディションチェック編集しました
