@@ -50,6 +50,7 @@ GEM
     autoprefixer-rails (10.1.0.0)
       execjs
     bcrypt (3.1.16)
+    bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
     bootsnap (1.5.1)
       msgpack (~> 1.0)
@@ -111,6 +112,7 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    ed25519 (1.2.4)
     erubi (1.10.0)
     execjs (2.7.0)
     factory_bot (6.1.0)
@@ -156,7 +158,7 @@ GEM
       actionmailer (>= 3.2)
       letter_opener (~> 1.0)
       railties (>= 3.2)
-    libv8 (8.4.255.0-x86_64-darwin-19)
+    libv8 (8.4.255.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -322,6 +324,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt_pbkdf
   bootsnap (>= 1.1.0)
   bootstrap
   bootstrap4-kaminari-views
@@ -336,6 +339,7 @@ DEPENDENCIES
   devise
   devise-i18n
   dotenv-rails
+  ed25519
   factory_bot_rails
   faker
   gon (~> 6.2.0)
