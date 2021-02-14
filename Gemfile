@@ -30,9 +30,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 gem 'devise'
 gem 'devise-i18n'
 gem 'kaminari'
@@ -44,7 +41,6 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'gon', '~> 6.2.0'
 gem 'faker'
-gem 'dotenv-rails' 
 gem 'unicorn' 
 gem 'mini_racer', platforms: :ruby 
 
@@ -57,6 +53,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
+  gem 'dotenv-rails' 
   gem 'pry-rails'
   gem 'capistrano', '3.6.0' # capistranoのツール一式
   gem 'capistrano-bundler'
@@ -73,6 +70,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'letter_opener_web'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :test do
