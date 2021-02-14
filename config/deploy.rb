@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.6.0'
+# lock '3.14.1'
 
 set :application, 'selef_management'
 set :repo_url, 'https://github.com/takayama-shunya/selef_management.git'
