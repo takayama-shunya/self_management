@@ -43,6 +43,8 @@ gem 'gon', '~> 6.2.0'
 gem 'faker'
 gem 'unicorn' 
 gem 'mini_racer', platforms: :ruby 
+gem 'dotenv-rails' 
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,7 +55,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
-  gem 'dotenv-rails' 
   gem 'pry-rails'
   gem 'capistrano', '3.6.0' # capistranoのツール一式
   gem 'capistrano-bundler'
