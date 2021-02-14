@@ -99,7 +99,7 @@ Rails.application.configure do
     domain: 'gmail.com',
     port:587,
     user_name: 'takayamashunya645@gmail.com',
-    password: 'cmhsohncwbqwtywq'
+    password: 'cmhsohncwbqwtywq',
     # user_name: ENV['USER_NAME'],
     # password: ENV['PASSWORD'],
     authentication: 'plain',
