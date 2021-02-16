@@ -6,6 +6,12 @@ class AutomaticRecordsController < ApplicationController
   end
 
   def sleep_improvement_plan
+    sleep_improvement_plan_create
+  end
+
+  private
+
+  def sleep_improvement_plan_create
     @check_record_1 = current_user.check_records.build(
       title: "禁酒",
       unit: "",
@@ -16,9 +22,9 @@ class AutomaticRecordsController < ApplicationController
       unit: "",
       content: false,
       week_ids: [ 1, 2, 3, 4, 5, 6, 7 ])
-    @time_record = current_user.check_records.build(
+    @time_record = current_user.time_records.build(
       title: "運動",
-      unit: "分",
+      unit: "時間",
       content: "00:00",
       week_ids: [ 1, 2, 3, 4, 5, 6, 7 ])
     if @check_record_1.save && @check_record_2.save && @time_record.save
@@ -35,4 +41,5 @@ class AutomaticRecordsController < ApplicationController
       redirect_to top_index_path, alert: t('alert.errors')
     end
   end
+
 end

@@ -78,8 +78,8 @@ DecimalRecord.create!(
 )
 
 TimeRecord.create!(
-  title: "運動時間",
-  unit: "分",
+  title: "勉強時間",
+  unit: "時間",
   content: "15:00",
   user_id: user_1.id,
   week_ids: Week.ids.sample(3)
