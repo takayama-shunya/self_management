@@ -2,7 +2,7 @@ class CheckRecordsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_record, only: %i[ show edit destroy update change_check_true change_check_false]
-
+  include Record
 
   def new
     @record = CheckRecord.new
@@ -17,32 +17,11 @@ class CheckRecordsController < ApplicationController
       end
   end
 
-  def show
-    @commented = @record.comment
-    @comment = Comment.new
-  end
-
-  def edit
-    respond_to do |format|
-      format.html { render :edit }
-    end
-  end
-
   def update
     if @record.update(check_record_params)
       redirect_to top_index_path, notice: t('notice.updated_record')
     else
       rende :edit
-    end
-  end
-
-  def destroy
-    respond_to do |format|
-      if @record.destroy
-        format.js { flash.now[:success] = t('flash.destroyed') }
-      else
-        formato.html { redirect_to top_index_path, alert: t('alert.errors') }
-      end
     end
   end
 
@@ -53,7 +32,6 @@ class CheckRecordsController < ApplicationController
   def change_check_false
     @record.update(content: false)
   end
-
 
   private
 
