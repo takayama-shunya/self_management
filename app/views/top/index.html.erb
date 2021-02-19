@@ -14,40 +14,8 @@
         </div>
         <div class="col-sm-12 mb-3">
           <diV class="chart-container">
-          <canvas id="myChart" width="400" height="300"></canvas>
-          <script>
-          window.onload = function() {
-              ctx = document.getElementById("myChart").getContext("2d");
-              window.myChrt = new Chart(ctx, {
-                  type: 'radar',
-                  data: {
-                    labels: [
-                      "睡眠時間", "睡眠の質", "食事回数", "ストレス度", "タフ度",
-                      "ストレスと回復のバランス", "ポジティブ度", "幸福・充実度"
-                    ],
-                    datasets: [{
-                      label: 'today_condition',
-                      backgroundColor: "rgba(102,204,255,0.3)",
-                      borderColor: "rgba(102,204,255,1)",
-                      data: gon.value
-                    }, {
-                      label: 'average_condition',
-                      backgroundColor: "rgba(255,204,204,0.3)",
-                      borderColor: "rgba(255,204,204,1)",
-                      data: gon.average_value           }]
-                  },
-                  options: {
-                    scale: {
-                      ticks: {
-                          suggestedMin: 0,
-                          suggestedMax: 5,
-                          stepSize: 1
-                      }
-                    }
-                  }
-              });
-          };
-          </script>
+            <canvas id="myChart_top" width="400" height="300"></canvas>
+            <script>draw_chart_top();</script>
           </div>
         </div>
         <div id="aid mb-3">

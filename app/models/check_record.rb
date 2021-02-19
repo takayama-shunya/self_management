@@ -6,8 +6,6 @@ class CheckRecord < SettingRecord
   has_one :comment, as: :commentable, dependent: :destroy
   
   attribute :content, :boolean, default: false
-
   validates :title, presence: true, length: { maximum: 20 }
-
 
 end
