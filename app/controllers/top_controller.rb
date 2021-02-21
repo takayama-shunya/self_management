@@ -13,7 +13,7 @@ class TopController < ApplicationController
   private
 
   def set_top_condition
-    @condition = current_user.conditions.find_by(created_at: @date.in_time_zone.all_day)
+    @condition = current_user.conditions.find_condition(@date)
   end
 
   def what_day_condition
@@ -51,7 +51,7 @@ class TopController < ApplicationController
 
   def today_record
     date = Time.zone.now
-    @dayname = week_day[date.wday]
+    @dayname = week_day[date.wday] #dateを曜日数字に変換して配列から取り出す
 
     # @today_integer_records = IntegerRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})
     # @today_decimal_records = DecimalRecord.where(user_id: current_user.id).joins(:weeks).where(weeks: {dayname: date})

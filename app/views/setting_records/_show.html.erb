@@ -9,8 +9,14 @@
     <tr>
       <td><%= t('view.content') %></td>
       <td>
-        <% if  record.type == "IntegerRecord" %>
+        <% if record.type == "IntegerRecord" %>
           <%= record.content.to_s(:delimited) %><span class="ml-1"><%= record.unit %></span>
+        <% elsif record.type == "CheckRecord" %>
+          <% if record.content == true %>
+            <p><%= t('view.check_true') %></p>
+          <% elsif record.content == false %>
+            <p><%= t('view.check_false') %></p>
+          <% end %>
         <% else %>
           <%= record.content %><span class="ml-1"><%= record.unit %></span>
         <% end %>

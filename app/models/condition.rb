@@ -12,4 +12,9 @@ class Condition < ApplicationRecord
             :positive_level, :enrichment_happiness_level,
             presence: true
   
+  # scope :find_condition, -> (date) { where(created_at: date.in_time_zone.all_day).take }
+  def self.find_condition(date)
+    where(created_at: date.in_time_zone.all_day).take
+  end
+  
 end

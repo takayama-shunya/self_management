@@ -22,7 +22,7 @@
           <% if action_name == 'edit' || action_name == 'update' %>
             <div class="form-group mb-3">
               <%= f.label :unit, class:"control-label pl-1" %>
-              <%= f.text_field :unit, class:"form-control" %>
+              <%= f.text_field :unit, class:"form-control", placeholder: t('view.unit_create_maximum10') %>
             </div>
           <% end %>
         <% end %>
@@ -33,7 +33,7 @@
               <%= f.label :content, class:"control-label pl-1" %>
               <%= f.number_field :content, class:"form-control" %>
               <%= f.label :unit, class:"control-label pl-1" %>
-              <%= f.text_field :unit, class:"form-control" %>
+              <%= f.text_field :unit, class:"form-control", placeholder: t('view.unit_create_maximum10') %>
             </div>
           <% end %>
         <% elsif controller_name == 'decimal_records' %>
@@ -42,7 +42,7 @@
               <%= f.label :content, class:"control-label pl-1" %>
               <%= f.number_field :content, step:"0.001", class:"form-control" %>
               <%= f.label :unit, class:"control-label pl-1" %>
-              <%= f.text_field :unit, class:"form-control" %>
+              <%= f.text_field :unit, class:"form-control", placeholder: t('view.unit_create_maximum10') %>
             </div>
           <% end %>
         <% elsif controller_name == 'time_records' %>
@@ -51,7 +51,7 @@
               <%= f.label :content, class:"control-label pl-1" %>
               <%= f.time_field :content, class:"form-control" %>
               <%= f.label :unit, class:"control-label pl-1" %>
-              <%= f.text_field :unit, value: "分", class:"form-control" %>
+              <%= f.text_field :unit, value: "時間", class:"form-control", placeholder: t('view.unit_create_maximum10') %>
             </div>
           <% end %>
         <% elsif controller_name == 'check_records' %>
@@ -67,7 +67,7 @@
               <%= f.label :content, class:"control-label pl-1" %>
               <%= f.number_field :content, class:"form-control" %>
               <%= f.label :unit, class:"control-label pl-1" %>
-              <%= f.text_field :unit, class:"form-control" %>
+              <%= f.text_field :unit, class:"form-control", placeholder: t('view.unit_create_maximum10') %>
             </div>
           <% end %>
         <% end %>
