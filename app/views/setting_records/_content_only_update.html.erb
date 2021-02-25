@@ -10,8 +10,8 @@
       </ul>
     </div>
   <% end %>
-  <div class="">
-    <div class="">
+  <div class="container">
+    <div class="row">
     <% if controller_name == 'integer_records' %>
         <%= f.label :content, class:"" %>
         <%= f.number_field :content, value:record.content, class:"form-control" %>
@@ -22,7 +22,6 @@
         <%= f.label :content, class:"" %>
         <%= f.time_field :content, value:record.content, class:"form-control" %>
     <% end %>
-
       <%= f.submit nil, class:"btn btn-primary" %>
     </div>
   </div>

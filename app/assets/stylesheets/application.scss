@@ -36,8 +36,12 @@ li {
   color: rgba(255, 255, 255, 0.781);
 }
 
-.navbar-expand .navbar-nav .nav-link {
+.navbar-expand .navbar-nav .nav-link{
   padding: 0.5rem 1.5rem;
+}
+
+.navbar-expand-md .navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
 }
 
 .form-control {
@@ -50,8 +54,13 @@ li {
   text-align: center;
 }
 
+ul {
+  margin-top: 0.5rem;
+}
+
 .btn-lg {
   padding: 0.25rem;
+  font-size: 1.5rem;
 }
 
 .check-record-false {

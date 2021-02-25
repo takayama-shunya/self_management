@@ -9,8 +9,6 @@ class TimeRecord < SettingRecord
   validates :unit, length: { maximum: 10 }
 
 
-  private
-
   def self.sleep_improvement_plan_create_3(user_id)
     record_3 = self.new(
       title: "運動",
