@@ -6,7 +6,6 @@ class TimeRecord < SettingRecord
   has_one :comment, as: :commentable, dependent: :destroy
 
   validates :content, presence: true
-  validates :title, presence: true, length: { maximum: 20 }
   validates :unit, length: { maximum: 10 }
 
 

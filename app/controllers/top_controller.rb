@@ -40,13 +40,13 @@ class TopController < ApplicationController
 
   def today_record
     date = Time.zone.now
-    dayname = week_day[date.wday] #dateを曜日数字に変換して配列から取り出す
+    @dayname = week_day[date.wday] #dateを曜日数字に変換して配列から取り出す
 
     model = [IntegerRecord, DecimalRecord, TimeRecord, CheckRecord, CountRecord]
     today_records = []
 
     model.each do |m|
-      today_records << m.find_by_user(current_user.id).implementation_date(dayname)
+      today_records << m.find_by_user(current_user.id).implementation_date(@dayname)
     end
 
     @today_records = today_records.flatten!

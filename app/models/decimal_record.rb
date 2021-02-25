@@ -7,8 +7,8 @@ class DecimalRecord < SettingRecord
   
   attribute :content, :float, default: 0
   
-  validates :title, presence: true, length: { maximum: 20 }
-  validates :unit, length: { maximum: 10 }
+  # validates :title, presence: true, length: { maximum: 20 }
+  # validates :unit, length: { maximum: 10 }
   validates :content, presence: true,
                       numericality: { greater_than_or_equal_to: 0,
                                       less_than: 1000 }

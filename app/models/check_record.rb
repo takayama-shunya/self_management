@@ -6,9 +6,7 @@ class CheckRecord < SettingRecord
   has_one :comment, as: :commentable, dependent: :destroy
   
   attribute :content, :boolean, default: false
-  validates :title, presence: true, length: { maximum: 20 }
-
-  private
+  # validates :title, presence: true, length: { maximum: 20 }
 
   def self.sleep_improvement_plan_create_1(user_id)
     record_1 = self.new(
