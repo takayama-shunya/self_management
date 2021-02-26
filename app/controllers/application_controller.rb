@@ -21,18 +21,14 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def today_condition
-    @date = Time.now.strftime('%Y-%m-%d')
-    @condition = current_user.conditions.find_by(created_at: @date.in_time_zone.all_day)
-  end
-
   def week_day
     @week_day = %w(日 月 火 水 木 金 土 日)
   end
 
-  def current_user_records
-    @records = SettingRecord.where(user_id: current_user.id).page(params[:page])
+  def today_condition
+    @date = Time.now.strftime('%Y-%m-%d')
+    @condition = current_user.conditions.find_condition(@date)
+    # @condition = current_user.conditions.find_by(created_at: @date.in_time_zone.all_day)
   end
-
 
 end

@@ -1,10 +1,10 @@
-<div class="container pt-1">
+<div class="container pt-3">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-12 col-sm-12">
       <%= form_with(url: top_index_path, method: :get, local:true, class:"") do |f| %>
         <%= f.label :date_condition, t('view.date') %>
         <%= f.date_field :date_condition, value: @date %>
-        <%= f.submit t('view.search'), class:"btn btn-primary" %>
+        <span class="ml-2"><%= f.submit t('view.search'), class:"btn btn-primary" %></span>
       <% end %>
  
       <% if @condition.present? %>
@@ -12,42 +12,10 @@
           <%= t('view.today_score') %><span><%= @condition_score %></span> / 
           <%= t('view.average_score') %><span><%= @condition_average_score.round(1) %></span>
         </div>
-        <div class="col-sm-12 mb-3">
-          <diV class="chart-container">
-          <canvas id="myChart" width="400" height="300"></canvas>
-          <script>
-          window.onload = function() {
-              ctx = document.getElementById("myChart").getContext("2d");
-              window.myChrt = new Chart(ctx, {
-                  type: 'radar',
-                  data: {
-                    labels: [
-                      "睡眠時間", "睡眠の質", "食事回数", "ストレス度", "タフ度",
-                      "ストレスと回復のバランス", "ポジティブ度", "幸福・充実度"
-                    ],
-                    datasets: [{
-                      label: 'today_condition',
-                      backgroundColor: "rgba(102,204,255,0.3)",
-                      borderColor: "rgba(102,204,255,1)",
-                      data: gon.value
-                    }, {
-                      label: 'average_condition',
-                      backgroundColor: "rgba(255,204,204,0.3)",
-                      borderColor: "rgba(255,204,204,1)",
-                      data: gon.average_value           }]
-                  },
-                  options: {
-                    scale: {
-                      ticks: {
-                          suggestedMin: 0,
-                          suggestedMax: 5,
-                          stepSize: 1
-                      }
-                    }
-                  }
-              });
-          };
-          </script>
+        <div class="col-12 col-sm-12 mb-3">
+          <diV class="chart-container"　style="width:850px; height:650px;">
+            <canvas id="myChart_top"></canvas>
+            <script>draw_chart_top();</script>
           </div>
         </div>
         <div id="aid mb-3">
@@ -69,9 +37,9 @@
       <div>
         <table class="table table-hover" style="table-layout:fixed;width:100%;">
           <colgroup>
-            <col style="width:20%;">
+            <col style="width:40%;">
             <col style="width:30%;">
-            <col style="width:50%;">
+            <col style="width:30%;">
           </colgroup>
           <% @today_records.each do |record| %>
           <tbody>

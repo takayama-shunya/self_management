@@ -2,7 +2,7 @@ class CountRecordsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_record, only: %i[ edit show destroy update count_up count_down ]
-
+  include Record
 
   def new
     @record = CountRecord.new
@@ -17,33 +17,12 @@ class CountRecordsController < ApplicationController
       end
   end
 
-  def edit
-    respond_to do |format|
-      format.html { render :edit }
-    end
-  end
-
   def update
     if @record.update(count_record_params)
       redirect_to top_index_path, notice: t('notice.updated_record')
     else
       render :edit
     end
-  end
-
-  def destroy
-    respond_to do |format|
-      if @record.destroy
-        format.js { flash.now[:success] = t('flash.destroyed') }
-      else
-        format.html { redirect_to top_index_path, alert: t('alert.errors') }
-      end
-    end
-  end
-
-  def show
-    @commented = @record.comment
-    @comment = Comment.new
   end
 
   def count_up

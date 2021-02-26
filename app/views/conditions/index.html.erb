@@ -1,14 +1,19 @@
 <% if @conditions.present? %>
   <div class="container">
     <div class="row">
-      <table class="table table-bordered table-dark table-sm">
+      <table class="table table-bordered table-dark table-sm" style="table-layout:fixed;width:90%;">
         <tr>
           <th scope="col"><%= t('view.average_score') %></th>
           <td><%= @condition_average_score.round(1) %></td>
         </tr>
       </table>
 
-      <table class="table table-bordered table-dark table-hover table-sm">
+      <table class="table table-bordered table-dark table-hover table-sm" style="table-layout:fixed;width:90%;">
+        <colgroup>
+          <col style="width:30%;">
+          <col style="width:30%;">
+          <col style="width:30%;">
+        </colgroup>
         <thead>
           <tr>
             <th scope="col"><%= t('view.created_at') %></th>
@@ -56,33 +61,8 @@
   </div>
 
   <diV class="chart-container">
-    <canvas id="myLineChart"></canvas>
-    <script>
-      var ctx = document.getElementById("myLineChart");
-      var myChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-              labels: gon.condition_created_at,
-              datasets: [{
-                  label: 'condition  score',
-                  data: gon.condition_score,
-                  backgroundColor: ['rgba(0,255,0,0.4)',],
-                  borderColor: ['rgba(0,255,0,1)',],
-              }]
-          },
-          options: {
-              scales: {
-                  yAxes: [{
-                      ticks: {
-                        max: 40,
-                        min: 0,
-                        stepSize: 4
-                      }
-                  }]
-              }
-          }
-      });  
-    </script>
+    <canvas id="myChart_condition_index"></canvas>
+    <script>draw_chart_condition_index();</script>
   </div>
 <% else %>
 <div class="pt-5"><%= t('view.no_conditions') %></div>

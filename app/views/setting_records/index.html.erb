@@ -1,17 +1,15 @@
-<h3 class="ja-heading"><%= t('view.setting_record') %></h3>
+<h3 class="ja-heading mt-3 mb-3"><%= t('view.setting_record') %></h3>
 
 <div class="container">
   <div class="row">
-    <div class="mb-3 ml-2 record-link" id="integer-record-btn">
+    <div class="mb-3 ml-3 record-link" id="integer-record-btn">
       <%= button_to new_integer_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
         <span><%= t('view.integer_record')  %></span>
         <p class="mt-2 record-example"><%= t('view.integer_record_explanation') %><br>
         <%= t('view.integer_record_example') %></p>
       <% end %>
     </div>
-  </div>
-  <div class="row">
-    <div class="mb-3 ml-2 record-link" id="decimal-record-btn">
+    <div class="mb-3 ml-3 record-link" id="decimal-record-btn">
       <%= button_to new_decimal_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
         <span><%= t('view.decimal_record')  %></span>
         <p class="mt-2 record-example"><%= t('view.decimal_record_explanation') %><br>
@@ -20,16 +18,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="mb-3 ml-2 record-link" id="time-record-btn">
+    <div class="mb-3 ml-3 record-link" id="time-record-btn">
       <%= button_to new_time_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
         <span><%= t('view.time_record')  %></span>
         <p class="mt-2 record-example"><%= t('view.time_record_explanation') %><br>
         <%= t('view.time_record_example') %></p>
       <% end %>
     </div>
-  </div>
-  <div class="row">
-    <div class="mb-3 ml-2 record-link" id="check-record-btn">
+    <div class="mb-3 ml-3 record-link" id="check-record-btn">
       <%= button_to new_check_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
         <span><%= t('view.check_record')  %></span>
         <p class="mt-2 record-example"><%= t('view.check_record_explanation') %><br>
@@ -38,16 +34,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="mb-3 ml-2 record-link" id="count-record-btn">
+    <div class="mb-3 ml-3 record-link" id="count-record-btn">
       <%= button_to new_count_record_path, method: :get, class:"btn btn-outline-info record-link" do %>
         <span><%= t('view.count_record')  %></span>
         <p class="mt-2 record-example"><%= t('view.count_record_explanation') %><br>
         <%= t('view.count_record_example') %></p>
       <% end %>
     </div>
-  </div>
-  <div class="row">
-    <div class="mb-3 ml-2 record-link" id="automatic-record-btn">
+    <div class="mb-3 ml-3 record-link" id="automatic-record-btn">
       <%= button_to automatic_records_path, method: :get, class:"btn btn-outline-warning record-link automa-btn" do %>
         <span><%= t('view.automatic_record')  %></span>
       <% end %>
@@ -56,12 +50,12 @@
 </div>
 
 <div>
-  <table class="table table-bordered table-hover" style="table-layout:fixed;width:100%;">
+  <table class="table table-bordered table-hover" style="table-layout:fixed;width:90%;">
     <colgroup>
+      <col style="width:25%;">
       <col style="width:20%;">
-      <col style="width:24%;">
-      <col style="width:30%;">
-      <col style="width:26%;">
+      <col style="width:25%;">
+      <col style="width:20%;">
     </colgroup>
     <thead>
       <tr>
@@ -99,11 +93,11 @@
         <% end %>
         <td scope="col">
           <% record_implementation_day.each do |day| %>
-            <li class="implementation-day"><%= day %></li>
+            <li class="implementation-day ml-1"><%= day %></li>
           <% end %>
         </td>
         <td scope="col">
-          <ul class="list-inline float-right">
+          <ul class="list-inline float-left">
             <li class="list-inline-item">
               <%= button_to edit_record_type(record.type, record.id), method: :get, class:"btn btn-outline-info" do %>
                 <i class="fa fa-cog" aria-hidden="true"></i>              

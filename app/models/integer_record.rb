@@ -7,8 +7,8 @@ class IntegerRecord < SettingRecord
   
   attribute :content, :integer, default: 0
 
-  validates :title, presence: true, length: { maximum: 20 }
-  validates :unit, length: { maximum: 10 }
+  # validates :title, presence: true, length: { maximum: 20 }
+  # validates :unit, length: { maximum: 10 }
   validates :content, numericality: { only_integer: true,
                                       greater_than: -100000,
                                       # greater_than_or_equal_to: 0,

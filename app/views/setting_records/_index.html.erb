@@ -1,5 +1,5 @@
 <% if record.type == "IntegerRecord" %>
-  <%= record.content.to_s(:delimited) %><span class="ml-1"><%= record.unit %></span>
+  <%= record.content.to_s(:delimited) %><span class="ml-2"><%= record.unit %></span>
 <% else %>
-  <%= record.content %><span class="ml-1"><%= record.unit %></span>
+  <%= record.content %><span class="ml-2"><%= record.unit %></span>
 <% end %>

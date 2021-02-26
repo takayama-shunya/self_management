@@ -2,6 +2,7 @@ class IntegerRecordsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_record, only: %i[ show edit destroy update ]
+  include Record
 
 
   def new
@@ -17,18 +18,6 @@ class IntegerRecordsController < ApplicationController
       end
   end
 
-  def show
-    @commented = @record.comment
-    @comment = Comment.new
-  end
-
-  def edit
-    respond_to do |format|
-      format.js { render :edit }
-      format.html { render :edit }
-    end
-  end
-
   def update
     respond_to do |format|
       if @record.update(integer_record_params)
@@ -40,17 +29,6 @@ class IntegerRecordsController < ApplicationController
       end
     end
   end
-
-  def destroy
-    respond_to do |format|
-      if @record.destroy
-        format.js { flash.now[:success] = t('flash.destroyed') }
-      else
-        formato.html { redirect_to top_index_path, alert: t('alert.errors') }
-      end
-    end
-  end
-
 
   private
 

@@ -44,6 +44,7 @@ gem 'faker'
 gem 'unicorn' 
 gem 'mini_racer', platforms: :ruby 
 gem 'dotenv-rails' 
+gem 'chart-js-rails'
 
 
 group :development, :test do

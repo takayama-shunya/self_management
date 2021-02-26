@@ -235,7 +235,8 @@ ja:
     negative_comment: ネガティブコメント
     positive_comment: ポジティブコメント
     comment: コメント 
-    commnet_create_maximum50: コメントが付けられます（50字以内） 
+    commnet_create_maximum100: コメントが付けられます（100字以内)
+    unit_create_maximum10: 10字以内で自由に設定できます（例：円等） 
     password_limit: 半角英数字6文字以上
     average_score: 平均スコア
     score: スコア

@@ -6,7 +6,7 @@
     <%= csp_meta_tag %>
 
     <%= Gon::Base.render_data %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script> -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
@@ -37,9 +37,9 @@
         </div>
       </div>
     </nav>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class=" col-12 col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <div class="col-12 col-sm-12 col-md-10 offset-md-1">
           <% if notice %>
             <div class="alert alert-success"><%= notice %></div>
           <% elsif alert %>
