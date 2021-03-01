@@ -23,7 +23,7 @@ class AutomaticRecordsController < ApplicationController
   def sleep_improvement_plan_args(type)
     case type
     when :stop_drinking
-      {
+    {
         title: "禁酒",
         unit: "",
         content: false,
