@@ -1,2 +1,0 @@
-class RecordCumulativeValue < ApplicationRecord
-end
