@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_28_053131) do
+ActiveRecord::Schema.define(version: 2021_03_02_170132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 2021_02_28_053131) do
     t.time "rising_time", null: false
     t.index ["created_at"], name: "index_conditions_on_created_at"
     t.index ["user_id"], name: "index_conditions_on_user_id"
+  end
+
+  create_table "cumlative_values", force: :cascade do |t|
+    t.string "value", null: false
+    t.string "recordable_type"
+    t.bigint "recordable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recordable_type", "recordable_id"], name: "index_cumlative_values_on_recordable_type_and_recordable_id"
   end
 
   create_table "record_dates", force: :cascade do |t|

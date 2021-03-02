@@ -1,0 +1,2 @@
+class CumlativeValue < ApplicationRecord
+end
