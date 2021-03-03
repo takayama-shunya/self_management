@@ -2,50 +2,48 @@ namespace :record_task do
   desc "実施日のcontent値を保存後、0に更新"
   task :after_save_update_flag => :environment do
     #ログ
-    logger = Logger.new 'log/midnight_reset.log'
+    logger = Logger.new 'log/record_task.log'
 
     #ここから処理を書いていく
 
     def find_implementation_record(date)
       week_day = %w(日 月 火 水 木 金 土 日)
-      dayname = week_day[date.wday] #dateを曜日数字に変換して配列から取り出す
+      dayname = week_day[date.wday] 
 
       model = [IntegerRecord, DecimalRecord, TimeRecord, CheckRecord, CountRecord]
-      today_records = []
+      records = []
 
       model.each do |m|
-        today_records << m.implementation_date(dayname)
+        records << m.implementation_date(dayname)
       end
 
-      @today_records = today_records.flatten!
+      @records = records.flatten!
     
     end
 
-    def implementation_record_save
-      date = Time.zone.now
-      find_implementation_record(date)
+    def implementation_record_after_save_update
+      today = Time.zone.now
+      find_implementation_record(today)
 
-      @today_records.each do |record|
-        record_date = record.record_dates.build(content: record.content)
+      @records.each do |record|
+        record.type == "CheckRecord" ?
+          record_date = record.record_dates.build(content: "#{record.content}") :
+          record_date = record.record_dates.build(content: record.content)
         record_date.save
       end
-    end
 
-    def implementation_record_update
-      date =  Time.zone.tomorrow
-      find_implementation_record(date)
+      tomorrow = Time.zone.tomorrow
+      find_implementation_record(tomorrow)
 
-      @today_records.each do |record|
-        if record.type == "TimeRecord"
-          record.update(content: "00:00")
-        else
+      @records.each do |record|
+        record.type == "TimeRecord" ?
+          record.update(content: "00:00") :
           record.update(content: "0")
-        end
       end
+
     end
 
-    implementation_record_save
-    implementation_record_update
+    implementation_record_after_save_update
 
   end
 end 
