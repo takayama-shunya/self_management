@@ -1,5 +1,7 @@
 <% if record.type == "IntegerRecord" %>
   <%= record.content.to_s(:delimited) %><span class="ml-2"><%= record.unit %></span>
+  <span class="ml-3">( 累計値<%= record.cumlative_value.value %> )</span>
 <% else %>
   <%= record.content %><span class="ml-2"><%= record.unit %></span>
+  <span class="ml-3">( 累計値<%= record.cumlative_value.value %> )</span>
 <% end %>
