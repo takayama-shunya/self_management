@@ -38,7 +38,7 @@ namespace :record_task do
       @records.each do |record|
         record.type == "TimeRecord" ?
           record.update(content: "00:00") :
-          record.update(content: "0")
+          record.update(content: 0)
       end
 
     end
