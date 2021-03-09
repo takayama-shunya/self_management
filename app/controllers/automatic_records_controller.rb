@@ -6,16 +6,14 @@ class AutomaticRecordsController < ApplicationController
   end
   
   def sleep_improvement_plan
-    results = [:stop_drinking, :bath, :exercise].map do |type|
+    created = [:stop_drinking, :bath, :exercise].all? do |type|
       record = current_user.check_records.build(sleep_improvement_plan_args(type))
       record.build_comment(content: comment_content(type)).save if record.save
       record.persisted? && record.comment.persisted?
     end
-    if results.all?{|bool| bool == true }
-      redirect_to setting_records_path, notice: t('notice.created_record')
-    else
-      redirect_to top_index_path, alert: t('alert.errors')
-    end
+    created ?
+      redirect_to setting_records_path, notice: t('notice.created_record') :
+      redirect_to top_index_path, alert: t('alert.errors')  
   end
   
   private

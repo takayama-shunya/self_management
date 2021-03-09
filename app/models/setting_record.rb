@@ -9,6 +9,7 @@ class SettingRecord < ApplicationRecord
   validates :title, presence: true, length: { maximum: 20 }
   validates :unit, length: { maximum: 10 }
 
+  private
 
   def cumlative_value_create
     unless self.type == "CheckRecord"
