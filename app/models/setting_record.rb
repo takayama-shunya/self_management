@@ -43,10 +43,9 @@ class SettingRecord < ApplicationRecord
   end
 
   def set_defference_value(record_type)
-    if record_type == "TimeRecord" ?
+    record_type == "TimeRecord" ?
       @difference = self.content.delete(':').to_i - self.attribute_before_last_save("content").delete(':').to_i :
       @difference = self.content - self.attribute_before_last_save("content")
-    end
   end
 
 end

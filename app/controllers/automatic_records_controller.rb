@@ -11,9 +11,11 @@ class AutomaticRecordsController < ApplicationController
       record.build_comment(content: comment_content(type)).save if record.save
       record.persisted? && record.comment.persisted?
     end
-    created ?
-      redirect_to setting_records_path, notice: t('notice.created_record') :
-      redirect_to top_index_path, alert: t('alert.errors')  
+    if created 
+      redirect_to setting_records_path, notice: t('notice.created_record')
+    else
+      redirect_to top_index_path, alert: t('alert.errors') 
+    end
   end
   
   private
