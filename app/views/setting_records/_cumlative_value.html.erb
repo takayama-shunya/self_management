@@ -1,0 +1,8 @@
+<div class="cumlative_value">
+  <span class="mr-2">累計</span>
+    <% if record.type == "IntegerRecord" %>
+      <%= record.cumlative_value.value.to_i.to_s(:delimited) %>
+    <% else %>
+      <%= record.cumlative_value.value %>
+    <% end %>
+</div>

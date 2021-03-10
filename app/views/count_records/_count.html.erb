@@ -1,4 +1,4 @@
-<ul class="list-inline float-left">
+<ul class="list-inline float-right">
   <li class="list-inline-item mr-2 p-0">
     <%= button_to  count_up_count_record_path(record.id), method: :post, class: 'btn btn-lg',remote: true do %>
       <span id="countup-btn-<%= record.id %>"><i class="fa fa-plus-square"></i></span>
@@ -11,9 +11,6 @@
     <%= button_to  count_down_count_record_path(record.id), method: :post, class: 'btn btn-lg',remote: true do %>
       <span id="countdown-btn-<%= record.id %>"><i class="fa fa-minus-square"></i></span>
     <% end %> 
-  </li>
-  <li class="list-inline-item ml-5 p-0">
-    ( 累計値<%= record.cumlative_value.value %> )
   </li>
 </ul>
 

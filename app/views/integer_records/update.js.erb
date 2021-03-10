@@ -2,6 +2,7 @@
   $('#message-area-<%= @record.id %>').html("<%= j(render partial: 'layouts/error_messages', locals: { model: @record }) %>")
 <% else %>
   $('#update_content_<%= @record.id %>').html("<%= j(render partial: 'setting_records/index', locals: { record: @record }) %>")
+  $('#cumlative_value_<%= @record.id %>').html("<%= j(render partial: 'setting_records/cumlative_value', locals: { record: @record }) %>")
   $('#message-area-<%= @record.id %>').html('')
   $('#flash-comment').html("<%= j(render partial: 'layouts/flash_messages') %>")
 <% end %>
