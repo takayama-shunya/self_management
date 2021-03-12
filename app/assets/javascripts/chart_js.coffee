@@ -55,3 +55,29 @@ window.draw_chart_condition_index = ->
       }
   })  
 
+window.draw_chart_record_index = ->
+  ctx = document.getElementById("myChart_record_index").getContext("2d");
+  myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: gon.record_created_at,
+          datasets: [{
+              label: '値',
+              data: gon.record_date,
+              backgroundColor: ['rgba(0,255,0,0.4)',],
+              borderColor: ['rgba(0,255,0,1)',],
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                    max: 40,
+                    min: 0,
+                    stepSize: 4
+                  }
+              }]
+          }
+      }
+  })  
+

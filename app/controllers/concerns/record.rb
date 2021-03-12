@@ -4,6 +4,9 @@ module Record
   def show
     @commented = @record.comment
     @comment = Comment.new
+    record_dates = RecordDate.find_record_date(@record.id)
+    gon.record_value = record_dates.reverse.pluck(:content)
+    gon.record_created_at = record_dates.reverse.map{ |r| r.created_at.strftime('%m/%d') }
   end
 
   def edit
