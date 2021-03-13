@@ -55,15 +55,15 @@ window.draw_chart_condition_index = ->
       }
   })  
 
-window.draw_chart_record_index = ->
-  ctx = document.getElementById("myChart_record_index").getContext("2d");
+window.draw_chart_record_index_line = ->
+  ctx = document.getElementById("myChart_record_index_line").getContext("2d");
   myChart = new Chart(ctx, {
       type: 'line',
       data: {
           labels: gon.record_created_at,
           datasets: [{
               label: '値',
-              data: gon.record_date,
+              data: gon.record_value,
               backgroundColor: ['rgba(0,255,0,0.4)',],
               borderColor: ['rgba(0,255,0,1)',],
           }]
@@ -72,9 +72,37 @@ window.draw_chart_record_index = ->
           scales: {
               yAxes: [{
                   ticks: {
-                    max: 40,
-                    min: 0,
-                    stepSize: 4
+                    max: gon.chart_value_max,
+                    min: gon.chart_value_min
+                  }
+              }]
+          }
+      }
+  })  
+
+window.draw_chart_record_index_pie = ->
+  ctx = document.getElementById("myChart_record_index_pie").getContext("2d");
+  myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+          datasets: [{
+            data: gon.record_value,
+            backgroundColor: [
+              "#BB5179",
+              "#FAFF67",
+            ],
+          }]
+          labels: [
+            '実施',
+            '未実施',
+          ]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                    max: gon.chart_value_max,
+                    min: gon.chart_value_min
                   }
               }]
           }
