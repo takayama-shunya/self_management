@@ -64,8 +64,8 @@ window.draw_chart_record_index_line = ->
           datasets: [{
               label: '値',
               data: gon.record_value,
-              backgroundColor: ['rgba(0,255,0,0.4)',],
-              borderColor: ['rgba(0,255,0,1)',],
+              borderColor: ['#FF4F02',],
+              backgroundColor: ['#FFDBC9',],
           }]
       },
       options: {
@@ -87,10 +87,7 @@ window.draw_chart_record_index_pie = ->
       data: {
           datasets: [{
             data: gon.record_value,
-            backgroundColor: [
-              "#BB5179",
-              "#FAFF67",
-            ],
+            backgroundColor: [ '#00FFFF','#FFFF00',],
           }]
           labels: [
             '実施',
@@ -98,14 +95,10 @@ window.draw_chart_record_index_pie = ->
           ]
       },
       options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                    max: gon.chart_value_max,
-                    min: gon.chart_value_min
-                  }
-              }]
-          }
+        title: {
+          display: true,
+          text: '実施率'
+        }
       }
   })  
 

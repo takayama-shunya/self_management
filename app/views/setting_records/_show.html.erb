@@ -68,3 +68,14 @@
 <% end %>
 </div>
 
+<diV class="chart-container pt-3">
+  <% if record.type == "CheckRecord" %>
+    <canvas id="myChart_record_index_pie"></canvas>
+    <script>draw_chart_record_index_pie();</script>
+  <% else %>
+    <canvas id="myChart_record_index_line"></canvas>
+    <script>draw_chart_record_index_line();</script>
+  <% end %>
+</div>
+
+

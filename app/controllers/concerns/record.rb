@@ -30,8 +30,9 @@ module Record
     @record_dates = RecordDate.find_record_date(@record.id)
     if @record.type == "CheckRecord"
       total_number = @record_dates.length
-      value = @record_dates.group_by(&:itself).map{ |key value| [key, value.count] }.to_h
-      gon.record_value = [value.fetch("true") / total_number * 100, value.fetch("false") / total_number * 100 ]
+      value = @record_dates.pluck(:content).group_by(&:itself).map{ |key, value| [key, value.count] }.to_h
+      set_number(value, total_number)
+      gon.record_value = [ @true_number, @false_number ]
     else
       record_type_action(@record.type)
       gon.record_value = @record_value
@@ -54,6 +55,17 @@ module Record
       @record_value = @record_dates.reverse.map{ |r| r.content.to_i }
     end
   end
+
+  def set_number(arry, total_number)
+    arry.key?("true") ?
+      @true_number = arry.fetch("true").to_f / total_number * 100 :
+      @true_number = 0
+    
+    arry.key?("false") ?
+      @false_number = arry.fetch("false").to_f / total_number * 100 :
+      @false_number = 0
+  end
+
 
 end
 
