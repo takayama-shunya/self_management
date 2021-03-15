@@ -23,6 +23,12 @@
       </td>
     </tr>
     <tr>
+      <% unless record.type == "CheckRecord" %>
+        <td>累計値</td>
+        <td><%= record.cumlative_value.value %><span class="ml-1"><%= record.unit %></span></td>
+      <% end %>
+    </tr>
+    <tr>
       <td><%= t('view.type') %></td>
       <td>
         <% if record.type == "IntegerRecord" %>
@@ -37,7 +43,7 @@
           <%= t('view.count_record') %>
         <% end %>
       </td>
-    <tr>
+    </tr>
       <td><%=t('view.implementation_day') %></td>
     <% implementation_day = Week.where(id: record.week_ids) %>
     <% record_implementation_day = [] %>
@@ -61,4 +67,15 @@
     <%= render partial:'comments/form', locals: { record: record, comment: comment } %>
 <% end %>
 </div>
+
+<diV class="chart-container pt-3">
+  <% if record.type == "CheckRecord" %>
+    <canvas id="myChart_record_index_pie"></canvas>
+    <script>draw_chart_record_index_pie();</script>
+  <% else %>
+    <canvas id="myChart_record_index_line"></canvas>
+    <script>draw_chart_record_index_line();</script>
+  <% end %>
+</div>
+
 
