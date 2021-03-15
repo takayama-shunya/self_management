@@ -37,8 +37,9 @@
       <div>
         <table class="table table-hover" style="table-layout:fixed;width:100%;">
           <colgroup>
-            <col style="width:40%;">
             <col style="width:30%;">
+            <col style="width:20%;">
+            <col style="width:20%;">
             <col style="width:30%;">
           </colgroup>
           <% @today_records.each do |record| %>
@@ -47,19 +48,26 @@
               <td style="word-wrap:break-word;">
                 <span id="record-link-<%= record.id %>"><%= link_to record.title, record_type(record.type, record.id) %></span>
               </td>
-              <td>
+              <td class="align-middle">
                 <div id="message-area-<%= record.id %>"></div>
                 <% if record.type == "CountRecord" %>
-                  <div id="count_button_<%= record.id %>">
+                  <div class="text-right mr-4" id="count_button_<%= record.id %>">
                     <%= render partial:'count_records/count', locals: { record: record } %>
                   </div>
                 <% elsif record.type == 'CheckRecord' %>
-                  <div id="check_button_<%= record.id %>">
+                  <div class="text-right mr-4" id="check_button_<%= record.id %>">
                     <%= render partial:'check_records/check', locals: { record: record } %>
                   </div>
                 <% else %>
-                  <div id="update_content_<%= record.id %>">
+                  <div class="text-right mr-4" id="update_content_<%= record.id %>">
                     <%= render partial:'setting_records/index', locals: { record: record } %>
+                  </div>
+                <% end %>
+              </td>
+              <td class="align-middle">
+                <% unless record.type == "CheckRecord" %>
+                  <div id="cumlative_value_<%= record.id %>">
+                    <%= render partial:'setting_records/cumlative_value', locals: { record: record } %>
                   </div>
                 <% end %>
               </td>

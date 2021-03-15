@@ -45,6 +45,7 @@ gem 'unicorn'
 gem 'mini_racer', platforms: :ruby 
 gem 'dotenv-rails' 
 gem 'chart-js-rails'
+gem 'whenever', require: false
 
 
 group :development, :test do

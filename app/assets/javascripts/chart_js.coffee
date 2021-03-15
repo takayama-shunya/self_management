@@ -55,3 +55,50 @@ window.draw_chart_condition_index = ->
       }
   })  
 
+window.draw_chart_record_index_line = ->
+  ctx = document.getElementById("myChart_record_index_line").getContext("2d");
+  myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: gon.record_created_at,
+          datasets: [{
+              label: '値',
+              data: gon.record_value,
+              borderColor: ['#FF4F02',],
+              backgroundColor: ['#FFDBC9',],
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                    max: gon.chart_value_max,
+                    min: gon.chart_value_min
+                  }
+              }]
+          }
+      }
+  })  
+
+window.draw_chart_record_index_pie = ->
+  ctx = document.getElementById("myChart_record_index_pie").getContext("2d");
+  myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+          datasets: [{
+            data: gon.record_value,
+            backgroundColor: [ '#00FFFF','#FFFF00',],
+          }]
+          labels: [
+            '実施',
+            '未実施',
+          ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: '実施率'
+        }
+      }
+  })  
+
