@@ -101,6 +101,53 @@ record_5 = CheckRecord.create!(
   week_ids: Week.ids.sample(3)
 )
 
+5.times do |n|
+  RecordDate.create!(
+    content: "#{rand(0..10000)}",
+    recordable_type: "IntegerRecord",
+    recordable_id: record_1.id,
+    created_at: (n + 1).days.ago
+  )
+end
+
+
+5.times do |n|
+  RecordDate.create!(
+    content: "#{rand(50.0..80.0)}",
+    recordable_type: "DecimalRecord",
+    recordable_id: record_2.id,
+    created_at: (n + 1).days.ago
+  )
+end
+
+time = ["01:00", "02:00", "03:00", "04:00", "05:00"]
+5.times do |n|
+  RecordDate.create!(
+    content: time.sample,
+    recordable_type: "TimeRecord",
+    recordable_id: record_3.id,
+    created_at: (n + 1).days.ago
+  )
+end
+
+5.times do |n|
+  RecordDate.create!(
+    content: "#{rand(0..20)}",
+    recordable_type: "CountRecord",
+    recordable_id: record_4.id,
+    created_at: (n + 1).days.ago
+  )
+end
+
+check = ["true", "false"]
+5.times do |n|
+  RecordDate.create!(
+    content: check.sample,
+    recordable_type: "CheckRecord",
+    recordable_id: record_5.id,
+    created_at: (n + 1).days.ago
+  )
+end
 
 
 
