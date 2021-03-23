@@ -1,4 +1,7 @@
 version: "3"
+volumes:
+  postgresql-data:
+    driver: local
 services:
   db:
     image: postgres
@@ -21,6 +24,3 @@ services:
       - .:/self_management
     ports:
       - "3000:3000"
-  volumes:
-    postgresql-data:
-      driver: local
