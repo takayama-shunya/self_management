@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     # この設定はcheckout先の指定であって、repository内のdirectoryは指定できない
-    working_directory: ~/circleci-demo-ruby-rails
+    working_directory: ~/self_management
 
     # すべてのコマンドを実行する場所となるプライマリ コンテナ イメージ
 
