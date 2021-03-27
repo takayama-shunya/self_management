@@ -19,6 +19,7 @@ jobs:
       - image: circleci/postgres:13.0-postgis-ram
         environment:
           POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
           POSTGRES_DB: self_management_test
     working_directory: ~/self_management 
 
