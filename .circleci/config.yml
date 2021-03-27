@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     # この設定はcheckout先の指定であって、repository内のdirectoryは指定できない
-    working_directory: ~/self_management
+    # working_directory: ~/self_management 23行目と重複エラー
 
     # すべてのコマンドを実行する場所となるプライマリ コンテナ イメージ
 
@@ -20,7 +20,8 @@ jobs:
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: self_management_test
-    working_directory: ~/self_management
+    working_directory: ~/self_management 
+
     steps:
 
       - checkout
