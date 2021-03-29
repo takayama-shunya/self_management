@@ -2,6 +2,8 @@
 FROM ruby:2.6.5
 
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+# cronインストール
+RUN apt-get install -y cron
 WORKDIR /self_management
 ADD Gemfile /self_management/Gemfile
 ADD Gemfile.lock /self_management/Gemfile.lock
@@ -18,3 +20,8 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
+
+# wheneverでcrontab書き込み
+RUN bundle exec whenever --update-crontab 
+# cronをフォアグラウンド実行
+CMD ["cron", "-f"] 

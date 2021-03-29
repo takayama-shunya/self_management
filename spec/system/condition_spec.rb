@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe 'コンディション機能', type: :system do
+RSpec.describe 'コンディション機能', type: :system, js: true do
   let!(:user_1) { FactoryBot.create(:test_user_1,
     name: 'user_1',
     email: 'user_1@icloud.com',
