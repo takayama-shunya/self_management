@@ -1,0 +1,6 @@
+services:
+  web:
+    volumes:
+      - .:/self_management:delegated
+
+#docker-compose -f docker-compose.yml -f docker-compose-local.yml up　で開発環境のみ設定できる
