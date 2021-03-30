@@ -23,8 +23,8 @@ RSpec.describe 'コンディション機能', type: :system, js: true do
     context 'コンディションを新規作成した場合' do
       it '作成したコンディションが表示される' do
         visit new_condition_path
-        fill_in "【就寝時間】", with: "23:00"
-        fill_in "【起床時間】", with: "07:00"
+        fill_in "condition[retirung_time]", with: "23:00"
+        fill_in "condition[rising_time]", with: "07:00"
         find('#st-2').choose
         find('#sq-2').choose
         find('#mc-2').choose

@@ -4,6 +4,7 @@ FROM ruby:2.6.5
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 # cronインストール
 RUN apt-get install -y cron
+RUN apt-get update && apt-get -y install vim
 WORKDIR /self_management
 ADD Gemfile /self_management/Gemfile
 ADD Gemfile.lock /self_management/Gemfile.lock
@@ -19,9 +20,8 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
-
 # wheneverでcrontab書き込み
 RUN bundle exec whenever --update-crontab 
-# cronをフォアグラウンド実行
-CMD ["cron", "-f"] 
+# cronをフォアグラウンド実行 CMDが2つ以上の時はファイル分ける（CMDは1つしか実行されない）
+CMD ["/startup.sh"] 
+
