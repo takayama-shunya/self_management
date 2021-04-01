@@ -1,15 +1,18 @@
 version: 2
 jobs:
-  build:
+  build:  # ワークフローを使用しない実行では、エントリポイントとして `build` ジョブが必要です
     # この設定はcheckout先の指定であって、repository内のdirectoryは指定できない
     # working_directory: ~/self_management 23行目と重複エラー
 
     # すべてのコマンドを実行する場所となるプライマリ コンテナ イメージ
-
-    docker:
+    parallelism: 3 # このジョブのインスタンスを 3 つ並列実行します
+    docker: # Docker でステップを実行します
 
       - image: circleci/ruby:2.6.5-node-browsers-legacy
         environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
           PGHOST: 127.0.0.1
           PGUSER: root
@@ -23,9 +26,9 @@ jobs:
           POSTGRES_DB: self_management_test
     working_directory: ~/self_management 
 
-    steps:
+    steps: # 実行可能コマンドの集合
 
-      - checkout
+      - checkout # ソース コードを作業ディレクトリにチェックアウトする特別なステップ
 
       # Bundler のバージョンを指定します
       - run:
@@ -33,26 +36,39 @@ jobs:
           command: gem install bundler:2.1.4
 
       # バンドル キャッシュを復元します
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+
+      - run: # Ruby の依存関係をインストールします
+          name: バンドル インストール
+          command: bundle check --path vendor/bundle || bundle install --deployment
+
+      # Ruby の依存関係のバンドル キャッシュを保存します
+
+      - save_cache:
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # アプリケーションで Webpacker または Yarn を他の何らかの方法で使用する場合にのみ必要です
 
       - restore_cache:
           keys:
-            - rails-demo-{{ checksum "Gemfile.lock" }}
-            - rails-demo-
-
-      # 依存関係をバンドル インストールします
+            - rails-demo-yarn-{{ checksum "yarn.lock" }}
+            - rails-demo-yarn-
 
       - run:
-          name: 依存関係のインストール
-          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
+          name: Yarn のインストール
+          command: yarn install --cache-folder ~/.cache/yarn
 
-      - run: sudo apt install -y postgresql-client || true
-
-      # バンドル キャッシュを保存します
+      # Yarn または Webpacker のキャッシュを保存します
 
       - save_cache:
-          key: rails-demo-{{ checksum "Gemfile.lock" }}
+          key: rails-demo-yarn-{{ checksum "yarn.lock" }}
           paths:
-            - vendor/bundle
+            - ~/.cache/yarn
       - run:
           name: DB の待機
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -60,14 +76,14 @@ jobs:
           name: データベースのセットアップ
           command: bin/rails db:schema:load --trace
       - run:
-          name: Run rspec in parallel
+          name: RSpec の並列実行
           command: |
             bundle exec rspec --profile 10 \
                               --format RspecJunitFormatter \
                               --out test_results/rspec.xml \
                               --format progress \
                               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-      # アーティファクトを保存します
 
+      # タイミング解析のテスト結果を保存します
       - store_test_results:
-          path: /tmp/test-results
+          path: test_results
