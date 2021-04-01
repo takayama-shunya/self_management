@@ -5,13 +5,13 @@ jobs:
     # working_directory: ~/self_management 23行目と重複エラー
 
     # すべてのコマンドを実行する場所となるプライマリ コンテナ イメージ
-    parallelism: 3 # このジョブのインスタンスを 3 つ並列実行します
+    # parallelism: 3 # このジョブのインスタンスを 3 つ並列実行します
     docker: # Docker でステップを実行します
 
       - image: circleci/ruby:2.6.5-node-browsers-legacy
         environment:
-          BUNDLE_JOBS: 3
-          BUNDLE_RETRY: 3
+          # BUNDLE_JOBS: 3
+          # BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
           PGHOST: 127.0.0.1
@@ -54,21 +54,21 @@ jobs:
 
       # アプリケーションで Webpacker または Yarn を他の何らかの方法で使用する場合にのみ必要です
 
-      - restore_cache:
-          keys:
-            - rails-demo-yarn-{{ checksum "yarn.lock" }}
-            - rails-demo-yarn-
+      # - restore_cache:
+      #     keys:
+      #       - rails-demo-yarn-{{ checksum "yarn.lock" }}
+      #       - rails-demo-yarn-
 
-      - run:
-          name: Yarn のインストール
-          command: yarn install --cache-folder ~/.cache/yarn
+      # - run:
+      #     name: Yarn のインストール
+      #     command: yarn install --cache-folder ~/.cache/yarn
 
-      # Yarn または Webpacker のキャッシュを保存します
+      # # Yarn または Webpacker のキャッシュを保存します
 
-      - save_cache:
-          key: rails-demo-yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
+      # - save_cache:
+      #     key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - ~/.cache/yarn
       - run:
           name: DB の待機
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
