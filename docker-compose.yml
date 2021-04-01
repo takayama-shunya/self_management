@@ -18,8 +18,8 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     tty: true # コンテナを起動させ続ける
     stdin_open: true
-    environment:
-      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
+    # environment:
+    #   - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
     volumes:
       - .:/self_management
     ports:
@@ -30,6 +30,6 @@ services:
       - db # DB側のコンテナが出来上がってからwebを実行する
       - chrome
   chrome:
-    image: selenium/standalone-chrome-debug
+    image: selenium/standalone-chrome:latest
     ports:
       - 4444:4444
