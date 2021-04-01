@@ -58,10 +58,7 @@ jobs:
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
           name: データベースのセットアップ
-          command: |
-            bundle exec rake db:create
-            bundle exec rake db:structure:load
-
+          command: bin/rails db:schema:load --trace
       - run:
           name: Run rspec in parallel
           command: |
