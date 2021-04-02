@@ -8,10 +8,10 @@ jobs:
     # parallelism: 3 # このジョブのインスタンスを 3 つ並列実行します
     docker: # Docker でステップを実行します
 
-      - image: circleci/ruby:2.6.5-node-browsers-legacy
+      - image: circleci/ruby:2.6.5-node-browsers
         environment:
           # BUNDLE_JOBS: 3
-          # BUNDLE_RETRY: 3
+          BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
           PGHOST: 127.0.0.1
@@ -24,65 +24,116 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
           POSTGRES_DB: self_management_test
+    
+      - image: selenium/standalone-chrome-debug:latest
+        name: chrome
+
     working_directory: ~/self_management 
 
     steps: # 実行可能コマンドの集合
-
       - checkout # ソース コードを作業ディレクトリにチェックアウトする特別なステップ
 
-      # Bundler のバージョンを指定します
-      - run:
-          name: Bundler の指定
-          command: gem install bundler:2.1.4
-
-      # バンドル キャッシュを復元します
       - restore_cache:
           keys:
-            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
-            - rails-demo-bundle-v2-
-
-      - run: # Ruby の依存関係をインストールします
-          name: バンドル インストール
-          command: bundle check --path vendor/bundle || bundle install --deployment
-
-      # Ruby の依存関係のバンドル キャッシュを保存します
-
+            - my-app-bundle-v1-{{ checksum "Gemfile.lock" }}
+            - my-app-bundle-v1-
+      - run:
+          name: Bundlerをinstall
+          command: |
+            gem update --system
+            gem install bundler
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
       - save_cache:
-          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          key: my-app-bundle-v1-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+      - restore_cache:
+          keys:
+            - rails-demo-yarn-{{ checksum "yarn.lock" }}
+            - rails-demo-yarn-
+      - run:
+          name: Yarnをinstall
+          command: yarn install --cache-folder ~/.cache/yarn
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bin/rails db:create db:schema:load --trace
+      - run: bundle exec bin/webpack
+      - run:
+          name: execute rspec
+          command: bundle exec rspec
+      - store_test_results:
+          path: /tmp/test-results
 
-      # アプリケーションで Webpacker または Yarn を他の何らかの方法で使用する場合にのみ必要です
 
+
+
+
+
+      # # Bundler のバージョンを指定します
+      # - run:
+      #     name: Bundler の指定
+      #     command: gem install bundler:2.1.4
+
+      # # バンドル キャッシュを復元します 
       # - restore_cache:
       #     keys:
-      #       - rails-demo-yarn-{{ checksum "yarn.lock" }}
-      #       - rails-demo-yarn-
+      #       - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+      #       - rails-demo-bundle-v2-
 
-      # - run:
-      #     name: Yarn のインストール
-      #     command: yarn install --cache-folder ~/.cache/yarn
+      # - run: # Ruby の依存関係をインストールします
+      #     name: バンドル インストール
+      #     command: bundle check --path vendor/bundle || bundle install --deployment
 
-      # # Yarn または Webpacker のキャッシュを保存します
+      # # Ruby の依存関係のバンドル キャッシュを保存します
 
       # - save_cache:
-      #     key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+      #     key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
       #     paths:
-      #       - ~/.cache/yarn
-      - run:
-          name: DB の待機
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run:
-          name: データベースのセットアップ
-          command: bin/rails db:schema:load --trace
-      - run:
-          name: RSpec の並列実行
-          command: |
-            bundle exec rspec --profile 10 \
-                              --out test_results/rspec.xml \
-                              --format progress \
-                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      #       - vendor/bundle
 
-      # タイミング解析のテスト結果を保存します
-      - store_test_results:
-          path: test_results
+      # - run:
+      #     name: yarnを追加
+      #     command: yarn install
+      # - run:
+      #     name: webpackを追加
+      #     command: bundle exec bin/webpack
+
+      # # アプリケーションで Webpacker または Yarn を他の何らかの方法で使用する場合にのみ必要です
+
+      # # - restore_cache:
+      # #     keys:
+      # #       - rails-demo-yarn-{{ checksum "yarn.lock" }}
+      # #       - rails-demo-yarn-
+
+      # # - run:
+      # #     name: Yarn のインストール
+      # #     command: yarn install --cache-folder ~/.cache/yarn
+
+      # # # Yarn または Webpacker のキャッシュを保存します
+
+      # # - save_cache:
+      # #     key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+      # #     paths:
+      # #       - ~/.cache/yarn
+      # - run:
+      #     name: DB の待機
+      #     command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      # - run:
+      #     name: データベースのセットアップ
+      #     command: bin/rails db:schema:load --trace
+      # - run:
+      #     name: RSpec の並列実行
+      #     command: |
+      #       bundle exec rspec --profile 10 \
+      #                         --out test_results/rspec.xml \
+      #                         --format progress \
+      #                         $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+      # # タイミング解析のテスト結果を保存します
+      # - store_test_results:
+      #     path: test_results
