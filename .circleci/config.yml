@@ -49,10 +49,10 @@ jobs:
           command: gem install bundler:2.1.4
 
       # バンドル キャッシュを復元します 
-      # - restore_cache:
-      #     keys:
-      #       - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
-      #       - rails-demo-bundle-v2-
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
 
       - run: # Ruby の依存関係をインストールします
           name: バンドル インストール
@@ -103,6 +103,18 @@ jobs:
       # タイミング解析のテスト結果を保存します
       - store_test_results:
           path: /tmp/test_results
+
+
+workflows:
+  version: 2
+  buld:
+    jobs:
+      - build:
+          filters:  # 正規表現フィルターを使用すると、ブランチ全体が一致する必要があります
+            branches:
+              only:  # 以下の正規表現フィルターに一致するブランチのみが実行されます
+                - master
+                - develop
 
 # docker-compose 使用
 # version: 2
