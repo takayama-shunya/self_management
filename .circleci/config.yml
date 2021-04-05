@@ -2,7 +2,6 @@ version: 2
 jobs:
   build:  # ワークフローを使用しない実行では、エントリポイントとして `build` ジョブが必要です
     # この設定はcheckout先の指定であって、repository内のdirectoryは指定できない
-    # working_directory: ~/self_management 23行目と重複エラー
 
     # すべてのコマンドを実行する場所となるプライマリ コンテナ イメージ
     # parallelism: 3 # このジョブのインスタンスを 3 つ並列実行します
@@ -104,10 +103,23 @@ jobs:
       - store_test_results:
           path: /tmp/test_results
 
+  deploy:  
+    docker: 
+      - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          BUNDLER_VERSION: 2.1.4   # ローカルでインストールされているbundlerのバージョンを指定
+    steps:
+      - add_ssh_keys:
+          fingerprints: #cicleCI ssh(EC2のkye.pem)
+            - "46：99：e4：d3：59：47：ed：62：86：5a：14：9e：9e：5f：7c：5b"
+      - deploy:
+          name: Capistrano deploy
+          command: bundle exec cap production deploy
+
 
 workflows:
   version: 2
-  buld:
+  buld_deoloy:
     jobs:
       - build:
           filters:  # 正規表現フィルターを使用すると、ブランチ全体が一致する必要があります
@@ -115,6 +127,12 @@ workflows:
               only:  # 以下の正規表現フィルターに一致するブランチのみが実行されます
                 - master
                 - develop
+      - deploy:
+          requires:
+            - build
+            filters:
+              branches:
+                only: master
 
 # docker-compose 使用
 # version: 2
