@@ -106,9 +106,26 @@ jobs:
   deploy:  
     docker: 
       - image: circleci/ruby:2.6.5-node-browsers
-        environment:
-          BUNDLER_VERSION: 2.1.4   # ローカルでインストールされているbundlerのバージョンを指定
+    
+    working_directory: ~/self_management 
+
     steps:
+      - checkout
+      - run:
+          name: Bundler の指定
+          command: gem install bundler:2.1.4
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+      - run: 
+          name: バンドル インストール
+          command: bundle check || bundle install
+      - save_cache:
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
       - add_ssh_keys:
           fingerprints: #cicleCI ssh(EC2のkye.pem)
             - "46：99：e4：d3：59：47：ed：62：86：5a：14：9e：9e：5f：7c：5b"
