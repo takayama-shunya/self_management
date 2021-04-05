@@ -130,9 +130,9 @@ workflows:
       - deploy:
           requires:
             - build
-            filters:
-              branches:
-                only: master
+          filters:
+            branches:
+              only: master
 
 # docker-compose 使用
 # version: 2
