@@ -128,7 +128,7 @@ jobs:
 
       - add_ssh_keys:
           fingerprints: #cicleCI ssh(EC2のkye.pem)
-            - "46：99：e4：d3：59：47：ed：62：86：5a：14：9e：9e：5f：7c：5b"
+            - "41:6f:ea:60:da:c5:81:83:6b:35:c6:53:9e:d4:ec:8c"
       - deploy:
           name: Capistrano deploy
           command: bundle exec cap production deploy
