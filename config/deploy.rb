@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-# lock '3.14.1'
+lock '3.6.0'
 
 set :application, 'self_management'
 set :repo_url, 'https://github.com/takayama-shunya/selef_management.git'
@@ -20,34 +20,35 @@ set :rbenv_type, :system
 # ただし挙動をしっかり確認したいのであれば :debug に設定する。
 set :log_level, :info
 set :whenever_roles, ->{ :app }
+
 namespace :deploy do
   desc 'Restart application'
   task :restart do
     invoke 'unicorn:restart'
   end
-  desc 'Create database'
-  task :db_create do
-    on roles(:db) do |host|
-      with rails_env: fetch(:rails_env) do
-        within current_path do
-          execute :bundle, :exec, :rake, 'db:create'
-        end
-      end
-    end
-  end
-  desc 'Run seed'
-  task :seed do
-    on roles(:app) do
-      with rails_env: fetch(:rails_env) do
-        within current_path do
-          execute :bundle, :exec, :rake, 'db:seed'
-        end
-      end
-    end
-  end
-  after :publishing, :restart
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-    end
-  end
+  # desc 'Create database'
+  # task :db_create do
+  #   on roles(:db) do |host|
+  #     with rails_env: fetch(:rails_env) do
+  #       within current_path do
+  #         execute :bundle, :exec, :rake, 'db:create'
+  #       end
+  #     end
+  #   end
+  # end
+  # desc 'Run seed'
+  # task :seed do
+  #   on roles(:app) do
+  #     with rails_env: fetch(:rails_env) do
+  #       within current_path do
+  #         execute :bundle, :exec, :rake, 'db:seed'
+  #       end
+  #     end
+  #   end
+  # end
+  # after :publishing, :restart
+  # after :restart, :clear_cache do
+  #   on roles(:web), in: :groups, limit: 3, wait: 10 do
+  #   end
+  # end
 end
