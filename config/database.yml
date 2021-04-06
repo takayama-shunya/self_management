@@ -84,6 +84,9 @@ test:
 #
 production:
   <<: *default
-  database: self_management_production
-  username: self_management
-  password: <%= ENV['SELF_MANAGEMENT_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DB_DATABASE'] %>
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV['DB_HOST'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
