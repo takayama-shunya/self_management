@@ -87,4 +87,3 @@ production:
   database: self_management_production
   username: self_management
   password: <%= ENV['SELF_MANAGEMENT_DATABASE_PASSWORD'] %>
-  host: db
