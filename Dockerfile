@@ -13,7 +13,7 @@ ADD Gemfile.lock /self_management/Gemfile.lock
 # ENV BUNDLER_VERSION 2.1.4
 RUN gem install bundler:2.1.4
 RUN bundle install
-COPY . /self_management
+ADD . /self_management
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
@@ -21,7 +21,8 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 # wheneverでcrontab書き込み
-RUN bundle exec whenever --update-crontab 
-# cronをフォアグラウンド実行 CMDが2つ以上の時はファイル分ける（CMDは1つしか実行されない）
+RUN bundle exec whenever --update-crontab
+RUN service cron start 
+# CMDが2つ以上の時はファイル分ける（CMDは1つしか実行されない）
 CMD ["/startup.sh"] 
 

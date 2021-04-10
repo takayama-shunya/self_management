@@ -1,5 +1,6 @@
 # Rails.rootを使用するために必要。なぜなら、wheneverは読み込まれるときにrailsを起動する必要がある
 require File.expand_path(File.dirname(__FILE__) + "/environment")
+ENV.each { |k, v| env(k, v) }
 # cronを実行する環境変数
 rails_env = ENV['RAILS_ENV'] || :development
 # cronを実行する環境変数をセット

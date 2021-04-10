@@ -22,14 +22,11 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
 
 development:
-  # <<: *default
+  <<: *default
   database: self_management_development
-  adapter: postgresql
-  encoding: unicode
   host: db
   username: postgres
   password: password
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 
   # The specified database role being used to connect to postgres.
@@ -63,14 +60,11 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  # <<: *default
+  <<: *default
   database: self_management_test
   host: localhost
-  adapter: postgresql
-  encoding: unicode
   username: postgres
   password: password
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 
 # As with config/secrets.yml, you never want to store sensitive information,
