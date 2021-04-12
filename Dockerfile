@@ -21,8 +21,8 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 # wheneverでcrontab書き込み
-RUN bundle exec whenever --update-crontab
-RUN service cron start 
+# RUN bundle exec whenever --update-crontab
+# RUN service cron start 
 # CMDが2つ以上の時はファイル分ける（CMDは1つしか実行されない）
 CMD ["/startup.sh"] 
 
