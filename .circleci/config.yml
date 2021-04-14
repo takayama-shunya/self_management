@@ -1,0 +1,180 @@
+version: 2
+jobs:
+  build:  # ワークフローを使用しない実行では、エントリポイントとして `build` ジョブが必要です
+    # この設定はcheckout先の指定であって、repository内のdirectoryは指定できない
+
+    # すべてのコマンドを実行する場所となるプライマリ コンテナ イメージ
+    # parallelism: 3 # このジョブのインスタンスを 3 つ並列実行します
+    docker: # Docker でステップを実行します
+
+      - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          # BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: root
+
+    # `host: localhost` でアクセスできるサービス コンテナ イメージ
+
+      - image: circleci/postgres:13.0-postgis-ram
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: self_management_test
+    
+      - image: selenium/standalone-chrome-debug:latest
+        name: chrome
+        ports:
+          - 4444:4444
+
+    working_directory: ~/self_management 
+
+    steps: # 実行可能コマンドの集合
+
+      - run:
+          command: chromedriver
+          background: true
+
+      - checkout # ソース コードを作業ディレクトリにチェックアウトする特別なステップ
+
+      # - run: sudo apt update
+      # - run: sudo apt upgrade
+
+      # Bundler のバージョンを指定します
+      - run:
+          name: Bundler の指定
+          command: gem install bundler:2.1.4
+
+      # バンドル キャッシュを復元します 
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+
+      - run: # Ruby の依存関係をインストールします
+          name: バンドル インストール
+          command: bundle check || bundle install
+
+      # Ruby の依存関係のバンドル キャッシュを保存します
+
+      - save_cache:
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: yarnを追加
+          command: yarn install
+
+      # アプリケーションで Webpacker または Yarn を他の何らかの方法で使用する場合にのみ必要です
+
+      # - restore_cache:
+      #     keys:
+      #       - rails-demo-yarn-{{ checksum "yarn.lock" }}
+      #       - rails-demo-yarn-
+
+      # - run:
+      #     name: Yarn のインストール
+      #     command: yarn install --cache-folder ~/.cache/yarn
+
+      # # Yarn または Webpacker のキャッシュを保存します
+
+      # - save_cache:
+      #     key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - ~/.cache/yarn
+      - run:
+          name: DB の待機
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: データベースのセットアップ
+          command: bin/rails db:schema:load --trace
+      - run:
+          name: RSpec の並列実行
+          command: |
+            bundle exec rspec --profile 10 \
+                              --out test_results/rspec.xml \
+                              --format progress \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+      # タイミング解析のテスト結果を保存します
+      - store_test_results:
+          path: /tmp/test_results
+
+  deploy:  
+    docker: 
+      - image: circleci/ruby:2.6.5-node-browsers
+    
+    working_directory: ~/self_management 
+
+    steps:
+      - checkout
+      - run:
+          name: Bundler の指定
+          command: gem install bundler:2.1.4
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+      - run: 
+          name: バンドル インストール
+          command: bundle check || bundle install
+      - save_cache:
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - add_ssh_keys:
+          fingerprints: #cicleCI ssh(EC2のkye.pem)
+            - "41:6f:ea:60:da:c5:81:83:6b:35:c6:53:9e:d4:ec:8c"
+      - deploy:
+          name: Capistrano deploy
+          command: bundle exec cap production deploy
+
+
+workflows:
+  version: 2
+  buld_deoloy:
+    jobs:
+      - build:
+          filters:  # 正規表現フィルターを使用すると、ブランチ全体が一致する必要があります
+            branches:
+              only:  # 以下の正規表現フィルターに一致するブランチのみが実行されます
+                - master
+                - develop
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+
+# docker-compose 使用
+# version: 2
+# jobs:
+#   build:
+#     # docker-composeがインストール済みの仮想マシンをプル
+#     machine:
+#       image: circleci/classic:edge
+#     steps:
+#       - checkout
+#       - run:
+#           name: Dockerコンテナのビルド
+#           command: docker-compose -f /docker-compose.yml build
+#       - run:
+#           name: Dockerコンテナの起動
+#           command: docker-compose -f /docker-compose.yml up -d
+#       - run:
+#           name: db接続を待機
+#           command: sleep 10
+#       - run:
+#           name: データベースのセットアップ
+#           command: docker-compose -f /docker-compose.yml exec web bundle exec rails db:migrate RAILS_ENV=test
+#       - run:
+            # name: rspecの実施
+            # command: docker-compose run web rspec spec
+#       - run:
+#           name: Dockerコンテナの停止
+#           command: docker-compose -f /docker-compose.yml down

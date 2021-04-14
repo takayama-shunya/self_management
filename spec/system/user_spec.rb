@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe 'ユーザー管理機能', type: :system do
+RSpec.describe 'ユーザー管理機能', type: :system, js: true do
   describe 'ユーザー登録機能' do
     context 'ユーザーを新規作成した場合' do
       it '作成したユーザーが登録されログインする' do

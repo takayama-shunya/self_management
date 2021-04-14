@@ -17,7 +17,7 @@ class Condition < ApplicationRecord
     where(created_at: date.in_time_zone.all_day).take
   end
 
-  scope :find_by_user, ->(user_id) { where(user_id: user_id) }
+  scope :find_user, ->(user_id) { where(user_id: user_id) }
 
   def set_condition_value
     [ self.sleep_time, self.sleep_quality,

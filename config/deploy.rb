@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-# lock '3.14.1'
+lock '3.6.0'
 
 set :application, 'self_management'
 set :repo_url, 'https://github.com/takayama-shunya/selef_management.git'
@@ -19,6 +19,8 @@ set :rbenv_type, :system
 # 本番環境用のものであれば、 :info程度が普通。
 # ただし挙動をしっかり確認したいのであれば :debug に設定する。
 set :log_level, :info
+set :whenever_roles, ->{ :app }
+
 namespace :deploy do
   desc 'Restart application'
   task :restart do

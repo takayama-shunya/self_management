@@ -1,15 +1,21 @@
 class SettingRecord < ApplicationRecord
   
   after_create :cumlative_value_create
+  after_create :record_date_create
   after_update :cumlative_value_update
 
-  scope :find_by_user, ->(user_id) { where(user_id: user_id) }
+  scope :find_user, ->(user_id) { where(user_id: user_id) }
   scope :implementation_date, ->(dayname) { joins(:weeks).where(weeks: {dayname: dayname}) }
 
   validates :title, presence: true, length: { maximum: 20 }
   validates :unit, length: { maximum: 10 }
 
   private
+
+  def record_date_create
+    record_date = self.record_dates.build(content: self.content)
+    record_date.save
+  end
 
   def cumlative_value_create
     unless self.type == "CheckRecord"

@@ -33,7 +33,7 @@ class TopController < ApplicationController
   end
 
   def condition_average_value
-    conditions = Condition.find_by_user(current_user.id)
+    conditions = Condition.find_user(current_user.id)
     gon.average_value = conditions.set_condition_average_value
     @condition_average_score = gon.average_value.sum
   end
@@ -46,7 +46,7 @@ class TopController < ApplicationController
     today_records = []
 
     model.each do |m|
-      today_records << m.find_by_user(current_user.id).implementation_date(@dayname)
+      today_records << m.find_user(current_user.id).implementation_date(@dayname)
     end
 
     @today_records = today_records.flatten!

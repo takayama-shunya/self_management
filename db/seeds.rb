@@ -61,7 +61,7 @@ Condition.create!(condition_list_2)
 #   )
 # end
 
-IntegerRecord.create!(
+record_1 = IntegerRecord.create!(
   title: "収支",
   unit: "円",
   content: 10000,
@@ -69,7 +69,7 @@ IntegerRecord.create!(
   week_ids: Week.ids.sample(4)
 )
 
-DecimalRecord.create!(
+record_2 = DecimalRecord.create!(
   title: "体重",
   unit: "キロ",
   content: 55.5,
@@ -77,7 +77,7 @@ DecimalRecord.create!(
   week_ids: Week.ids.sample(5)
 )
 
-TimeRecord.create!(
+record_3 = TimeRecord.create!(
   title: "勉強時間",
   unit: "時間",
   content: "15:00",
@@ -85,7 +85,7 @@ TimeRecord.create!(
   week_ids: Week.ids.sample(3)
 )
 
-CountRecord.create!(
+record_4 = CountRecord.create!(
   title: "喫煙本数",
   unit: "本",
   content: 0,
@@ -93,12 +93,61 @@ CountRecord.create!(
   week_ids: Week.ids.sample(7)
 )
 
-CheckRecord.create!(
+record_5 = CheckRecord.create!(
   title: "チェック",
   unit: "",
   content: false,
   user_id: user_1.id,
   week_ids: Week.ids.sample(3)
 )
+
+5.times do |n|
+  RecordDate.create!(
+    content: "#{rand(0..10000)}",
+    recordable_type: "IntegerRecord",
+    recordable_id: record_1.id,
+    created_at: (n + 1).days.ago
+  )
+end
+
+
+5.times do |n|
+  RecordDate.create!(
+    content: "#{rand(50.0..80.0)}",
+    recordable_type: "DecimalRecord",
+    recordable_id: record_2.id,
+    created_at: (n + 1).days.ago
+  )
+end
+
+time = ["01:00", "02:00", "03:00", "04:00", "05:00"]
+5.times do |n|
+  RecordDate.create!(
+    content: time.sample,
+    recordable_type: "TimeRecord",
+    recordable_id: record_3.id,
+    created_at: (n + 1).days.ago
+  )
+end
+
+5.times do |n|
+  RecordDate.create!(
+    content: "#{rand(0..20)}",
+    recordable_type: "CountRecord",
+    recordable_id: record_4.id,
+    created_at: (n + 1).days.ago
+  )
+end
+
+check = ["true", "false"]
+5.times do |n|
+  RecordDate.create!(
+    content: check.sample,
+    recordable_type: "CheckRecord",
+    recordable_id: record_5.id,
+    created_at: (n + 1).days.ago
+  )
+end
+
 
 
