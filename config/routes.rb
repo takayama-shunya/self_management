@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     root :to => "devise/sessions#new"
+    post :guest_sign_in
   end
 
   devise_for :users
