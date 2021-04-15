@@ -32,7 +32,7 @@ RSpec.describe 'ユーザー管理機能', type: :system, js: true do
   describe 'ログイン機能' do
     before do
       visit root_path
-      fill_in "Eメール", with: "user_1@icloud.com"
+      fill_in "Eメール", with: "user_2@icloud.com"
       fill_in "パスワード", with: "password"
       click_button "ログイン"
     end
@@ -51,7 +51,7 @@ RSpec.describe 'ユーザー管理機能', type: :system, js: true do
     context 'ログイン時' do
       it 'ユーザー詳細画面にアクセスできること' do
         visit edit_user_registration_path
-        expect(page).to have_content 'user_1'
+        expect(page).to have_content 'user_2'
       end
       it 'ユーザー編集できること' do
         visit edit_user_registration_path
