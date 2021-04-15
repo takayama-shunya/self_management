@@ -3,6 +3,13 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :guest_user_cannot_be_cheanged, only: %i[ destroy update edit] 
+
+  def guest_user_cannot_be_cheanged
+    if resource.name == "user_1"
+      redirect_to top_index_path, alert: 'ゲストユーザーのため、ユーザー削除・編集はできません'
+    end
+  end
 
   # GET /resource/sign_up
   # def new
