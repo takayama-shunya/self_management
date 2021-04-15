@@ -26,6 +26,9 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   def guest_sign_in
+    guest_user = User.guest_user
+    sign_in guest_user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
-  
+
 end

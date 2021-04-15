@@ -28,6 +28,10 @@
       <% end %>
 
       <div class="mb-3">
+        <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
+      </div>
+
+      <div class="mb-3">
         <%= render "devise/shared/links" %>
       </div>
     </div>
