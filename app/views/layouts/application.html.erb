@@ -48,17 +48,17 @@
           <div id="flash-comment"></div>
           <%= yield %>
         </div>
-      </div>
+      </div>　
     </div>
     <% if user_signed_in? %>
     <nav class="navbar navbar-expand navbar-dark fixed-bottom">
-      <div class="container-fluid">
+      <div class="container-fluid justify-content-center">
         <ul class="navbar-nav">
-          <li class="nav-item"><%= link_to t('view.record_create_list'), setting_records_path, class:"nav-link" %></li>
+          <li class="nav-item text-center"><%= link_to t('view.record_create_list'), setting_records_path, class:"nav-link" %></li>
           <% if today_condition.blank? %>
-            <li class="nav-item"><%= link_to t('view.condition_create'), new_condition_path, class:"nav-link" %></li>
+            <li class="nav-item text-center"><%= link_to t('view.condition_create'), new_condition_path, class:"nav-link" %></li>
           <% else %>
-            <li class="nav-item"><%= link_to t('view.condition_edit'), edit_condition_path(today_condition.id), class:"nav-link" %><li>
+            <li class="nav-item text-center"><%= link_to t('view.condition_edit'), edit_condition_path(today_condition.id), class:"nav-link" %><li>
           <% end %>
         </ul>
       </div>
