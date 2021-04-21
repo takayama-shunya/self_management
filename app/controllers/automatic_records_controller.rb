@@ -7,7 +7,11 @@ class AutomaticRecordsController < ApplicationController
   
   def sleep_improvement_plan
     created = [:stop_drinking, :bath, :exercise].all? do |type|
-      record = current_user.check_records.build(sleep_improvement_plan_args(type))
+      if type == :exercise
+        record = current_user.time_records.build(sleep_improvement_plan_args(type))
+      else
+        record = current_user.check_records.build(sleep_improvement_plan_args(type))
+      end
       record.build_comment(content: comment_content(type)).save if record.save
       record.persisted? && record.comment.persisted?
     end

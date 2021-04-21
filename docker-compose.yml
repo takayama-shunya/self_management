@@ -17,7 +17,7 @@ services:
       dockerfile: Dockerfile    
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     tty: true # コンテナを起動させ続ける
-    stdin_open: true
+    stdin_open: true #標準入力出来るようになるオプション
     # environment:
     #   - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
     volumes:
